@@ -81,7 +81,7 @@ export async function getMaintenanceSchedule(loftId?: string): Promise<Maintenan
         return {
           id: task.id,
           loft_id: task.loft_id,
-          loft_name: task.loft[0]?.name || 'Unknown',
+          loft_name: task.loft?.[0]?.name || 'Unknown',
           task_type: task.task_type,
           description: task.description,
           scheduled_date: task.scheduled_date,
@@ -244,7 +244,7 @@ export async function getPropertyAnalytics(months: number = 12): Promise<Propert
       }
 
       // Process occupancy trends
-      const occupancyTrends: OccupancyTrend[] = (occupancyData || []).map((trend: any) => ({
+      const occupancyTrends: OccupancyTrend[] = (occupancyData || []).map((trend: OccupancyTrend) => ({
         month: trend.month,
         occupancy_rate: trend.occupancy_rate,
         total_lofts: trend.total_lofts,
@@ -267,7 +267,7 @@ export async function getPropertyAnalytics(months: number = 12): Promise<Propert
       // Process revenue by property
       const revenueByPropertyMap = new Map<string, number>()
       ;(revenueData || []).forEach(transaction => {
-        const loftName = transaction.loft[0]?.name || 'Unknown'
+        const loftName = transaction.loft?.[0]?.name || 'Unknown'
         revenueByPropertyMap.set(loftName, (revenueByPropertyMap.get(loftName) || 0) + transaction.amount)
       })
 

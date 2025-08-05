@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
+import { FormWrapper, FormSection } from '@/components/ui/form-wrapper'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import type { Currency, Transaction } from '@/lib/types'
@@ -92,17 +92,28 @@ export function TransactionForm({ transaction, categories, lofts, currencies, pa
 
 
 return (
-  <Card className="max-w-2xl mx-auto">
-    <CardHeader>
-      <CardTitle>{transaction ? t('transactions.editTransaction') : t('transactions.addNewTransaction')}</CardTitle>
-      <CardDescription>{transaction ? t('transactions.updateTransactionInfo') : t('transactions.createNewTransaction')}</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+    <FormWrapper 
+      maxWidth="2xl"
+      title={transaction ? t('transactions.editTransaction') : t('transactions.addNewTransaction')}
+      description={transaction ? t('transactions.updateTransactionInfo') : t('transactions.createNewTransaction')}
+      icon="💰"
+    >
+      <FormSection 
+        title={t('transactions.transactionDetails')}
+        description={t('transactions.enterTransactionInfo')}
+        icon="📊"
+      >
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <Label htmlFor="amount">{t('transactions.amount')}</Label>
-            <Input id="amount" type="number" step="0.01" {...register('amount', { valueAsNumber: true })} />
+            <Input 
+              id="amount" 
+              type="number" 
+              step="0.01" 
+              {...register('amount', { valueAsNumber: true })}
+              className="bg-white"
+            />
             {errors.amount && <p className="text-sm text-red-500">{errors.amount.message}</p>}
             {amount !== null && amount !== undefined && (
               <p className="text-sm text-muted-foreground">
@@ -122,18 +133,27 @@ return (
           </div>
           <div className="space-y-2">
             <Label htmlFor="date">{t('transactions.date')}</Label>
-            <Input id="date" type="date" {...register('date')} />
+            <Input 
+              id="date" 
+              type="date" 
+              {...register('date')}
+              className="bg-white"
+            />
             {errors.date && <p className="text-sm text-red-500">{errors.date.message}</p>}
           </div>
         </div>
 
           <div className="space-y-2">
             <Label htmlFor="description">{t('transactions.description')}</Label>
-            <Textarea id="description" {...register('description')} />
+            <Textarea 
+              id="description" 
+              {...register('description')}
+              className="bg-white"
+            />
             {errors.description && <p className="text-sm text-red-500">{errors.description.message}</p>}
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label htmlFor="transaction_type">{t('transactions.type')}</Label>
               <Select onValueChange={(value) => setValue('transaction_type', value as any)} defaultValue={transaction?.transaction_type}>
@@ -233,7 +253,7 @@ return (
             </Button>
           </div>
         </form>
-      </CardContent>
-    </Card>
+      </FormSection>
+    </FormWrapper>
   )
 }

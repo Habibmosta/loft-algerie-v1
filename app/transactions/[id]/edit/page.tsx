@@ -26,21 +26,18 @@ interface PaymentMethod {
 }
 
 export default function EditTransactionPage() {
-  const params = useParams();
-
-  // Initialize id here, before any conditional returns
-  const id = params?.id as string;
-
-  const [transaction, setTransaction] = useState<Transaction | null>(null);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [lofts, setLofts] = useState<Loft[]>([]);
-  const [currencies, setCurrencies] = useState<Currency[]>([]);
-  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const params = useParams()
+  const id = params.id as string
+  const [transaction, setTransaction] = useState<Transaction | null>(null)
+  const [categories, setCategories] = useState<Category[]>([])
+  const [lofts, setLofts] = useState<Loft[]>([]) // Add lofts state
+  const [currencies, setCurrencies] = useState<Currency[]>([]) // Add currencies state
+  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!id) return; // This return is fine as it's inside the effect
+      if (!id) return;
       try {
         const [transactionData, categoriesData, loftsData, currenciesData, paymentMethodsData] = await Promise.all([
           getTransaction(id),
@@ -48,24 +45,18 @@ export default function EditTransactionPage() {
           getLofts(),
           fetch('/api/currencies').then(res => res.json()),
           getPaymentMethods()
-        ]);
-        setTransaction(transactionData);
-        setCategories(categoriesData);
-        setLofts(loftsData);
-        setCurrencies(currenciesData);
-        setPaymentMethods(paymentMethodsData);
+        ])
+        setTransaction(transactionData)
+        setCategories(categoriesData)
+        setLofts(loftsData)
+        setCurrencies(currenciesData)
+        setPaymentMethods(paymentMethodsData)
       } catch (error) {
-        console.error("Failed to fetch data:", error);
+        console.error("Failed to fetch data:", error)
       }
-    };
-    fetchData();
-  }, [id]);
-
-  // Now, place the conditional return after all hooks are called
-  if (!params || !params.id) {
-    // This return handles the case where params or params.id is null/undefined
-    return <div>Error: No transaction ID provided.</div>;
-  }
+    }
+    fetchData()
+  }, [id])
 
   const handleUpdateTransaction = async (data: TransactionFormData) => {
     if (!id) return

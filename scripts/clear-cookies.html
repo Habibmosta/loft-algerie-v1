@@ -1,172 +1,149 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Nettoyage des Cookies - Loft Algérie</title>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧹 Nettoyage des Cookies - Loft Algérie</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-        background: #f5f5f5;
-      }
-      .container {
-        max-width: 600px;
-        margin: 0 auto;
-        background: white;
-        padding: 30px;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      }
-      .button {
-        background: #4f46e5;
-        color: white;
-        padding: 12px 24px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 16px;
-        margin: 10px 5px;
-      }
-      .button:hover {
-        background: #3730a3;
-      }
-      .success {
-        color: #059669;
-        font-weight: bold;
-      }
-      .info {
-        background: #eff6ff;
-        padding: 15px;
-        border-radius: 6px;
-        margin: 15px 0;
-        border-left: 4px solid #3b82f6;
-      }
-      .cookies-list {
-        background: #f9fafb;
-        padding: 15px;
-        border-radius: 6px;
-        margin: 15px 0;
-        max-height: 200px;
-        overflow-y: auto;
-      }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .emoji {
+            font-size: 4em;
+            margin: 20px 0;
+        }
+        button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        .info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .success {
+            background: rgba(46, 204, 113, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+        .warning {
+            background: rgba(241, 196, 15, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <h1>🍪 Nettoyage des Cookies - Loft Algérie</h1>
+        <div class="emoji">🧹</div>
+        <h1>Nettoyage des Cookies</h1>
+        <p>Votre application Loft Algérie a détecté une taille importante de cookies (4169 bytes).</p>
+        
+        <div class="warning">
+            <strong>⚠️ Pourquoi nettoyer ?</strong><br>
+            • Améliore les performances<br>
+            • Résout les erreurs d'authentification<br>
+            • Évite les problèmes de session<br>
+            • Optimise la vitesse de chargement
+        </div>
 
-      <div class="info">
-        <strong>Problème :</strong> Erreur 431 - En-têtes trop volumineux<br />
-        <strong>Cause :</strong> Accumulation de cookies Supabase<br />
-        <strong>Solution :</strong> Nettoyer les cookies
-      </div>
+        <button onclick="clearAllCookies()">🗑️ Nettoyer Tous les Cookies</button>
+        <button onclick="clearSupabaseCookies()">🔐 Nettoyer Cookies Supabase</button>
+        <button onclick="location.reload()">🔄 Actualiser la Page</button>
 
-      <h3>Cookies actuels :</h3>
-      <div id="cookies-list" class="cookies-list">Chargement...</div>
+        <div class="success" id="successMessage">
+            <strong>✅ Nettoyage Terminé !</strong><br>
+            Les cookies ont été supprimés avec succès. Vous pouvez maintenant retourner à l'application.
+        </div>
 
-      <h3>Actions :</h3>
-      <button class="button" onclick="clearAllCookies()">
-        🧹 Nettoyer tous les cookies
-      </button>
-      <button class="button" onclick="clearSupabaseCookies()">
-        🗄️ Nettoyer uniquement Supabase
-      </button>
-      <button class="button" onclick="goToApp()">
-        🚀 Aller à l'application
-      </button>
+        <div class="info">
+            <strong>📋 Instructions :</strong><br>
+            1. Cliquez sur "Nettoyer Tous les Cookies"<br>
+            2. Actualisez cette page<br>
+            3. Retournez à votre application : <a href="http://localhost:3002" style="color: #74b9ff;">http://localhost:3002</a><br>
+            4. Reconnectez-vous si nécessaire
+        </div>
 
-      <div id="result"></div>
-
-      <div class="info">
-        <strong>Après nettoyage :</strong><br />
-        1. Vous devrez vous reconnecter<br />
-        2. L'erreur 431 devrait disparaître<br />
-        3. L'application fonctionnera normalement
-      </div>
+        <div class="info">
+            <strong>🔧 Alternative :</strong><br>
+            Utilisez la navigation privée (Ctrl+Shift+N) pour éviter les problèmes de cookies.
+        </div>
     </div>
 
     <script>
-      function displayCookies() {
-        const cookies = document.cookie.split(";");
-        const cookiesList = document.getElementById("cookies-list");
-
-        if (cookies.length === 1 && cookies[0] === "") {
-          cookiesList.innerHTML = "<em>Aucun cookie trouvé</em>";
-          return;
+        function clearAllCookies() {
+            // Supprimer tous les cookies du domaine
+            document.cookie.split(";").forEach(function(c) { 
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+            });
+            
+            // Supprimer les cookies pour localhost
+            const cookies = ['sb-access-token', 'sb-refresh-token', 'sb-mhngbluefyucoesgcjoy-auth-token', 'language', '__next_hmr_refresh_hash__'];
+            cookies.forEach(cookie => {
+                document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+                document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=localhost;`;
+                document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.localhost;`;
+            });
+            
+            showSuccess();
         }
 
-        let html = "<ul>";
-        cookies.forEach((cookie) => {
-          const [name, value] = cookie.trim().split("=");
-          const isSupabase = name.includes("sb-");
-          const style = isSupabase ? "color: #DC2626; font-weight: bold;" : "";
-          html += `<li style="${style}">${name} = ${
-            value ? value.substring(0, 20) + "..." : "vide"
-          }</li>`;
-        });
-        html += "</ul>";
-        cookiesList.innerHTML = html;
-      }
+        function clearSupabaseCookies() {
+            // Supprimer uniquement les cookies Supabase
+            const supabaseCookies = ['sb-access-token', 'sb-refresh-token', 'sb-mhngbluefyucoesgcjoy-auth-token'];
+            supabaseCookies.forEach(cookie => {
+                document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+                document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=localhost;`;
+                document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.localhost;`;
+            });
+            
+            showSuccess();
+        }
 
-      function clearAllCookies() {
-        const cookies = document.cookie.split(";");
-        let cleared = 0;
+        function showSuccess() {
+            document.getElementById('successMessage').style.display = 'block';
+            setTimeout(() => {
+                window.location.href = 'http://localhost:3002';
+            }, 3000);
+        }
 
-        cookies.forEach((cookie) => {
-          const eqPos = cookie.indexOf("=");
-          const name =
-            eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
-          if (name) {
-            document.cookie =
-              name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-            document.cookie =
-              name +
-              "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=localhost";
-            cleared++;
-          }
-        });
-
-        document.getElementById(
-          "result"
-        ).innerHTML = `<div class="success">✅ ${cleared} cookies supprimés avec succès!</div>`;
-
-        setTimeout(() => {
-          displayCookies();
-        }, 500);
-      }
-
-      function clearSupabaseCookies() {
-        const cookies = document.cookie.split(";");
-        let cleared = 0;
-
-        cookies.forEach((cookie) => {
-          const eqPos = cookie.indexOf("=");
-          const name =
-            eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
-          if (name && name.includes("sb-")) {
-            document.cookie =
-              name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
-            document.cookie =
-              name +
-              "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=localhost";
-            cleared++;
-          }
-        });
-
-        document.getElementById(
-          "result"
-        ).innerHTML = `<div class="success">✅ ${cleared} cookies Supabase supprimés!</div>`;
-
-        setTimeout(() => {
-          displayCookies();
-        }, 500);
-      }
-
-      function goToApp() {
-        window.location.href = "http://localhost:3000";
-      }
-
-      // Afficher les cookies au chargement
-      displayCookies();
+        // Afficher les cookies actuels pour debug
+        console.log('Cookies actuels:', document.cookie);
     </script>
-  </body>
+</body>
 </html>

@@ -50,7 +50,10 @@ export async function getMemberDashboardData(userId: string): Promise<MemberDash
         throw tasksError
       }
 
-      const userTasks = tasks || []
+      const userTasks: MemberTask[] = (tasks || []).map(task => ({
+        ...task,
+        loft: task.loft?.[0] || undefined
+      }));
       
       // Calculate task statistics
       const taskStats = {
@@ -71,7 +74,7 @@ export async function getMemberDashboardData(userId: string): Promise<MemberDash
       })
 
       return {
-        userTasks: userTasks.map((task: any) => ({ ...task, loft: task.loft ? task.loft[0] : null })) as MemberTask[],
+        userTasks: userTasks as MemberTask[],
         taskStats
       }
     } catch (error) {

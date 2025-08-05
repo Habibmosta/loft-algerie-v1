@@ -18,7 +18,9 @@ import {
   createInternetConnectionType,
   updateInternetConnectionType,
 } from "@/app/actions/internet-connections";
+import { useTranslation } from "@/lib/i18n/context";
 import { useRouter } from "next/navigation";
+import { FormWrapper, FormSection } from "@/components/ui/form-wrapper";
 import toast from "react-hot-toast";
 
 const formSchema = z.object({
@@ -41,6 +43,7 @@ export function InternetConnectionTypeForm({
   initialData,
   onCreated,
 }: InternetConnectionTypeFormProps) {
+  const { t } = useTranslation();
   const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -81,80 +84,99 @@ export function InternetConnectionTypeForm({
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="type"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Type</FormLabel>
-              <FormControl>
-                <Input placeholder="e.g. Fiber, ADSL" {...field} value={field.value ?? ""} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="speed"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Speed</FormLabel>
-              <FormControl>
-                <Input placeholder="e.g. 100 Mbps" {...field} value={field.value ?? ""} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="provider"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Provider</FormLabel>
-              <FormControl>
-                <Input placeholder="e.g. Djezzy" {...field} value={field.value ?? ""} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="status"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Status</FormLabel>
-              <FormControl>
-                <Input placeholder="e.g. active" {...field} value={field.value ?? ""} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="cost"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Cost</FormLabel>
-              <FormControl>
-                <Input 
-                  type="number" 
-                  placeholder="e.g. 2500.00" 
-                  {...field} 
-                  value={field.value?.toString() ?? ''} 
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">{initialData ? "Save changes" : "Create"}</Button>
-      </form>
-    </Form>
+    <FormWrapper 
+      maxWidth="lg"
+      title={initialData ? t('internetConnections.editConnectionType') : t('internetConnections.addNewConnectionType')}
+      description={initialData ? t('internetConnections.updateConnectionInfo') : t('internetConnections.createNewConnectionType')}
+      icon="🌐"
+    >
+      <FormSection 
+        title={t('internetConnections.connectionDetails')}
+        description={t('internetConnections.enterConnectionInfo')}
+        icon="📡"
+        colorScheme="purple"
+      >
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="type"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('internetConnections.type')} *</FormLabel>
+                    <FormControl>
+                      <Input placeholder={t('internetConnections.typePlaceholder')} {...field} value={field.value ?? ""} className="bg-white" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="speed"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('internetConnections.speed')}</FormLabel>
+                    <FormControl>
+                      <Input placeholder={t('internetConnections.speedPlaceholder')} {...field} value={field.value ?? ""} className="bg-white" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="provider"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('internetConnections.provider')}</FormLabel>
+                    <FormControl>
+                      <Input placeholder={t('internetConnections.providerPlaceholder')} {...field} value={field.value ?? ""} className="bg-white" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="status"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('internetConnections.status')}</FormLabel>
+                    <FormControl>
+                      <Input placeholder={t('internetConnections.statusPlaceholder')} {...field} value={field.value ?? ""} className="bg-white" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="cost"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('internetConnections.cost')}</FormLabel>
+                    <FormControl>
+                      <Input 
+                        type="number" 
+                        placeholder={t('internetConnections.costPlaceholder')} 
+                        {...field} 
+                        value={field.value?.toString() ?? ''} 
+                        className="bg-white" 
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <Button type="submit" className="w-full">
+              {initialData ? t('internetConnections.saveChanges') : t('internetConnections.create')}
+            </Button>
+          </form>
+        </Form>
+      </FormSection>
+    </FormWrapper>
   );
 }

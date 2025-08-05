@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
     // Test if reservations table exists
     const { data: testData, error: testError } = await supabase
       .from('reservations')
-      .select('count(*)')
+      .select('*')
       .limit(1);
     
     if (testError) {
@@ -66,7 +66,7 @@ export async function GET(request: NextRequest) {
     // Build query - simplified first
     let query = supabase
       .from('reservations')
-      .select('*')
+      .select('*', { count: 'exact' })
       .order('created_at', { ascending: false });
 
     // Apply filters
@@ -79,9 +79,8 @@ export async function GET(request: NextRequest) {
     // Apply pagination
     const from = (page - 1) * limit;
     const to = from + limit - 1;
-    query = query.range(from, to);
-
-    const { data: reservations, error, count } = await query;
+    
+    const { data: reservations, error, count } = await query.range(from, to);
 
     if (error) {
       console.error('Error fetching reservations:', error);

@@ -159,7 +159,7 @@ export async function getLatePayments(): Promise<LatePayment[]> {
 
         return {
           id: payment.id,
-          loft_name: payment.loft[0]?.name || 'Unknown',
+          loft_name: payment.loft?.[0]?.name || 'Unknown',
           tenant_name: payment.tenant_name || 'Unknown',
           amount: payment.amount,
           due_date: payment.due_date,

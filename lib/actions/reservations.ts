@@ -123,8 +123,8 @@ export async function createReservation(prevState: any, formData: FormData): Pro
   } catch (error) {
     if (error instanceof z.ZodError) {
       return { 
-        error: 'Invalid form data',
-        details: error.issues.map(e => `${e.path.join('.')}: ${e.message}`)
+        error: 'Invalid form data', 
+        details: error.issues.map(e => `${e.path.join('.')}: ${e.message}`) 
       };
     }
     
@@ -338,8 +338,8 @@ export async function blockDates(prevState: any, formData: FormData): Promise<Ac
   } catch (error) {
     if (error instanceof z.ZodError) {
       return { 
-        error: 'Invalid form data',
-        details: error.issues.map(e => `${e.path.join('.')}: ${e.message}`)
+        error: 'Invalid form data', 
+        details: error.issues.map(e => `${e.path.join('.')}: ${e.message}`) 
       };
     }
     
@@ -431,8 +431,8 @@ export async function sendGuestMessage(prevState: any, formData: FormData): Prom
   } catch (error) {
     if (error instanceof z.ZodError) {
       return { 
-        error: 'Invalid form data',
-        details: error.issues.map(e => `${e.path.join('.')}: ${e.message}`)
+        error: 'Invalid form data', 
+        details: error.issues.map(e => `${e.path.join('.')}: ${e.message}`) 
       };
     }
     

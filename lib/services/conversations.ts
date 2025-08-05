@@ -1,6 +1,10 @@
 import { createClient } from '@/utils/supabase/server'
 import { logger, measurePerformance } from '@/lib/logger'
 
+interface TeamMemberUserId {
+  user_id: string;
+}
+
 export interface Conversation {
   id: string
   name?: string
@@ -65,6 +69,27 @@ export interface SendMessageData {
   attachments?: File[]
 }
 
+interface TeamMember {
+  team_id: string;
+  user_id: string;
+}
+
+interface TeamMemberUserId {
+  user_id: string;
+}
+
+interface TeamMemberUserId {
+  user_id: string;
+}
+
+interface TeamMemberUserId {
+  user_id: string;
+}
+
+interface AdminUser {
+  id: string;
+}
+
 export async function getUserConversations(userId: string): Promise<Conversation[]> {
   return measurePerformance(async () => {
     logger.info('Fetching user conversations', { userId })
@@ -74,7 +99,6 @@ export async function getUserConversations(userId: string): Promise<Conversation
       const { data, error } = await supabase
         .from('conversation_participants')
         .select(`
-          last_read_at,
           conversation:conversations (
             id,
             name,
@@ -160,12 +184,15 @@ export async function getUserConversations(userId: string): Promise<Conversation
         }
 
         // Get unread count
+        const currentUserParticipant = participantsData?.find(p => p.user_id === userId);
+        const lastReadAt = currentUserParticipant?.last_read_at || '1970-01-01';
+
         const { count: unreadCount } = await supabase
           .from('messages')
           .select('id', { count: 'exact', head: true })
           .eq('conversation_id', conv.id)
-          .gt('created_at', item.last_read_at || '1970-01-01')
-          .neq('sender_id', userId)
+          .gt('created_at', lastReadAt)
+          .neq('sender_id', userId);
 
         conversations.push({
           id: conv.id,
@@ -174,7 +201,10 @@ export async function getUserConversations(userId: string): Promise<Conversation
           created_at: conv.created_at,
           updated_at: conv.updated_at,
           last_message: lastMessage,
-          participants: (participantsData || []).map((p: any) => ({ ...p, user: p.user[0] })),
+          participants: (participantsData || []).map(p => ({
+            ...p,
+            user: p.user?.[0] || { id: '', full_name: 'Unknown User', email: '' }
+          })),
           unread_count: unreadCount || 0
         })
       }
@@ -253,7 +283,7 @@ export async function getConversationMessages(
         created_at: msg.created_at,
         updated_at: msg.updated_at,
         edited: msg.edited,
-        sender: msg.sender[0],
+        sender: msg.sender?.[0] || { id: '', full_name: 'Unknown User', email: '' },
         attachments: msg.attachments || []
       })).reverse() // Reverse to show oldest first
 
@@ -309,7 +339,7 @@ export async function createConversation(
           .eq('type', 'direct')
 
         for (const conv of existingConv || []) {
-          const participantIds = conv.participants.map((p: any) => p.user_id)
+          const participantIds = conv.participants.map(p => p.user_id)
           if (participantIds.includes(creatorId) && participantIds.includes(otherUserId) && participantIds.length === 2) {
             logger.info('Found existing direct conversation', { conversationId: conv.id })
             return conv as Conversation
@@ -429,7 +459,7 @@ export async function sendMessage(
         .eq('id', data.conversation_id)
 
       logger.info('Message sent', { messageId: message.id, senderId })
-      return { ...message, sender: message.sender[0] } as Message
+      return { ...message, sender: message.sender?.[0] || { id: '', full_name: 'Unknown User', email: '' } } as Message
     } catch (error) {
       logger.error('Failed to send message', error, { senderId, conversationId: data.conversation_id })
       throw error
@@ -485,7 +515,13 @@ export async function getConversationById(
       throw error
     }
 
-    return { ...conversation, participants: conversation.participants.map((p: any) => ({ ...p, user: p.user[0] })) } as Conversation
+    return {
+          ...conversation,
+          participants: (conversation.participants || []).map((p: any) => ({
+            ...p,
+            user: p.user?.[0] || { id: '', full_name: 'Unknown User', email: '' }
+          }))
+        } as Conversation
   } catch (error) {
     logger.error('Failed to get conversation by ID', error, { conversationId, userId })
     throw error
@@ -519,7 +555,7 @@ async function validateConversationParticipants(
     .select('team_id')
     .eq('user_id', creatorId)
 
-  const teamIds = creatorTeams?.map((tm: any) => tm.team_id) || []
+  const teamIds = creatorTeams?.map((tm: TeamMember) => tm.team_id) || []
 
   // Get allowed user IDs (team members + admins)
   const allowedUserIds: string[] = []
@@ -531,7 +567,7 @@ async function validateConversationParticipants(
     .eq('role', 'admin')
 
   if (admins) {
-    allowedUserIds.push(...admins.map((a: any) => a.id))
+    allowedUserIds.push(...admins.map((a: AdminUser) => a.id))
   }
 
   // Get team members from creator's teams
@@ -542,7 +578,7 @@ async function validateConversationParticipants(
       .in('team_id', teamIds)
 
     if (teamMembers) {
-      allowedUserIds.push(...teamMembers.map((tm: any) => tm.user_id))
+              allowedUserIds.push(...teamMembers.map((tm: TeamMemberUserId) => tm.user_id))
     }
   }
 
@@ -627,7 +663,7 @@ export async function searchUsers(query: string, currentUserId: string): Promise
         .in('team_id', teamIds)
 
       if (!teamMembersError && teamMembers) {
-        allowedUserIds.push(...teamMembers.map(tm => tm.user_id))
+        allowedUserIds.push(...teamMembers.map((tm: TeamMemberUserId) => tm.user_id))
       }
     }
 

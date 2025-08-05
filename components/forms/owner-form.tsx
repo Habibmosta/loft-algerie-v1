@@ -5,13 +5,14 @@ import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { FormWrapper, FormSection } from "@/components/ui/form-wrapper"
 import { toast } from "@/components/ui/use-toast"
+import { useTranslation } from "@/lib/i18n/context"
 import { loftOwnerSchema, type LoftOwnerFormData } from "@/lib/validations"
 import type { LoftOwner } from "@/lib/types"
 
@@ -21,6 +22,7 @@ interface OwnerFormProps {
 }
 
 export function OwnerForm({ owner, action }: OwnerFormProps) {
+  const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const router = useRouter()
@@ -85,75 +87,79 @@ export function OwnerForm({ owner, action }: OwnerFormProps) {
   }
 
   return (
-    <Card className="max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle>{owner ? "Edit Owner" : "Add New Owner"}</CardTitle>
-        <CardDescription>{owner ? "Update owner information" : "Create a new loft owner"}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form action={handleFormSubmit} className="space-y-4">
+    <FormWrapper 
+      maxWidth="2xl"
+      title={owner ? t('owners.editOwner') : t('owners.addOwner')}
+      description={owner ? t('owners.updateOwnerInfo') : t('owners.createNewOwner')}
+      icon="👤"
+    >
+      <FormSection 
+        title={t('owners.ownerDetails')}
+        description={t('owners.enterOwnerInfo')}
+        icon="🏠"
+        colorScheme="default"
+      >
+        <form action={handleFormSubmit} className="space-y-6">
           {error && (
             <Alert variant="destructive">
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" {...register("name")} />
+              <Label htmlFor="name">{t('owners.name')} *</Label>
+              <Input id="name" {...register("name")} className="bg-white" />
               {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="ownership_type">Ownership Type</Label>
+              <Label htmlFor="ownership_type">{t('owners.ownershipType')} *</Label>
               <Select
                 onValueChange={(value) => setValue("ownership_type", value as any)}
                 defaultValue={owner?.ownership_type || "third_party"}
                 {...register("ownership_type")}
               >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select type" />
+                <SelectTrigger className="bg-white">
+                  <SelectValue placeholder={t('owners.selectType')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="company">Company Owned</SelectItem>
-                  <SelectItem value="third_party">Third Party</SelectItem>
+                  <SelectItem value="company">{t('owners.companyOwned')}</SelectItem>
+                  <SelectItem value="third_party">{t('owners.thirdParty')}</SelectItem>
                 </SelectContent>
               </Select>
               {errors.ownership_type && <p className="text-sm text-red-500">{errors.ownership_type.message}</p>}
             </div>
-          </div>
 
-          <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" {...register("email")} />
+              <Label htmlFor="email">{t('owners.email')}</Label>
+              <Input id="email" type="email" {...register("email")} className="bg-white" />
               {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="phone">Phone</Label>
-              <Input id="phone" {...register("phone")} />
+              <Label htmlFor="phone">{t('owners.phone')}</Label>
+              <Input id="phone" {...register("phone")} className="bg-white" />
               {errors.phone && <p className="text-sm text-red-500">{errors.phone.message}</p>}
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="address">Address</Label>
-            <Textarea id="address" {...register("address")} />
+            <Label htmlFor="address">{t('owners.address')}</Label>
+            <Textarea id="address" {...register("address")} className="bg-white" />
             {errors.address && <p className="text-sm text-red-500">{errors.address.message}</p>}
           </div>
 
           <div className="flex gap-4 pt-4">
-            <Button type="submit" disabled={isLoading}>
-              {isLoading ? "Saving..." : owner ? "Update Owner" : "Create Owner"}
+            <Button type="submit" disabled={isLoading} className="flex-1">
+              {isLoading ? t('owners.saving') : owner ? t('owners.updateOwner') : t('owners.createOwner')}
             </Button>
             <Button type="button" variant="outline" onClick={() => router.back()}>
-              Cancel
+              {t('owners.cancel')}
             </Button>
           </div>
         </form>
-      </CardContent>
-    </Card>
+      </FormSection>
+    </FormWrapper>
   )
 }

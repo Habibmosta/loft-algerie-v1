@@ -1,22 +1,14 @@
-import { Conversation } from './services/conversations';
+import { Conversation } from './types';
 
 export const conversations: Conversation[] = [
   {
     id: '1',
     name: 'John Doe',
-    type: 'direct',
-    created_at: '2025-08-02T00:00:00.000Z',
-    updated_at: '2025-08-02T00:00:00.000Z',
-    last_message: undefined,
-    participants: [],
+    latestMessage: 'Hey, how are you?',
   },
   {
     id: '2',
     name: 'Jane Smith',
-    type: 'direct',
-    created_at: '2025-08-02T00:00:00.000Z',
-    updated_at: '2025-08-02T00:00:00.000Z',
-    last_message: undefined,
-    participants: [],
+    latestMessage: 'Are you available for a call?',
   },
 ];

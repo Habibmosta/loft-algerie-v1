@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import "../styles/settings-animations.css"
 import { getSession } from "@/lib/auth"
 import { getUnreadNotificationsCount } from "@/app/actions/notifications"
 import { Sidebar } from "@/components/layout/sidebar"
@@ -46,6 +47,8 @@ export const viewport: Viewport = {
 import { ThemeProvider } from "@/components/theme-provider"
 import { I18nProvider } from "@/lib/i18n/context"
 
+import SupabaseProvider from "@/components/providers/supabase-provider"
+
 export default async function RootLayout({
   children,
 }: {
@@ -67,42 +70,44 @@ export default async function RootLayout({
       </head>
       <body className={inter.className}>
         <I18nProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-          <ToastProvider />
-          {session ? ( // Render full layout with sidebar/header if session exists
-            <EnhancedRealtimeProvider userId={session.user.id}>
-              <NotificationProvider userId={session.user.id}>
-                <div className="flex h-screen bg-background md:gap-x-4">
-                  <div className="hidden md:flex">
-                    <Sidebar user={session.user} unreadCount={unreadCount} />
+          <SupabaseProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+            <ToastProvider />
+            {session ? ( // Render full layout with sidebar/header if session exists
+              <EnhancedRealtimeProvider userId={session.user.id}>
+                <NotificationProvider userId={session.user.id}>
+                  <div className="flex h-screen bg-background md:gap-x-4">
+                    <div className="hidden md:flex">
+                      <Sidebar user={session.user} unreadCount={unreadCount} />
+                    </div>
+                    <div className="flex flex-1 flex-col">
+                      <Header user={session.user} />
+                      <main className="flex-1 overflow-y-auto">
+                        {children}
+                      </main>
+                    </div>
+                    {/* Notifications d'alertes critiques pour les executives */}
+                    <CriticalAlertsNotification
+                      userId={session.user.id}
+                      userRole={session.user.role}
+                    />
+                    {/* Prompt d'installation PWA */}
+                    <InstallPrompt />
                   </div>
-                  <div className="flex flex-1 flex-col">
-                    <Header user={session.user} />
-                    <main className="flex-1 overflow-y-auto">
-                      {children}
-                    </main>
-                  </div>
-                  {/* Notifications d'alertes critiques pour les executives */}
-                  <CriticalAlertsNotification 
-                    userId={session.user.id} 
-                    userRole={session.user.role} 
-                  />
-                  {/* Prompt d'installation PWA */}
-                  <InstallPrompt />
-                </div>
-              </NotificationProvider>
-            </EnhancedRealtimeProvider>
-          ) : ( // Render children directly (e.g., login page) if no session
-            <main className="flex-1 overflow-y-auto">
-              {children}
-            </main>
-          )}
-          </ThemeProvider>
+                </NotificationProvider>
+              </EnhancedRealtimeProvider>
+            ) : ( // Render children directly (e.g., login page) if no session
+              <main className="flex-1 overflow-y-auto">
+                {children}
+              </main>
+            )}
+            </ThemeProvider>
+          </SupabaseProvider>
         </I18nProvider>
       </body>
     </html>

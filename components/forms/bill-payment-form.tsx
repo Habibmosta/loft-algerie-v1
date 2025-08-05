@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
+import { FormWrapper, FormSection } from "@/components/ui/form-wrapper"
 import { Calendar, DollarSign, FileText } from 'lucide-react'
 import { createClient } from '@/utils/supabase/client'
 import { toast } from 'sonner'
@@ -242,7 +243,7 @@ export function BillPaymentForm({
                 step="0.01"
                 placeholder="0.00"
                 className="flex-1"
-                {...register('amount', { valueAsNumber: true })}
+                {...register('amount', { valueAsNumber: true })} className="bg-white"
               />
               <Select value={selectedCurrencyId} onValueChange={handleCurrencyChange}>
                 <SelectTrigger className="w-20">
@@ -278,7 +279,7 @@ export function BillPaymentForm({
             <Input
               id="date"
               type="date"
-              {...register('date')}
+              {...register('date')} className="bg-white"
             />
             {errors.date && (
               <p className="text-sm text-red-600">{errors.date.message}</p>
@@ -291,7 +292,7 @@ export function BillPaymentForm({
               value={watch('payment_method_id') || ''} 
               onValueChange={(value) => setValue('payment_method_id', value)}
             >
-              <SelectTrigger>
+              <SelectTrigger className="bg-white">
                 <SelectValue placeholder={translations.selectPaymentMethod} />
               </SelectTrigger>
               <SelectContent>
@@ -309,7 +310,7 @@ export function BillPaymentForm({
             <Textarea
               id="description"
               placeholder={translations.descriptionPlaceholder}
-              {...register('description')}
+              {...register('description')} className="bg-white"
             />
           </div>
 

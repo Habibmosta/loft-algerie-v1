@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import type { User, UserRole } from "@/lib/types"
 import { logout } from "@/lib/auth"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { LanguageSelector } from "@/components/ui/language-selector"
@@ -26,13 +26,7 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function Sidebar({ user, unreadCount, className }: SidebarProps) {
   const pathname = usePathname()
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
-
-  useEffect(() => {
-    if (pathname) {
-      setIsSettingsOpen(pathname.startsWith('/settings'))
-    }
-  }, [pathname])
+  const [isSettingsOpen, setIsSettingsOpen] = useState(pathname.startsWith('/settings'))
   const { unreadMessagesCount } = useEnhancedRealtime()
   const { unreadCount: realtimeUnreadCount } = useNotifications()
   const { t } = useTranslation()

@@ -70,7 +70,7 @@ export default function ReportCharts({ loftRevenue, monthlyRevenue }: ReportChar
   const top5Lofts = loftRevenue.slice(0, 5);
 
   return (
-    <>
+    <div className="space-y-6">
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <Card className="md:col-span-2 lg:col-span-1">
           <CardHeader>
@@ -142,6 +142,6 @@ export default function ReportCharts({ loftRevenue, monthlyRevenue }: ReportChar
           </ResponsiveContainer>
         </CardContent>
       </Card>
-    </>
+    </div>
   );
 }

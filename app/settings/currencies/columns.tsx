@@ -12,28 +12,30 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { useRouter } from "next/navigation"
+import { useTranslation } from "@/lib/i18n/context"
 
 export const getColumns = (
   onSetDefault: (id: string) => Promise<void>,
   onDelete: (id: string) => Promise<void>,
   router: ReturnType<typeof useRouter>
 ): ColumnDef<Currency>[] => {
+  const { t } = useTranslation()
   return [
     {
       accessorKey: "code",
-      header: "Code",
+      header: t('common.code'),
     },
     {
       accessorKey: "name",
-      header: "Name",
+      header: t('common.name'),
     },
     {
       accessorKey: "symbol",
-      header: "Symbol",
+      header: t('common.symbol'),
     },
     {
       accessorKey: "ratio",
-      header: "Ratio",
+      header: t('common.ratio'),
       cell: ({ row }) => {
         const ratio = parseFloat(row.getValue("ratio"))
         return new Intl.NumberFormat('en-US', {
@@ -44,10 +46,10 @@ export const getColumns = (
     },
     {
       accessorKey: "is_default", // Change to snake_case
-      header: "Default",
+      header: t('settings.currencies.default'),
       cell: ({ row }) => {
         console.log(`Currency ${row.original.code} is_default:`, row.original.is_default); // Debugging log
-        return (row.original.is_default ? "Yes" : "No"); // Change to snake_case
+        return (row.original.is_default ? t('common.yes') : t('common.no')); // Change to snake_case
       },
     },
     {
@@ -63,22 +65,26 @@ export const getColumns = (
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuLabel>{t('common.actions')}</DropdownMenuLabel>
               <DropdownMenuItem
                 onClick={() => navigator.clipboard.writeText(currency.id)}
               >
-                Copy currency ID
+                {t('common.copyId')}
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => router.push(`/settings/currencies/edit/${currency.id}`)}>Edit currency</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => onSetDefault(currency.id)}>Set as default</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push(`/settings/currencies/edit/${currency.id}`)}>
+                {t('common.edit')}
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onSetDefault(currency.id)}>
+                {t('settings.currencies.setAsDefault')}
+              </DropdownMenuItem>
               <DropdownMenuItem 
                 onClick={async () => {
-                  if (confirm("Are you sure you want to delete this currency?")) {
+                  if (confirm(t('common.confirmDelete'))) {
                     await onDelete(currency.id)
                   }
                 }}
               >
-                Delete
+                {t('common.delete')}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

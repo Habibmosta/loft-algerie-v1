@@ -320,7 +320,7 @@ export async function getSystemActivity(days: number = 7): Promise<{
         if (!userCounts[log.user_id]) {
           userCounts[log.user_id] = {
             count: 0,
-            name: log.user[0]?.full_name || 'Unknown User'
+            name: log.user?.[0]?.full_name || 'Unknown User'
           }
         }
         userCounts[log.user_id].count++
@@ -376,10 +376,11 @@ export async function cleanupOldAuditLogs(retentionDays: number = 365): Promise<
       const cutoffDate = new Date()
       cutoffDate.setDate(cutoffDate.getDate() - retentionDays)
 
-      const { error, count } = await supabase
+      const { count, error } = await supabase
         .from('audit_logs')
-        .delete({ count: 'exact' })
+        .delete()
         .lt('created_at', cutoffDate.toISOString())
+        .select()
 
       if (error) {
         throw error

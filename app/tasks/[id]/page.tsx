@@ -13,46 +13,36 @@ import { DeleteTaskButton } from "./delete-button"
 import { useTranslation } from "@/lib/i18n/context"
 
 export default function TaskPage() {
-  const params = useParams();
-  const router = useRouter();
-  const { t } = useTranslation();
+  const params = useParams()
+  const router = useRouter()
+  const id = params.id as string
+  const { t } = useTranslation()
 
-  // Initialize id here, before any conditional returns
-  const id = params?.id as string;
-
-  const [task, setTask] = useState<Task | null>(null);
-  const [session, setSession] = useState<AuthSession | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [task, setTask] = useState<Task | null>(null)
+  const [session, setSession] = useState<AuthSession | null>(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function fetchData() {
-      if (!id) {
-        setLoading(false); // Set loading to false if no ID
-        return;
-      }
+      if (!id) return;
       try {
         const [sessionData, taskData] = await Promise.all([
           getSession(),
           getTask(id),
-        ]);
+        ])
         if (!taskData) {
-          return notFound();
+          return notFound()
         }
-        setSession(sessionData);
-        setTask(taskData);
+        setSession(sessionData)
+        setTask(taskData)
       } catch (error) {
-        console.error("Failed to fetch task data:", error);
+        console.error("Failed to fetch task data:", error)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     }
-    fetchData();
-  }, [id]);
-
-  // Now, place the conditional return after all hooks are called
-  if (!params || !params.id) {
-    return <div>{t('common.error')}: {t('tasks.noTaskId')}</div>;
-  }
+    fetchData()
+  }, [id])
 
   const getStatusColor = (status: string) => {
     switch (status) {

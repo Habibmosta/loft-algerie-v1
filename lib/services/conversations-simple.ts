@@ -1,5 +1,12 @@
 import { createClient } from '@/utils/supabase/server'
 
+interface SupabaseError {
+  message: string;
+  code: string;
+  details: string;
+  hint: string;
+}
+
 /**
  * Version simplifiée du service conversations pour éviter les problèmes RLS
  * À utiliser temporairement pendant la correction des politiques
@@ -33,7 +40,7 @@ export async function getSimpleUserConversations(userId: string): Promise<Simple
     // First, let's check if the table exists by trying a simple query
     console.log('Testing Supabase connection...')
     
-    let testData, testError
+    let testData, testError: SupabaseError | null
     try {
       const result = await supabase
         .from('conversation_participants')
@@ -44,43 +51,43 @@ export async function getSimpleUserConversations(userId: string): Promise<Simple
       console.log('Supabase query result:', { data: testData, error: testError })
     } catch (e) {
       console.error('Supabase query threw exception:', e)
-      testError = e
+      testError = e as SupabaseError
     }
     
     if (testError) {
       console.error('Table test error:', testError)
       console.error('Error details:', {
-        message: (testError as any).message,
-        code: (testError as any).code,
-        details: (testError as any).details,
-        hint: (testError as any).hint,
+        message: (testError as any)?.message,
+        code: (testError as any)?.code,
+        details: (testError as any)?.details,
+        hint: (testError as any)?.hint,
         full: testError
       })
       
       // Check for infinite recursion in RLS policies
-      if ((testError as any).message?.includes('infinite recursion') ||
-          (testError as any).message?.includes('policy')) {
+      if ((testError as any)?.message?.includes('infinite recursion') || 
+          (testError as any)?.message?.includes('policy')) {
         throw new Error('RLS policy infinite recursion detected. Please run the RLS fix script.')
       }
       
       // Check if it's a table not found error
-      if ((testError as any).message?.includes('relation') ||
-          (testError as any).message?.includes('does not exist') ||
-          (testError as any).code === 'PGRST116') {
+      if ((testError as any)?.message?.includes('relation') || 
+          (testError as any)?.message?.includes('does not exist') ||
+          (testError as any)?.code === 'PGRST116') {
         throw new Error('Conversations tables not found. Please run the database setup script.')
       }
       
       // Check for permission errors
-      if ((testError as any).code === '42501' || (testError as any).message?.includes('permission')) {
+      if ((testError as any)?.code === '42501' || (testError as any)?.message?.includes('permission')) {
         throw new Error('Permission denied accessing conversations table. Check RLS policies.')
       }
       
       // Check for authentication errors
-      if ((testError as any).code === '42P01' || (testError as any).message?.includes('authentication')) {
+      if ((testError as any)?.code === '42P01' || (testError as any)?.message?.includes('authentication')) {
         throw new Error('Authentication error accessing conversations table.')
       }
       
-      throw new Error(`Conversations table not accessible: ${(testError as any).message || (testError as any).code || JSON.stringify(testError)}`)
+      throw new Error(`Conversations table not accessible: ${(testError as any)?.message || (testError as any)?.code || JSON.stringify(testError)}`)
     }
     
     console.log('Table exists, proceeding with user query')
@@ -95,13 +102,13 @@ export async function getSimpleUserConversations(userId: string): Promise<Simple
       console.error('Error fetching user conversations:', participantError)
       
       // Check if it's a table not found error
-      if ((participantError as any).message?.includes('relation') ||
-          (participantError as any).message?.includes('does not exist') ||
-          (participantError as any).code === 'PGRST116') {
+      if ((participantError as SupabaseError)?.message?.includes('relation') || 
+          (participantError as SupabaseError)?.message?.includes('does not exist') ||
+          (participantError as SupabaseError)?.code === 'PGRST116') {
         throw new Error('Conversations tables not found. Please run the database setup script.')
       }
       
-      throw new Error(`Database error: ${participantError.message || participantError.details || JSON.stringify(participantError)}`)
+      throw new Error(`Database error: ${(participantError as SupabaseError)?.message || (participantError as SupabaseError)?.details || JSON.stringify(participantError)}`)
     }
 
     if (!participantData || participantData.length === 0) {
@@ -123,7 +130,7 @@ export async function getSimpleUserConversations(userId: string): Promise<Simple
 
     if (conversationsError) {
       console.error('Error fetching conversations:', conversationsError)
-      throw new Error(`Database error: ${conversationsError.message || 'Unknown error'}`)
+      throw new Error(`Database error: ${(conversationsError as SupabaseError)?.message || 'Unknown error'}`)
     }
 
     // Add participant count for each conversation

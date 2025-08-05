@@ -27,16 +27,6 @@ export const createClient = async (useServiceRole?: boolean) => {
     options.auth = {
       persistSession: false,
     };
-    options.global = {
-      headers: {
-        Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY}`,
-      },
-    };
-    // For service role, cookies are not used for persistence, so provide no-op methods
-    options.cookies = {
-      getAll() { return []; },
-      setAll() { /* no-op */ },
-    };
   }
 
   return createServerClient<Database>(

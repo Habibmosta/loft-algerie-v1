@@ -15,29 +15,21 @@ interface EditTaskFormProps {
 }
 
 export default function EditTaskForm({ initialTask, users }: EditTaskFormProps) {
-  const params = useParams();
-  const router = useRouter();
-  const { t } = useTranslation();
-
-  // Initialize id here, before any conditional returns
-  const id = params?.id as string;
-
-  const [task, setTask] = useState<Task | null>(initialTask);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const params = useParams()
+  const router = useRouter()
+  const { t } = useTranslation()
+  const id = params.id as string
+  const [task, setTask] = useState<Task | null>(initialTask)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
     // If initialTask is provided, we don't need to fetch it again on the client side
     // This useEffect is primarily for cases where initialTask might be null from the server
     // or to re-fetch if the ID changes for some reason (though not typical for edit pages)
     if (!initialTask && id) {
-      getTask(id).then(setTask);
+      getTask(id).then(setTask)
     }
-  }, [id, initialTask]);
-
-  // Now, place the conditional return after all hooks are called
-  if (!params || !params.id) {
-    return <div>{t('common.error')}: {t('tasks.noTaskId')}</div>;
-  }
+  }, [id, initialTask])
 
   const handleUpdateTask = async (data: TaskFormData | TaskStatusUpdateData) => {
     console.log("handleUpdateTask called with data:", data);

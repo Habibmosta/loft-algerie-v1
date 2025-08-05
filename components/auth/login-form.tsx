@@ -5,12 +5,12 @@ import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Separator } from "@/components/ui/separator"
 import { LanguageSelector } from "@/components/ui/language-selector"
+import { FormWrapper, FormSection } from "@/components/ui/form-wrapper"
 import { Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
 import { login } from "@/lib/auth"
@@ -52,19 +52,18 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto">
-      <CardHeader className="space-y-1">
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex-1" />
-          <LanguageSelector />
-        </div>
-        <CardTitle className="text-2xl text-center">{t('auth.welcomeBack')}</CardTitle>
-        <CardDescription className="text-center">
-          {t('auth.signInDescription')}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <FormWrapper 
+      maxWidth="md"
+      title={t('auth.welcomeBack')}
+      description={t('auth.signInDescription')}
+      icon="🔐"
+    >
+      <div className="flex justify-end mb-4">
+        <LanguageSelector />
+      </div>
+      
+      <FormSection>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {error && (
             <Alert variant="destructive">
               <AlertDescription>{error}</AlertDescription>
@@ -78,7 +77,8 @@ export function LoginForm() {
               type="email" 
               placeholder={t('auth.enterEmail')} 
               {...register("email")} 
-              disabled={isLoading} 
+              disabled={isLoading}
+              className="bg-white"
             />
             {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
           </div>
@@ -92,6 +92,7 @@ export function LoginForm() {
                 placeholder={t('auth.enterPassword')}
                 {...register("password")}
                 disabled={isLoading}
+                className="bg-white"
               />
               <Button
                 type="button"
@@ -117,33 +118,35 @@ export function LoginForm() {
             {isLoading ? t('auth.signingIn') : t('auth.signIn')}
           </Button>
         </form>
+      </FormSection>
 
-        <Separator />
-
+      <FormSection colorScheme="blue">
         <div className="text-center">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground mb-4">
             {t('auth.noAccount')}{" "}
-            <Link href="/register" className="text-blue-600 hover:underline">
+            <Link href="/register" className="text-blue-600 hover:underline font-medium">
               {t('auth.signUp')}
             </Link>
           </p>
-        </div>
-
-        <div className="mt-6 p-4 bg-muted rounded-lg">
-          <p className="text-sm font-medium mb-2">{t('auth.demoAccounts')}</p>
-          <div className="space-y-1 text-xs text-muted-foreground">
-            <p>
-              <strong>{t('auth.admin')}:</strong> admin@loftmanager.com / password123
-            </p>
-            <p>
-              <strong>{t('auth.manager')}:</strong> manager@loftmanager.com / password123
-            </p>
-            <p>
-              <strong>{t('auth.member')}:</strong> member@loftmanager.com / password123
-            </p>
+          
+          <Separator className="my-4" />
+          
+          <div>
+            <p className="text-sm font-medium mb-3 text-blue-900">{t('auth.demoAccounts')}</p>
+            <div className="space-y-2 text-xs text-blue-700">
+              <p>
+                <strong>{t('auth.admin')}:</strong> admin@loftmanager.com / password123
+              </p>
+              <p>
+                <strong>{t('auth.manager')}:</strong> manager@loftmanager.com / password123
+              </p>
+              <p>
+                <strong>{t('auth.member')}:</strong> member@loftmanager.com / password123
+              </p>
+            </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </FormSection>
+    </FormWrapper>
   )
 }

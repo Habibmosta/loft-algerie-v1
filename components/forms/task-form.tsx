@@ -7,8 +7,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
+import { FormWrapper, FormSection } from '@/components/ui/form-wrapper'
 import { useRouter } from 'next/navigation'
 import type { Task, User, AuthSession } from '@/lib/types'
 import { getSession } from '@/lib/auth'
@@ -54,32 +54,41 @@ export function TaskForm({ task, users, onSubmit, isSubmitting = false }: TaskFo
   })
 
   return (
-    <Card className="max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle>
-          {task ? (session?.user?.role === 'member' ? t('tasks.form.updateTaskStatus') : t('tasks.form.editTask')) : t('tasks.form.addNewTask')}
-        </CardTitle>
-        <CardDescription>
-          {task ? 
-            (session?.user?.role === 'member' ? t('tasks.form.updateStatusDescription') : t('tasks.form.updateTaskInfo')) : 
-            t('tasks.form.createNewTask')
-          }
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <FormWrapper 
+      maxWidth="2xl"
+      title={task ? (session?.user?.role === 'member' ? t('tasks.form.updateTaskStatus') : t('tasks.form.editTask')) : t('tasks.form.addNewTask')}
+      description={task ? 
+        (session?.user?.role === 'member' ? t('tasks.form.updateStatusDescription') : t('tasks.form.updateTaskInfo')) : 
+        t('tasks.form.createNewTask')
+      }
+      icon="📋"
+    >
+      <FormSection 
+        title={t('tasks.taskDetails')}
+        description={session?.user?.role === 'member' ? t('tasks.memberCanOnlyUpdateStatus') : t('tasks.fillTaskInformation')}
+        icon="✅"
+      >
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Only show title and description fields for admins and managers */}
           {(session?.user?.role === 'admin' || session?.user?.role === 'manager') && (
             <>
               <div className="space-y-2">
                 <Label htmlFor="title">{t('tasks.taskTitle')}</Label>
-                <Input id="title" {...register('title')} />
+                <Input 
+                  id="title" 
+                  {...register('title')}
+                  className="bg-white"
+                />
                 {(errors as any).title && <p className="text-sm text-red-500">{(errors as any).title.message}</p>}
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="description">{t('tasks.taskDescription')}</Label>
-                <Textarea id="description" {...register('description')} />
+                <Textarea 
+                  id="description" 
+                  {...register('description')}
+                  className="bg-white"
+                />
                 {(errors as any).description && <p className="text-sm text-red-500">{(errors as any).description.message}</p>}
               </div>
             </>
@@ -104,7 +113,7 @@ export function TaskForm({ task, users, onSubmit, isSubmitting = false }: TaskFo
           <div className="space-y-2">
             <Label htmlFor="status">{t('tasks.taskStatus')}</Label>
             <Select onValueChange={(value) => setValue('status', value as any)} defaultValue={task?.status}>
-              <SelectTrigger>
+              <SelectTrigger className="bg-white">
                 <SelectValue placeholder={t('common.selectOption')} />
               </SelectTrigger>
               <SelectContent>
@@ -121,14 +130,19 @@ export function TaskForm({ task, users, onSubmit, isSubmitting = false }: TaskFo
             <>
               <div className="space-y-2">
                 <Label htmlFor="due_date">{t('tasks.taskDueDate')}</Label>
-                <Input id="due_date" type="date" {...register('due_date')} />
+                <Input 
+                  id="due_date" 
+                  type="date" 
+                  {...register('due_date')}
+                  className="bg-white"
+                />
                 {(errors as any).due_date && <p className="text-sm text-red-500">{(errors as any).due_date.message}</p>}
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="assigned_to">{t('tasks.assignTo')}</Label>
                 <Select onValueChange={(value) => setValue('assigned_to', value === 'unassigned' ? null : value)} defaultValue={task?.assigned_to || 'unassigned'}>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white">
                     <SelectValue placeholder={t('common.selectOption')} />
                   </SelectTrigger>
                   <SelectContent>
@@ -181,7 +195,7 @@ export function TaskForm({ task, users, onSubmit, isSubmitting = false }: TaskFo
             </Button>
           </div>
         </form>
-      </CardContent>
-    </Card>
+      </FormSection>
+    </FormWrapper>
   )
 }

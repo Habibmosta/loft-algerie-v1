@@ -4,10 +4,11 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { FormWrapper, FormSection } from "@/components/ui/form-wrapper"
 import Link from "next/link"
 import { requestPasswordReset } from "@/lib/auth"
 import { z } from "zod"
@@ -51,34 +52,35 @@ export function ForgotPasswordForm() {
 
   if (success) {
     return (
-      <Card className="w-full max-w-md mx-auto">
-        <CardHeader>
-          <CardTitle className="text-center">Check your email</CardTitle>
-          <CardDescription className="text-center">
-            We've sent a password reset link to your email address.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+      <FormWrapper 
+        maxWidth="md"
+        title="Vérifiez votre email"
+        description="Nous avons envoyé un lien de réinitialisation à votre adresse email."
+        icon="📧"
+      >
+        <FormSection colorScheme="green">
           <div className="text-center">
-            <Link href="/login" className="text-blue-600 hover:underline">
-              Back to login
+            <p className="text-green-700 mb-4">
+              Un email de réinitialisation a été envoyé avec succès !
+            </p>
+            <Link href="/login" className="text-green-800 hover:underline font-medium">
+              Retour à la connexion
             </Link>
           </div>
-        </CardContent>
-      </Card>
+        </FormSection>
+      </FormWrapper>
     )
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto">
-      <CardHeader>
-        <CardTitle className="text-center">Forgot password?</CardTitle>
-        <CardDescription className="text-center">
-          Enter your email address and we'll send you a link to reset your password.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <FormWrapper 
+      maxWidth="md"
+      title="Mot de passe oublié ?"
+      description="Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe."
+      icon="🔑"
+    >
+      <FormSection>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {error && (
             <Alert variant="destructive">
               <AlertDescription>{error}</AlertDescription>
@@ -87,21 +89,30 @@ export function ForgotPasswordForm() {
 
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="Enter your email" {...register("email")} disabled={isLoading} />
+            <Input 
+              id="email" 
+              type="email" 
+              placeholder="Entrez votre email" 
+              {...register("email")} 
+              disabled={isLoading} 
+              className="bg-white" 
+            />
             {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
           </div>
 
           <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? "Sending..." : "Send reset link"}
+            {isLoading ? "Envoi en cours..." : "Envoyer le lien de réinitialisation"}
           </Button>
-
-          <div className="text-center">
-            <Link href="/login" className="text-sm text-blue-600 hover:underline">
-              Back to login
-            </Link>
-          </div>
         </form>
-      </CardContent>
-    </Card>
+      </FormSection>
+
+      <FormSection colorScheme="blue">
+        <div className="text-center">
+          <Link href="/login" className="text-blue-800 hover:underline font-medium">
+            Retour à la connexion
+          </Link>
+        </div>
+      </FormSection>
+    </FormWrapper>
   )
 }

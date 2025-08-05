@@ -8,12 +8,14 @@ import { Button } from '@/components/ui/button';
 import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { InternetConnectionType } from '@/lib/types';
+import { useTranslation } from '@/lib/i18n/context';
 
 export default function InternetConnectionsClientPage({
   initialInternetConnectionTypes,
 }: {
   initialInternetConnectionTypes: InternetConnectionType[];
 }) {
+  const { t } = useTranslation();
   const [internetConnectionTypes, setInternetConnectionTypes] = useState<InternetConnectionType[]>(initialInternetConnectionTypes);
   const [error, setError] = useState<string | null>(null);
 
@@ -36,38 +38,40 @@ export default function InternetConnectionsClientPage({
   };
 
   return (
-    <div className="p-4">
-      <Heading title="Internet Connection Types" description="Manage available internet connection types." />
+    <div className="bg-gray-50 p-4 sm:p-6 md:p-8 min-h-screen">
+      <div className="max-w-4xl mx-auto space-y-8">
+      <Heading title={t('internetConnections.title')} description={t('internetConnections.subtitle')} />
 
-      <div className="mt-6">
-        <h2 className="text-xl font-semibold mb-4">Add New Connection Type</h2>
+      <div className="space-y-4">
+        <h2 className="text-xl font-semibold">{t('internetConnections.addNewConnectionType')}</h2>
         <InternetConnectionTypeForm onCreated={onCreated} />
       </div>
 
-      <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">Existing Connection Types</h2>
+      <div className="space-y-4">
+        <h2 className="text-xl font-semibold">{t('internetConnections.existingConnectionTypes')}</h2>
         {internetConnectionTypes && internetConnectionTypes.length > 0 ? (
           <ul className="space-y-4">
             {internetConnectionTypes.map((ict) => (
               <li key={ict.id} className="p-4 border rounded-md shadow-sm bg-white flex justify-between items-center">
                 <div>
                   <p className="font-medium">{ict.type} ({ict.speed} from {ict.provider})</p>
-                  <p className="text-sm text-gray-600">Status: {ict.status}, Cost: {ict.cost}</p>
+                  <p className="text-sm text-gray-600">{t('internetConnections.status')}: {ict.status}, {t('internetConnections.cost')}: {ict.cost}</p>
                 </div>
                 <div className="flex space-x-2">
                   <Link href={`/settings/internet-connections/${ict.id}`}>
-                    <Button variant="outline" size="sm">Edit</Button>
+                    <Button variant="outline" size="sm">{t('common.edit')}</Button>
                   </Link>
                   <form action={() => handleDelete(ict.id)}>
-                    <Button type="submit" variant="destructive" size="sm">Delete</Button>
+                    <Button type="submit" variant="destructive" size="sm">{t('common.delete')}</Button>
                   </form>
                 </div>
               </li>
             ))}
           </ul>
         ) : (
-          <p>No internet connection types found.</p>
+          <p>{t('internetConnections.noConnectionTypesFound')}</p>
         )}
+        </div>
       </div>
     </div>
   );

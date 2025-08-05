@@ -5,12 +5,13 @@ import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { FormWrapper, FormSection } from "@/components/ui/form-wrapper"
+import { useTranslation } from "@/lib/i18n/context"
 import { z } from "zod"
 import type { Database } from "@/lib/types"
 
@@ -30,6 +31,7 @@ interface PaymentMethodFormProps {
 }
 
 export function PaymentMethodForm({ paymentMethod, action }: PaymentMethodFormProps) {
+  const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const router = useRouter()
@@ -79,47 +81,55 @@ export function PaymentMethodForm({ paymentMethod, action }: PaymentMethodFormPr
   }
 
   return (
-    <Card className="max-w-2xl mx-auto">
-      <CardHeader>
-        <CardTitle>{paymentMethod ? "Edit Payment Method" : "Add New Payment Method"}</CardTitle>
-        <CardDescription>{paymentMethod ? "Update payment method information" : "Create a new payment method"}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
+    <FormWrapper 
+      maxWidth="2xl"
+      title={paymentMethod ? t('paymentMethods.editPaymentMethod') : t('paymentMethods.addPaymentMethod')}
+      description={paymentMethod ? t('paymentMethods.updatePaymentMethodInfo') : t('paymentMethods.createNewPaymentMethod')}
+      icon="💳"
+    >
+      <FormSection 
+        title={t('paymentMethods.paymentDetails')}
+        description={t('paymentMethods.enterPaymentInfo')}
+        icon="💰"
+        colorScheme="yellow"
+      >
+        <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
           {error && (
             <Alert variant="destructive">
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
 
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input id="name" {...register("name")} />
-            {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <Label htmlFor="name">{t('paymentMethods.name')} *</Label>
+              <Input id="name" {...register("name")} className="bg-white" />
+              {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="type">{t('paymentMethods.type')}</Label>
+              <Input id="type" {...register("type")} className="bg-white" />
+              {errors.type && <p className="text-sm text-red-500">{errors.type.message}</p>}
+            </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="type">Type (Optional)</Label>
-            <Input id="type" {...register("type")} />
-            {errors.type && <p className="text-sm text-red-500">{errors.type.message}</p>}
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="details">Details (JSON, Optional)</Label>
-            <Textarea id="details" {...register("details")} rows={5} />
+            <Label htmlFor="details">{t('paymentMethods.details')}</Label>
+            <Textarea id="details" {...register("details")} rows={5} className="bg-white" />
             {errors.details && <p className="text-sm text-red-500">{errors.details.message}</p>}
           </div>
 
           <div className="flex gap-4 pt-4">
-            <Button type="submit" disabled={isLoading}>
-              {isLoading ? "Saving..." : paymentMethod ? "Update Payment Method" : "Create Payment Method"}
+            <Button type="submit" disabled={isLoading} className="flex-1">
+              {isLoading ? t('paymentMethods.saving') : paymentMethod ? t('paymentMethods.updatePaymentMethod') : t('paymentMethods.createPaymentMethod')}
             </Button>
             <Button type="button" variant="outline" onClick={() => router.back()}>
-              Cancel
+              {t('paymentMethods.cancel')}
             </Button>
           </div>
         </form>
-      </CardContent>
-    </Card>
+      </FormSection>
+    </FormWrapper>
   )
 }

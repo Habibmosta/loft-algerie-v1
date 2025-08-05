@@ -4,6 +4,11 @@ import { logger, measurePerformance } from '@/lib/logger'
 import { createNotification, sendBulkNotifications } from '@/lib/services/notifications'
 import { createScriptNotification, sendScriptBulkNotifications } from '@/lib/services/script-notifications'
 
+interface OverdueBill {
+  loft_name: string;
+  // Add other properties if they are used from the overdueBills object
+}
+
 interface BillAlert {
   loftId: string
   loftName: string
@@ -13,6 +18,11 @@ interface BillAlert {
   frequency: string
   daysUntilDue: number
   alertType: 'upcoming' | 'due_today' | 'overdue'
+}
+
+interface UpcomingBill {
+  due_date: string;
+  loft_id: string;
 }
 
 const UTILITY_LABELS = {
@@ -243,7 +253,7 @@ async function checkOverdueBills(): Promise<void> {
       if (adminUsers && adminUsers.length > 0) {
         const adminIds = adminUsers.map(user => user.id)
         const overdueCount = overdueBills.length
-        const loftNames = [...new Set(overdueBills.map((bill: any) => bill.loft_name))].slice(0, 3)
+        const loftNames = [...new Set(overdueBills.map((bill: OverdueBill) => bill.loft_name))].slice(0, 3)
         const loftList = loftNames.join(', ') + (overdueBills.length > 3 ? ` and ${overdueBills.length - 3} more` : '')
 
         await sendScriptBulkNotifications(
@@ -284,13 +294,13 @@ export async function getBillMonitoringStats(): Promise<{
     }
 
     const today = new Date().toISOString().split('T')[0]
-    const dueToday = (upcomingBills || []).filter((bill: any) =>
+    const dueToday = (upcomingBills || []).filter((bill: UpcomingBill) => 
       bill.due_date === today
     ).length
 
     // Count unique lofts with bills
     const allBills = [...(upcomingBills || []), ...(overdueBills || [])]
-    const uniqueLofts = new Set(allBills.map((bill: any) => bill.loft_id))
+    const uniqueLofts = new Set(allBills.map(bill => bill.loft_id))
 
     return {
       upcomingBills: (upcomingBills || []).length,

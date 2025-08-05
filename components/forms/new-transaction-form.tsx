@@ -6,6 +6,7 @@ import { transactionSchema } from "@/lib/validations"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { FormWrapper, FormSection } from "@/components/ui/form-wrapper"
 import { useTranslation } from "@/lib/i18n/context"
 import {
   Select,
@@ -46,7 +47,7 @@ export function NewTransactionForm({ onSubmit }: {
             }}
             defaultValue="income"
           >
-            <SelectTrigger>
+            <SelectTrigger className="bg-white">
               <SelectValue placeholder={t('common.selectOption')} />
             </SelectTrigger>
             <SelectContent>
@@ -65,7 +66,7 @@ export function NewTransactionForm({ onSubmit }: {
             }}
             defaultValue="completed"
           >
-            <SelectTrigger>
+            <SelectTrigger className="bg-white">
               <SelectValue placeholder={t('common.selectOption')} />
             </SelectTrigger>
             <SelectContent>
@@ -82,7 +83,7 @@ export function NewTransactionForm({ onSubmit }: {
         <Input
           type="number"
           step="0.01"
-          {...register("amount", { valueAsNumber: true })}
+          {...register("amount", { valueAsNumber: true })} className="bg-white"
         />
       </div>
 
@@ -90,7 +91,7 @@ export function NewTransactionForm({ onSubmit }: {
         <Label>{t('transactions.date')}</Label>
         <Input
           type="date"
-          {...register("date")}
+          {...register("date")} className="bg-white"
         />
       </div>
 

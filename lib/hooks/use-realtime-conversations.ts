@@ -137,27 +137,11 @@ export function useRealtimeConversations(
                 supabase
                   .from('messages')
                   .select(`
-                    id,
-                    conversation_id,
-                    sender_id,
-                    content,
-                    message_type,
-                    created_at,
-                    updated_at,
-                    edited,
-                    sender:profiles (
-                      id,
-                      full_name,
-                      email
-                    )
+                    *,
+                    sender:profiles!inner(*)
                   `)
                   .eq('id', newMessage.id)
-                  .single()
-                  .then(({ data: messageData, error: messageError }) => {
-                    if (messageData && !messageError) {
-                      updateConversationWithNewMessage({...messageData, sender: messageData.sender[0]} as Message)
-                    }
-                  })
+                  .single<Message>()
               }
             })
         }

@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
+import { FormWrapper, FormSection } from "@/components/ui/form-wrapper"
 import { createZoneArea, updateZoneArea, ZoneArea } from "@/app/actions/zone-areas" // Import updateZoneArea and ZoneArea
 import { useRouter } from "next/navigation"
 
@@ -82,25 +83,39 @@ export function ZoneAreaForm({ zoneArea, onSuccess }: ZoneAreaFormProps) {
   }
 
   return (
-    <div className="max-w-md my-4">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t('zoneAreas.zoneAreaName')}</FormLabel>
-                <FormControl>
-                  <Input placeholder={t('zoneAreas.namePlaceholder')} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit">{zoneArea ? t('zoneAreas.updateZoneArea') : t('zoneAreas.createZoneArea')}</Button>
-        </form>
-      </Form>
-    </div>
+    <FormWrapper 
+      maxWidth="md"
+      title={zoneArea ? t('zoneAreas.editZoneArea') : t('zoneAreas.addNewZoneArea')}
+      description={zoneArea ? t('zoneAreas.updateZoneAreaInfo') : t('zoneAreas.createNewZoneArea')}
+      icon="🗺️"
+    >
+      <FormSection 
+        title={t('zoneAreas.zoneDetails')}
+        description={t('zoneAreas.enterZoneInfo')}
+        icon="📍"
+        colorScheme="green"
+      >
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t('zoneAreas.zoneAreaName')} *</FormLabel>
+                  <FormControl>
+                    <Input placeholder={t('zoneAreas.namePlaceholder')} {...field} className="bg-white" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit" className="w-full">
+              {zoneArea ? t('zoneAreas.updateZoneArea') : t('zoneAreas.createZoneArea')}
+            </Button>
+          </form>
+        </Form>
+      </FormSection>
+    </FormWrapper>
   )
 }

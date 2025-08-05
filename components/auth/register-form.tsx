@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Separator } from "@/components/ui/separator"
+import { FormWrapper, FormSection } from "@/components/ui/form-wrapper"
 import { Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
 import { register as registerUser } from "@/lib/auth"
@@ -50,15 +50,15 @@ export function RegisterForm() {
     }
   }
 
-  console.log("Form errors:", errors); // Added to debug validation
   return (
-    <Card className="w-full max-w-md mx-auto">
-      <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl text-center">{t('auth.signUpTitle')}</CardTitle>
-        <CardDescription className="text-center">{t('auth.signUpDescription')}</CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <FormWrapper 
+      maxWidth="md"
+      title={t('auth.signUpTitle')}
+      description={t('auth.signUpDescription')}
+      icon="👤"
+    >
+      <FormSection>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {error && (
             <Alert variant="destructive">
               <AlertDescription>{error}</AlertDescription>
@@ -67,13 +67,26 @@ export function RegisterForm() {
 
           <div className="space-y-2">
             <Label htmlFor="full_name">{t('auth.fullName')}</Label>
-            <Input id="full_name" placeholder={t('auth.enterFullName')} {...register("full_name")} disabled={isLoading} />
+            <Input 
+              id="full_name" 
+              placeholder={t('auth.enterFullName')} 
+              {...register("full_name")} 
+              disabled={isLoading}
+              className="bg-white"
+            />
             {errors.full_name && <p className="text-sm text-red-500">{errors.full_name.message}</p>}
           </div>
 
           <div className="space-y-2">
             <Label htmlFor="email">{t('auth.email')}</Label>
-            <Input id="email" type="email" placeholder={t('auth.enterEmail')} {...register("email")} disabled={isLoading} />
+            <Input 
+              id="email" 
+              type="email" 
+              placeholder={t('auth.enterEmail')} 
+              {...register("email")} 
+              disabled={isLoading}
+              className="bg-white"
+            />
             {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
           </div>
 
@@ -86,6 +99,7 @@ export function RegisterForm() {
                 placeholder={t('auth.enterPassword')}
                 {...register("password")}
                 disabled={isLoading}
+                className="bg-white"
               />
               <Button
                 type="button"
@@ -105,18 +119,18 @@ export function RegisterForm() {
             {isLoading ? t('auth.signingUp') : t('auth.signUp')}
           </Button>
         </form>
+      </FormSection>
 
-        <Separator />
-
+      <FormSection colorScheme="green">
         <div className="text-center">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-green-700">
             {t('auth.haveAccount')}{" "}
-            <Link href="/login" className="text-blue-600 hover:underline">
+            <Link href="/login" className="text-green-800 hover:underline font-medium">
               {t('auth.signIn')}
             </Link>
           </p>
         </div>
-      </CardContent>
-    </Card>
+      </FormSection>
+    </FormWrapper>
   )
 }

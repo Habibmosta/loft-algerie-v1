@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState, useCallback } from 'react'
-import { createClient } from '@/utils/supabase/client'
+import { useSupabase } from './supabase-provider'
 import { toast } from 'sonner'
 import { useNotificationSound } from '@/lib/hooks/use-notification-sound'
 import { useTranslation } from '@/lib/i18n/context'
@@ -37,7 +37,7 @@ export function EnhancedRealtimeProvider({ children, userId }: EnhancedRealtimeP
   const [isOnline, setIsOnline] = useState(true)
   const { playNotificationSound } = useNotificationSound()
   const { t } = useTranslation()
-  const supabase = createClient()
+  const { supabase } = useSupabase()
 
   const refreshCounts = useCallback(async () => {
     try {
@@ -98,7 +98,7 @@ export function EnhancedRealtimeProvider({ children, userId }: EnhancedRealtimeP
       setUnreadMessagesCount(0)
       setUnreadNotificationsCount(0)
     }
-  }, [])
+  }, [supabase])
 
   const playSound = useCallback((type: 'success' | 'info' | 'warning' | 'error') => {
     playNotificationSound(type)
@@ -108,13 +108,8 @@ export function EnhancedRealtimeProvider({ children, userId }: EnhancedRealtimeP
     // Initial counts fetch
     refreshCounts()
 
-    // Set up polling for message counts (every 5 seconds)
-    const messagePollingInterval = setInterval(refreshCounts, 5000)
-
-    // Cleanup polling on unmount
-    return () => {
-      clearInterval(messagePollingInterval)
-    }
+    // The aggressive polling was causing rate-limiting issues.
+    // The 30-second interval below is sufficient.
   }, [refreshCounts])
 
   useEffect(() => {

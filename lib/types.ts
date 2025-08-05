@@ -187,3 +187,9 @@ export type Transaction = {
 };
 
 export type Database = any;
+
+export type Conversation = {
+  id: string;
+  name: string;
+  latestMessage: string;
+};

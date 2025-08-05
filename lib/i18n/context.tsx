@@ -16,9 +16,9 @@ interface I18nProviderProps {
   initialLanguage?: Language
 }
 
-export function I18nProvider({ children, initialLanguage = 'ar' }: I18nProviderProps) {
-  // Always start with initialLanguage to avoid hydration mismatch
-  const [language, setLanguageState] = React.useState<Language>(initialLanguage)
+export function I18nProvider({ children, initialLanguage = 'fr' }: I18nProviderProps) {
+  // Always start with French to avoid language mixing issues
+  const [language, setLanguageState] = React.useState<Language>('fr')
   const [isHydrated, setIsHydrated] = React.useState(false)
 
   // Hydrate with cookie value after initial render
@@ -29,8 +29,17 @@ export function I18nProvider({ children, initialLanguage = 'ar' }: I18nProviderP
         .find(row => row.startsWith('language='))
         ?.split('=')[1] as Language
       
+      // Only use saved language if it's valid and has complete translations
       if (savedLanguage && translations[savedLanguage] && savedLanguage !== language) {
-        setLanguageState(savedLanguage)
+        // Verify that the saved language has the required translations
+        if (translations[savedLanguage].settings && translations[savedLanguage].zoneAreas) {
+          setLanguageState(savedLanguage)
+        } else {
+          // If translations are incomplete, force French and clear the cookie
+          console.warn(`Incomplete translations for ${savedLanguage}, forcing French`)
+          document.cookie = 'language=fr; path=/; max-age=' + (60 * 60 * 24 * 365)
+          setLanguageState('fr')
+        }
       }
       setIsHydrated(true)
     }
@@ -63,25 +72,57 @@ export function I18nProvider({ children, initialLanguage = 'ar' }: I18nProviderP
     const keys = key.split('.')
     let result: any = translations[language]
     
+    // Ensure we have a valid language and translations
+    if (!translations[language]) {
+      console.warn(`Language '${language}' not found, falling back to French`)
+      result = translations.fr
+    }
+    
     for (const k of keys) {
       if (result && typeof result === 'object' && k in result) {
         result = result[k]
       } else {
-        // Fallback to English if key not found in current language
-        let fallbackResult: any = translations.en
-        for (const fallbackKey of keys) {
-          if (fallbackResult && typeof fallbackResult === 'object' && fallbackKey in fallbackResult) {
-            fallbackResult = fallbackResult[fallbackKey]
-          } else {
-            return key // Return key as fallback if not found in English either
+        // Fallback hierarchy: current language -> French -> English -> key
+        let fallbackResult: any = null
+        
+        // Try French first
+        if (language !== 'fr' && translations.fr) {
+          fallbackResult = translations.fr
+          for (const fallbackKey of keys) {
+            if (fallbackResult && typeof fallbackResult === 'object' && fallbackKey in fallbackResult) {
+              fallbackResult = fallbackResult[fallbackKey]
+            } else {
+              fallbackResult = null
+              break
+            }
           }
         }
-        result = fallbackResult
-        break // Stop searching and use the English fallback
+        
+        // If French failed, try English
+        if (!fallbackResult && language !== 'en' && translations.en) {
+          fallbackResult = translations.en
+          for (const fallbackKey of keys) {
+            if (fallbackResult && typeof fallbackResult === 'object' && fallbackKey in fallbackResult) {
+              fallbackResult = fallbackResult[fallbackKey]
+            } else {
+              fallbackResult = null
+              break
+            }
+          }
+        }
+        
+        result = fallbackResult || key
+        break
       }
     }
     
     let translatedString = result || key
+
+    // Ensure we return a string
+    if (typeof translatedString !== 'string') {
+      console.warn(`Translation for '${key}' is not a string:`, translatedString)
+      return key
+    }
 
     // Replace placeholders if params are provided
     if (params) {

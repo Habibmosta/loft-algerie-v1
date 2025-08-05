@@ -1,11 +1,13 @@
 import { requireRole } from "@/lib/auth"
 import { createClient } from "@/utils/supabase/server"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { getTranslations } from "@/lib/i18n/server"
 import ReportChartsWrapper from './report-charts-wrapper'
 
 export default async function ReportsPage() {
   const session = await requireRole(["admin", "manager"])
   const supabase = await createClient()
+  const t = await getTranslations()
 
   // Fetch financial data by loft
   const { data: lofts, error: loftsError } = await supabase
@@ -42,9 +44,9 @@ export default async function ReportsPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Financial Reports</h1>
-        <p className="text-muted-foreground">Comprehensive financial analytics and insights</p>
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold tracking-tight">{t('analytics.title')}</h1>
+        <p className="text-muted-foreground">{t('analytics.subtitle')}</p>
       </div>
 
       <ReportChartsWrapper loftRevenue={loftRevenue} monthlyRevenue={monthlyRevenue} />
