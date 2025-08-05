@@ -136,7 +136,8 @@
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.6",
-    "zod": "latest"
+    "zod": "latest",
+    "@types/react-big-calendar": "^1.16.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.4",
@@ -147,7 +148,6 @@
     "@types/nodemailer": "^6.4.17",
     "@types/pg": "^8.11.6",
     "@types/react": "^18",
-    "@types/react-big-calendar": "^1.16.2",
     "@types/react-dom": "^18",
     "cross-env": "^7.0.3",
     "eslint": "^9.32.0",
