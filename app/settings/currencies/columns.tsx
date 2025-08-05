@@ -17,9 +17,9 @@ import { useTranslation } from "@/lib/i18n/context"
 export const getColumns = (
   onSetDefault: (id: string) => Promise<void>,
   onDelete: (id: string) => Promise<void>,
-  router: ReturnType<typeof useRouter>
+  router: ReturnType<typeof useRouter>,
+  t: (key: string) => string
 ): ColumnDef<Currency>[] => {
-  const { t } = useTranslation()
   return [
     {
       accessorKey: "code",

@@ -18,7 +18,7 @@ export default function EditTaskForm({ initialTask, users }: EditTaskFormProps) 
   const params = useParams()
   const router = useRouter()
   const { t } = useTranslation()
-  const id = params.id as string
+  const id = params?.id as string
   const [task, setTask] = useState<Task | null>(initialTask)
   const [isSubmitting, setIsSubmitting] = useState(false)
 

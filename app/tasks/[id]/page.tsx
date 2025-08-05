@@ -15,7 +15,7 @@ import { useTranslation } from "@/lib/i18n/context"
 export default function TaskPage() {
   const params = useParams()
   const router = useRouter()
-  const id = params.id as string
+  const id = params?.id as string
   const { t } = useTranslation()
 
   const [task, setTask] = useState<Task | null>(null)

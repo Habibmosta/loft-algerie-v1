@@ -25,9 +25,10 @@ import { useEffect } from "react";
 interface ZoneAreaFormProps {
   zoneArea?: ZoneArea; // Optional zoneArea prop for editing
   onSuccess?: () => void; // Callback for success
+  onCancel?: () => void; // Callback for cancel
 }
 
-export function ZoneAreaForm({ zoneArea, onSuccess }: ZoneAreaFormProps) {
+export function ZoneAreaForm({ zoneArea, onSuccess, onCancel }: ZoneAreaFormProps) {
   const router = useRouter();
   const { t } = useTranslation();
   

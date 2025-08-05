@@ -26,7 +26,7 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function Sidebar({ user, unreadCount, className }: SidebarProps) {
   const pathname = usePathname()
-  const [isSettingsOpen, setIsSettingsOpen] = useState(pathname.startsWith('/settings'))
+  const [isSettingsOpen, setIsSettingsOpen] = useState(pathname?.startsWith('/settings') || false)
   const { unreadMessagesCount } = useEnhancedRealtime()
   const { unreadCount: realtimeUnreadCount } = useNotifications()
   const { t } = useTranslation()

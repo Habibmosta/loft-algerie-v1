@@ -27,7 +27,7 @@ interface PaymentMethod {
 
 export default function EditTransactionPage() {
   const params = useParams()
-  const id = params.id as string
+  const id = params?.id as string
   const [transaction, setTransaction] = useState<Transaction | null>(null)
   const [categories, setCategories] = useState<Category[]>([])
   const [lofts, setLofts] = useState<Loft[]>([]) // Add lofts state

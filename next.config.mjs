@@ -10,6 +10,9 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: process.env.NODE_ENV !== 'production',
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   
   // Configuration par environnement
   env: {

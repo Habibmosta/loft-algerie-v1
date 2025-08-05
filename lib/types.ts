@@ -165,7 +165,9 @@ export type Currency = {
 export type PaymentMethod = {
   id: string;
   name: string;
+  type?: string;
   description?: string;
+  details?: any;
   is_active: boolean;
   created_at?: string;
   updated_at?: string;

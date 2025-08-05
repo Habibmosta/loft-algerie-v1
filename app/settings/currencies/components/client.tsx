@@ -107,7 +107,7 @@ export const CurrencyClient = ({ data, onSetDefault, onDelete }: CurrencyClientP
           ) : (
             <DataTable 
               key={data.length} 
-              columns={getColumns(onSetDefault, onDelete, router)} 
+              columns={getColumns(onSetDefault, onDelete, router, t)} 
               data={data} 
             />
           )}

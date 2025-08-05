@@ -242,8 +242,8 @@ export function BillPaymentForm({
                 type="number"
                 step="0.01"
                 placeholder="0.00"
-                className="flex-1"
-                {...register('amount', { valueAsNumber: true })} className="bg-white"
+                {...register('amount', { valueAsNumber: true })}
+                className="flex-1 bg-white"
               />
               <Select value={selectedCurrencyId} onValueChange={handleCurrencyChange}>
                 <SelectTrigger className="w-20">

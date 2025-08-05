@@ -23,7 +23,7 @@ interface EnhancedSidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function EnhancedSidebar({ user, unreadCount, className }: EnhancedSidebarProps) {
   const pathname = usePathname()
-  const [isSettingsOpen, setIsSettingsOpen] = useState(pathname.startsWith('/settings'))
+  const [isSettingsOpen, setIsSettingsOpen] = useState(pathname?.startsWith('/settings') || false)
   const { unreadMessagesCount, unreadNotificationsCount, playSound } = useEnhancedRealtime()
 
   // Listen for notification events to update UI immediately

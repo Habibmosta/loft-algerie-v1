@@ -5,13 +5,14 @@ import { createClient } from "@/utils/supabase/server"
 import { notFound } from "next/navigation"
 import { EditLoftClientPage } from "./edit-loft-client-page"
 
-export default async function EditLoftPage({ params }: { params: { id: string } }) {
+export default async function EditLoftPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
   const supabase = await createClient()
 
   const { data: loft, error } = await supabase
     .from("lofts")
     .select("*")
-    .eq("id", params.id)
+    .eq("id", id)
     .single()
 
   if (error || !loft) {
