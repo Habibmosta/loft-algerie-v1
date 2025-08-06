@@ -48,6 +48,20 @@ export const translations = {
     // Authentication
     auth: {
       signIn: "Sign In",
+      welcomeBack: "Welcome Back",
+      signInDescription: "Sign in to your account to continue",
+      email: "Email",
+      enterEmail: "Enter your email",
+      password: "Password",
+      enterPassword: "Enter your password",
+      forgotPassword: "Forgot Password?",
+      signingIn: "Signing In...",
+      noAccount: "Don't have an account?",
+      signUp: "Sign Up",
+      demoAccounts: "Demo Accounts",
+      admin: "Admin",
+      manager: "Manager",
+      member: "Member",
       signUp: "Sign Up",
       signOut: "Sign Out",
       welcomeBack: "Welcome Back",
@@ -415,7 +429,32 @@ export const translations = {
         loft: "Property",
         total: "Total Amount",
         specialRequests: "Special Requests"
+      },
+      availability: {
+        selectLoft: "Select Loft"
       }
+    },
+
+    // Teams
+    teams: {
+      title: "Teams",
+      subtitle: "Manage your teams and members",
+      addTeam: "Add Team",
+      createdBy: "Created by",
+      activeTasks: "Active Tasks"
+    },
+
+    // Owners
+    owners: {
+      title: "Owners",
+      subtitle: "Manage property owners",
+      addOwner: "Add Owner"
+    },
+
+    // Analytics
+    analytics: {
+      title: "Analytics",
+      subtitle: "Business insights and reports"
     }
   },
 
@@ -471,13 +510,20 @@ export const translations = {
       welcomeBack: "Bon Retour",
       signInDescription: "Connectez-vous à votre compte pour continuer",
       email: "Email",
+      enterEmail: "Entrez votre email",
       password: "Mot de passe",
+      enterPassword: "Entrez votre mot de passe",
       forgotPassword: "Mot de passe oublié ?",
+      signingIn: "Connexion...",
       rememberMe: "Se souvenir de moi",
       noAccount: "Vous n'avez pas de compte ?",
       hasAccount: "Vous avez déjà un compte ?",
       createAccount: "Créer un Compte",
-      signInToAccount: "Connectez-vous à votre compte"
+      signInToAccount: "Connectez-vous à votre compte",
+      demoAccounts: "Comptes de Démonstration",
+      admin: "Administrateur",
+      manager: "Gestionnaire",
+      member: "Membre"
     },
 
     // Theme
@@ -779,7 +825,10 @@ export const translations = {
       title: "Tâches",
       subtitle: "Gérez vos tâches et affectations",
       yourTasks: "Vos tâches assignées",
-      addTask: "Ajouter une Tâche"
+      addTask: "Ajouter une Tâche",
+      filters: {
+        filterByStatus: "Filtrer par statut"
+      }
     },
 
     // Reservations
@@ -833,7 +882,32 @@ export const translations = {
         loft: "Propriété",
         total: "Montant Total",
         specialRequests: "Demandes Spéciales"
+      },
+      availability: {
+        selectLoft: "Sélectionner un Loft"
       }
+    },
+
+    // Teams
+    teams: {
+      title: "Équipes",
+      subtitle: "Gérez vos équipes et membres",
+      addTeam: "Ajouter une Équipe",
+      createdBy: "Créé par",
+      activeTasks: "Tâches Actives"
+    },
+
+    // Owners
+    owners: {
+      title: "Propriétaires",
+      subtitle: "Gérer les propriétaires",
+      addOwner: "Ajouter un Propriétaire"
+    },
+
+    // Analytics
+    analytics: {
+      title: "Analytiques",
+      subtitle: "Aperçus et rapports d'affaires"
     }
   },
 
@@ -889,13 +963,20 @@ export const translations = {
       welcomeBack: "مرحباً بعودتك",
       signInDescription: "قم بتسجيل الدخول إلى حسابك للمتابعة",
       email: "البريد الإلكتروني",
+      enterEmail: "أدخل بريدك الإلكتروني",
       password: "كلمة المرور",
+      enterPassword: "أدخل كلمة المرور",
       forgotPassword: "نسيت كلمة المرور؟",
+      signingIn: "جاري تسجيل الدخول...",
       rememberMe: "تذكرني",
       noAccount: "ليس لديك حساب؟",
       hasAccount: "لديك حساب بالفعل؟",
       createAccount: "إنشاء حساب",
-      signInToAccount: "قم بتسجيل الدخول إلى حسابك"
+      signInToAccount: "قم بتسجيل الدخول إلى حسابك",
+      demoAccounts: "حسابات تجريبية",
+      admin: "مدير",
+      manager: "مدير",
+      member: "عضو"
     },
 
     // Theme
@@ -1197,7 +1278,10 @@ export const translations = {
       title: "المهام",
       subtitle: "إدارة المهام والمهام المعينة",
       yourTasks: "المهام المعينة لك",
-      addTask: "إضافة مهمة"
+      addTask: "إضافة مهمة",
+      filters: {
+        filterByStatus: "تصفية حسب الحالة"
+      }
     },
 
     // Reservations
@@ -1251,7 +1335,32 @@ export const translations = {
         loft: "العقار",
         total: "المبلغ الإجمالي",
         specialRequests: "الطلبات الخاصة"
+      },
+      availability: {
+        selectLoft: "اختر لوفت"
       }
+    },
+
+    // Teams
+    teams: {
+      title: "الفرق",
+      subtitle: "إدارة الفرق والأعضاء",
+      addTeam: "إضافة فريق",
+      createdBy: "أنشأ بواسطة",
+      activeTasks: "المهام النشطة"
+    },
+
+    // Owners
+    owners: {
+      title: "الملاك",
+      subtitle: "إدارة ملاك العقارات",
+      addOwner: "إضافة مالك"
+    },
+
+    // Analytics
+    analytics: {
+      title: "التحليلات",
+      subtitle: "رؤى الأعمال والتقارير"
     }
   }
 }
