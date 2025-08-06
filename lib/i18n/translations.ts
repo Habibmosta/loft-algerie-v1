@@ -368,7 +368,17 @@ export const translations = {
       title: "Tasks",
       subtitle: "Manage your tasks and assignments",
       yourTasks: "Your assigned tasks",
-      addTask: "Add Task"
+      addTask: "Add Task",
+      assignedTo: "Assigned to",
+      status: {
+        inProgress: "In Progress",
+        todo: "To Do",
+        completed: "Completed",
+        cancelled: "Cancelled"
+      },
+      filters: {
+        filterByStatus: "Filter by status"
+      }
     },
 
     // Reservations
@@ -424,7 +434,37 @@ export const translations = {
         specialRequests: "Special Requests"
       },
       availability: {
-        selectLoft: "Select Loft"
+        selectLoft: "Select Loft",
+        management: "Availability Management",
+        blockDates: "Block Dates",
+        unblockDates: "Unblock Dates",
+        chooseLoft: "Choose Loft",
+        reasonForBlocking: "Reason for Blocking",
+        selectReason: "Select Reason",
+        maintenance: "Maintenance",
+        personalUse: "Personal Use",
+        renovation: "Renovation",
+        other: "Other",
+        startDate: "Start Date",
+        endDate: "End Date",
+        priceOverride: "Price Override",
+        minimumStay: "Minimum Stay"
+      },
+      calendar: {
+        month: "Month",
+        week: "Week",
+        day: "Day",
+        agenda: "Agenda"
+      },
+      status: {
+        confirmed: "Confirmed",
+        pending: "Pending",
+        cancelled: "Cancelled",
+        completed: "Completed"
+      },
+      upcoming: {
+        title: "Upcoming Reservations",
+        empty: "No upcoming reservations"
       }
     },
 
@@ -447,7 +487,24 @@ export const translations = {
     // Analytics
     analytics: {
       title: "Analytics",
-      subtitle: "Business insights and reports"
+      subtitle: "Business insights and reports",
+      top5ProfitableLofts: "Top 5 Profitable Lofts",
+      mostValuableAssets: "Most Valuable Assets"
+    },
+
+    // Lofts
+    lofts: {
+      nextInternetBill: "Next Internet Bill",
+      nextTvBill: "Next TV Bill",
+      tvSubscription: "TV Channels Subscription",
+      subscriptionFrequency: "TV Subscription Frequency",
+      monthly: "Monthly",
+      weekly: "Weekly",
+      bimonthly: "Bimonthly",
+      quarterly: "Quarterly",
+      fourMonths: "Four Months",
+      sixMonths: "Six Months",
+      annual: "Annual"
     }
   },
 
@@ -819,6 +876,13 @@ export const translations = {
       subtitle: "Gérez vos tâches et affectations",
       yourTasks: "Vos tâches assignées",
       addTask: "Ajouter une Tâche",
+      assignedTo: "Assigné à",
+      status: {
+        inProgress: "En Cours",
+        todo: "À Faire",
+        completed: "Terminé",
+        cancelled: "Annulé"
+      },
       filters: {
         filterByStatus: "Filtrer par statut"
       }
@@ -877,7 +941,37 @@ export const translations = {
         specialRequests: "Demandes Spéciales"
       },
       availability: {
-        selectLoft: "Sélectionner un Loft"
+        selectLoft: "Sélectionner un Loft",
+        management: "Gestion de la Disponibilité",
+        blockDates: "Bloquer les Dates",
+        unblockDates: "Débloquer les Dates",
+        chooseLoft: "Choisir un Loft",
+        reasonForBlocking: "Raison du Blocage",
+        selectReason: "Sélectionner une Raison",
+        maintenance: "Maintenance",
+        personalUse: "Usage Personnel",
+        renovation: "Rénovation",
+        other: "Autre",
+        startDate: "Date de Début",
+        endDate: "Date de Fin",
+        priceOverride: "Remplacement de Prix",
+        minimumStay: "Séjour Minimum"
+      },
+      calendar: {
+        month: "Mois",
+        week: "Semaine",
+        day: "Jour",
+        agenda: "Agenda"
+      },
+      status: {
+        confirmed: "Confirmé",
+        pending: "En Attente",
+        cancelled: "Annulé",
+        completed: "Terminé"
+      },
+      upcoming: {
+        title: "Réservations à Venir",
+        empty: "Aucune réservation à venir"
       }
     },
 
@@ -900,7 +994,24 @@ export const translations = {
     // Analytics
     analytics: {
       title: "Analytiques",
-      subtitle: "Aperçus et rapports d'affaires"
+      subtitle: "Aperçus et rapports d'affaires",
+      top5ProfitableLofts: "Top 5 des Lofts Rentables",
+      mostValuableAssets: "Actifs les Plus Précieux"
+    },
+
+    // Lofts
+    lofts: {
+      nextInternetBill: "Prochaine Facture Internet",
+      nextTvBill: "Prochaine Facture TV",
+      tvSubscription: "Abonnement Chaînes TV",
+      subscriptionFrequency: "Fréquence Abonnement TV",
+      monthly: "Mensuel",
+      weekly: "Hebdomadaire",
+      bimonthly: "Bimestriel",
+      quarterly: "Trimestriel",
+      fourMonths: "Quatre Mois",
+      sixMonths: "Six Mois",
+      annual: "Annuel"
     }
   },
 
@@ -1272,6 +1383,13 @@ export const translations = {
       subtitle: "إدارة المهام والمهام المعينة",
       yourTasks: "المهام المعينة لك",
       addTask: "إضافة مهمة",
+      assignedTo: "مُعيَّن إلى",
+      status: {
+        inProgress: "قيد التنفيذ",
+        todo: "للقيام به",
+        completed: "مكتمل",
+        cancelled: "ملغي"
+      },
       filters: {
         filterByStatus: "تصفية حسب الحالة"
       }
@@ -1330,7 +1448,37 @@ export const translations = {
         specialRequests: "الطلبات الخاصة"
       },
       availability: {
-        selectLoft: "اختر لوفت"
+        selectLoft: "اختر لوفت",
+        management: "إدارة التوفر",
+        blockDates: "حجب التواريخ",
+        unblockDates: "إلغاء حجب التواريخ",
+        chooseLoft: "اختر لوفت",
+        reasonForBlocking: "سبب الحجب",
+        selectReason: "اختر السبب",
+        maintenance: "صيانة",
+        personalUse: "استخدام شخصي",
+        renovation: "تجديد",
+        other: "أخرى",
+        startDate: "تاريخ البداية",
+        endDate: "تاريخ النهاية",
+        priceOverride: "تجاوز السعر",
+        minimumStay: "الحد الأدنى للإقامة"
+      },
+      calendar: {
+        month: "شهر",
+        week: "أسبوع",
+        day: "يوم",
+        agenda: "جدول الأعمال"
+      },
+      status: {
+        confirmed: "مؤكد",
+        pending: "في الانتظار",
+        cancelled: "ملغي",
+        completed: "مكتمل"
+      },
+      upcoming: {
+        title: "الحجوزات القادمة",
+        empty: "لا توجد حجوزات قادمة"
       }
     },
 
@@ -1353,7 +1501,24 @@ export const translations = {
     // Analytics
     analytics: {
       title: "التحليلات",
-      subtitle: "رؤى الأعمال والتقارير"
+      subtitle: "رؤى الأعمال والتقارير",
+      top5ProfitableLofts: "أفضل 5 لوفت مربحة",
+      mostValuableAssets: "الأصول الأكثر قيمة"
+    },
+
+    // Lofts
+    lofts: {
+      nextInternetBill: "فاتورة الإنترنت القادمة",
+      nextTvBill: "فاتورة التلفزيون القادمة",
+      tvSubscription: "اشتراك القنوات التلفزيونية",
+      subscriptionFrequency: "تكرار اشتراك التلفزيون",
+      monthly: "شهري",
+      weekly: "أسبوعي",
+      bimonthly: "كل شهرين",
+      quarterly: "ربع سنوي",
+      fourMonths: "أربعة أشهر",
+      sixMonths: "ستة أشهر",
+      annual: "سنوي"
     }
   }
 }
