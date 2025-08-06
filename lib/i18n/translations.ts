@@ -48,6 +48,8 @@ export const translations = {
     // Authentication
     auth: {
       signIn: "Sign In",
+      signUp: "Sign Up",
+      signOut: "Sign Out",
       welcomeBack: "Welcome Back",
       signInDescription: "Sign in to your account to continue",
       email: "Email",
@@ -56,23 +58,15 @@ export const translations = {
       enterPassword: "Enter your password",
       forgotPassword: "Forgot Password?",
       signingIn: "Signing In...",
-      noAccount: "Don't have an account?",
-      signUp: "Sign Up",
-      signOut: "Sign Out",
-      demoAccounts: "Demo Accounts",
-      admin: "Admin",
-      manager: "Manager",
-      member: "Member",
-      welcomeBack: "Welcome Back",
-      signInDescription: "Sign in to your account to continue",
-      email: "Email",
-      password: "Password",
-      forgotPassword: "Forgot Password?",
       rememberMe: "Remember me",
       noAccount: "Don't have an account?",
       hasAccount: "Already have an account?",
       createAccount: "Create Account",
-      signInToAccount: "Sign in to your account"
+      signInToAccount: "Sign in to your account",
+      demoAccounts: "Demo Accounts",
+      admin: "Admin",
+      manager: "Manager",
+      member: "Member"
     },
 
     // Theme
