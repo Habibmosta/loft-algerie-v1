@@ -354,6 +354,68 @@ export const translations = {
       income: "Income",
       expense: "Expense",
       optional: "Optional"
+    },
+
+    // Tasks
+    tasks: {
+      title: "Tasks",
+      subtitle: "Manage your tasks and assignments",
+      yourTasks: "Your assigned tasks",
+      addTask: "Add Task"
+    },
+
+    // Reservations
+    reservations: {
+      title: "Reservations",
+      description: "Professional reservation management system",
+      create: "Create Reservation",
+      liveView: "Live View",
+      quickActions: "Quick Actions",
+      newReservation: "New Reservation",
+      manageGuests: "Manage Guests",
+      viewReports: "View Reports",
+      recentActivity: "Recent Activity",
+      availabilityManagement: "Availability Management",
+      proTools: "Pro Tools",
+      nights: "nights",
+      analytics: {
+        title: "Analytics Dashboard",
+        totalReservations: "Total Reservations",
+        monthlyRevenue: "Monthly Revenue",
+        occupancyRate: "Occupancy Rate",
+        guestSatisfaction: "Guest Satisfaction",
+        vsLastMonth: "vs last month"
+      },
+      tabs: {
+        calendar: "Calendar",
+        list: "List View",
+        analytics: "Analytics"
+      },
+      calendar: {
+        title: "Reservation Calendar"
+      },
+      list: {
+        title: "Reservations List"
+      },
+      activities: {
+        newReservation: "New reservation created",
+        checkinCompleted: "Check-in completed",
+        bookingCancelled: "Booking cancelled",
+        minAgo: "2 min ago",
+        hourAgo: "1 hour ago",
+        hoursAgo: "3 hours ago"
+      },
+      form: {
+        title: "Create New Reservation"
+      },
+      details: {
+        title: "Reservation Details",
+        guest: "Guest Information",
+        dates: "Stay Dates",
+        loft: "Property",
+        total: "Total Amount",
+        specialRequests: "Special Requests"
+      }
     }
   },
 
@@ -710,6 +772,68 @@ export const translations = {
       income: "Revenus",
       expense: "Dépenses",
       optional: "Optionnel"
+    },
+
+    // Tasks
+    tasks: {
+      title: "Tâches",
+      subtitle: "Gérez vos tâches et affectations",
+      yourTasks: "Vos tâches assignées",
+      addTask: "Ajouter une Tâche"
+    },
+
+    // Reservations
+    reservations: {
+      title: "Réservations",
+      description: "Système professionnel de gestion des réservations",
+      create: "Créer une Réservation",
+      liveView: "Vue en Direct",
+      quickActions: "Actions Rapides",
+      newReservation: "Nouvelle Réservation",
+      manageGuests: "Gérer les Invités",
+      viewReports: "Voir les Rapports",
+      recentActivity: "Activité Récente",
+      availabilityManagement: "Gestion de la Disponibilité",
+      proTools: "Outils Pro",
+      nights: "nuits",
+      analytics: {
+        title: "Tableau de Bord Analytique",
+        totalReservations: "Total des Réservations",
+        monthlyRevenue: "Revenus Mensuels",
+        occupancyRate: "Taux d'Occupation",
+        guestSatisfaction: "Satisfaction des Invités",
+        vsLastMonth: "vs mois dernier"
+      },
+      tabs: {
+        calendar: "Calendrier",
+        list: "Vue Liste",
+        analytics: "Analytiques"
+      },
+      calendar: {
+        title: "Calendrier des Réservations"
+      },
+      list: {
+        title: "Liste des Réservations"
+      },
+      activities: {
+        newReservation: "Nouvelle réservation créée",
+        checkinCompleted: "Enregistrement terminé",
+        bookingCancelled: "Réservation annulée",
+        minAgo: "il y a 2 min",
+        hourAgo: "il y a 1 heure",
+        hoursAgo: "il y a 3 heures"
+      },
+      form: {
+        title: "Créer une Nouvelle Réservation"
+      },
+      details: {
+        title: "Détails de la Réservation",
+        guest: "Informations de l'Invité",
+        dates: "Dates de Séjour",
+        loft: "Propriété",
+        total: "Montant Total",
+        specialRequests: "Demandes Spéciales"
+      }
     }
   },
 
@@ -1066,6 +1190,68 @@ export const translations = {
       income: "الدخل",
       expense: "المصروفات",
       optional: "اختياري"
+    },
+
+    // Tasks
+    tasks: {
+      title: "المهام",
+      subtitle: "إدارة المهام والمهام المعينة",
+      yourTasks: "المهام المعينة لك",
+      addTask: "إضافة مهمة"
+    },
+
+    // Reservations
+    reservations: {
+      title: "الحجوزات",
+      description: "نظام إدارة الحجوزات المهني",
+      create: "إنشاء حجز",
+      liveView: "عرض مباشر",
+      quickActions: "إجراءات سريعة",
+      newReservation: "حجز جديد",
+      manageGuests: "إدارة الضيوف",
+      viewReports: "عرض التقارير",
+      recentActivity: "النشاط الأخير",
+      availabilityManagement: "إدارة التوفر",
+      proTools: "أدوات احترافية",
+      nights: "ليالي",
+      analytics: {
+        title: "لوحة التحليلات",
+        totalReservations: "إجمالي الحجوزات",
+        monthlyRevenue: "الإيرادات الشهرية",
+        occupancyRate: "معدل الإشغال",
+        guestSatisfaction: "رضا الضيوف",
+        vsLastMonth: "مقارنة بالشهر الماضي"
+      },
+      tabs: {
+        calendar: "التقويم",
+        list: "عرض القائمة",
+        analytics: "التحليلات"
+      },
+      calendar: {
+        title: "تقويم الحجوزات"
+      },
+      list: {
+        title: "قائمة الحجوزات"
+      },
+      activities: {
+        newReservation: "تم إنشاء حجز جديد",
+        checkinCompleted: "تم إكمال تسجيل الوصول",
+        bookingCancelled: "تم إلغاء الحجز",
+        minAgo: "منذ دقيقتين",
+        hourAgo: "منذ ساعة",
+        hoursAgo: "منذ 3 ساعات"
+      },
+      form: {
+        title: "إنشاء حجز جديد"
+      },
+      details: {
+        title: "تفاصيل الحجز",
+        guest: "معلومات الضيف",
+        dates: "تواريخ الإقامة",
+        loft: "العقار",
+        total: "المبلغ الإجمالي",
+        specialRequests: "الطلبات الخاصة"
+      }
     }
   }
 }
