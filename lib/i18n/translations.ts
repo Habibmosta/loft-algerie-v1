@@ -408,9 +408,7 @@ export const translations = {
         list: "List View",
         analytics: "Analytics"
       },
-      calendar: {
-        title: "Reservation Calendar"
-      },
+
       list: {
         title: "Reservations List"
       },
@@ -451,6 +449,7 @@ export const translations = {
         minimumStay: "Minimum Stay"
       },
       calendar: {
+        title: "Reservation Calendar",
         month: "Month",
         week: "Week",
         day: "Day",
@@ -915,9 +914,7 @@ export const translations = {
         list: "Vue Liste",
         analytics: "Analytiques"
       },
-      calendar: {
-        title: "Calendrier des Réservations"
-      },
+
       list: {
         title: "Liste des Réservations"
       },
@@ -958,6 +955,7 @@ export const translations = {
         minimumStay: "Séjour Minimum"
       },
       calendar: {
+        title: "Calendrier des Réservations",
         month: "Mois",
         week: "Semaine",
         day: "Jour",
@@ -1422,9 +1420,7 @@ export const translations = {
         list: "عرض القائمة",
         analytics: "التحليلات"
       },
-      calendar: {
-        title: "تقويم الحجوزات"
-      },
+
       list: {
         title: "قائمة الحجوزات"
       },
@@ -1465,6 +1461,7 @@ export const translations = {
         minimumStay: "الحد الأدنى للإقامة"
       },
       calendar: {
+        title: "تقويم الحجوزات",
         month: "شهر",
         week: "أسبوع",
         day: "يوم",
