@@ -347,7 +347,10 @@
     "title": "Lofts",
     "unknown": "Unknown",
     "updatePropertyDetails": "Update Property Details",
-    "zoneArea": "Zone Area"
+    "zoneArea": "Zone Area",
+    "status.available": "Available",
+    "status.occupied": "Occupied",
+    "status.maintenance": "Maintenance"
   },
   "nav": {
     "application": "Application",

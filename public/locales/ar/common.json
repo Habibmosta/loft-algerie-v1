@@ -347,7 +347,10 @@
     "title": "الشقق",
     "unknown": "غير معروف",
     "updatePropertyDetails": "تحديث تفاصيل العقار",
-    "zoneArea": "المنطقة"
+    "zoneArea": "المنطقة",
+    "status.available": "متاح",
+    "status.occupied": "مشغول",
+    "status.maintenance": "قيد الصيانة"
   },
   "nav": {
     "application": "التطبيق",
