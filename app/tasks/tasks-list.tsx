@@ -9,7 +9,7 @@ import Link from "next/link"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
 import { DatePicker } from "../../components/ui/date-picker"
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "@/lib/i18n/context"
 
 interface TasksListProps {
   tasks: Task[]

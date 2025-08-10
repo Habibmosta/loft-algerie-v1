@@ -293,6 +293,55 @@
     "transactions": "Transactions",
     "zoneAreas": "Zones Géographiques"
   },
+  "tasks": {
+    "addTask": "Ajouter une tâche",
+    "assignedTo": "Assignée à",
+    "assignTo": "Assigner à",
+    "cancel": "Annuler",
+    "createError": "Erreur lors de la création de la tâche.",
+    "createSuccess": "Tâche créée avec succès.",
+    "createTask": "Créer une tâche",
+    "dueDateFormat": "Date d'échéance",
+    "editTask": "Modifier la tâche",
+    "fillTaskInformation": "Remplir les informations de la tâche",
+    "filters": {
+      "allStatuses": "Tous les statuts",
+      "endDate": "Date de fin",
+      "filterByStatus": "Filtrer par statut",
+      "startDate": "Date de début"
+    },
+    "form": {
+      "addNewTask": "Ajouter une nouvelle tâche",
+      "createNewTask": "Créer une nouvelle tâche",
+      "editTask": "Modifier la tâche",
+      "updateStatusDescription": "Mettre à jour la description du statut",
+      "updateTaskInfo": "Mettre à jour les informations de la tâche",
+      "updateTaskStatus": "Mettre à jour le statut de la tâche"
+    },
+    "memberCanOnlyUpdateStatus": "Un membre ne peut que mettre à jour le statut.",
+    "noDueDate": "Pas de date d'échéance",
+    "noTasks": "Aucune tâche.",
+    "saving": "Enregistrement...",
+    "status": {
+      "completed": "Terminée",
+      "inProgress": "En cours",
+      "todo": "À faire",
+      "unknown": "Inconnu"
+    },
+    "subtitle": "Gérez vos tâches.",
+    "taskDescription": "Description de la tâche",
+    "taskDetails": "Détails de la tâche",
+    "taskDueDate": "Date d'échéance de la tâche",
+    "taskStatus": "Statut de la tâche",
+    "taskTitle": "Titre de la tâche",
+    "title": "Tâches",
+    "updateError": "Erreur lors de la mise à jour de la tâche.",
+    "updateStatus": "Mettre à jour le statut",
+    "updateSuccess": "Tâche mise à jour avec succès.",
+    "updateTask": "Mettre à jour la tâche",
+    "viewTask": "Voir la tâche",
+    "yourTasks": "Vos tâches"
+  },
   "pwa": {
     "installTitle": "Installer Loft Algérie",
     "installDescription": "Installez l'application pour un accès rapide et une meilleure expérience",

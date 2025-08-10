@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
 import Link from "next/link"
 import { TasksList } from "./tasks-list"
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "@/lib/i18n/context"
 import type { Task, User } from "@/lib/types"
 
 interface TasksPageClientProps {
