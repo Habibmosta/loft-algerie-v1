@@ -17,6 +17,33 @@
     "title": "Transactions",
     "totalExpenses": "Total des dépenses",
     "totalIncome": "Total des revenus",
-    "type": "Type"
+    "type": "Type",
+    "overReference": {
+      "title": "Transactions au-dessus des Références",
+      "noTransactions": "Aucune transaction au-dessus des références",
+      "allWithinReference": "Toutes les transactions respectent les montants de référence",
+      "reference": "Réf",
+      "loftNotSpecified": "Loft non spécifié",
+      "categories": {
+        "maintenance": "Maintenance",
+        "cleaning": "Nettoyage",
+        "repair": "Réparations",
+        "plumbing": "Plomberie",
+        "electrical": "Électricité",
+        "painting": "Peinture",
+        "security": "Sécurité",
+        "inspection": "Inspections",
+        "utilities": "Factures Utilitaires",
+        "insurance": "Assurances",
+        "taxes": "Taxes et Impôts",
+        "supplies": "Fournitures",
+        "rent": "Loyers",
+        "deposit": "Cautions",
+        "late_fees": "Frais de Retard",
+        "parking": "Parking",
+        "services": "Services",
+        "other": "Autres"
+      }
+    }
   }
 }

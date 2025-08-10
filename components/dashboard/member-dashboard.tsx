@@ -25,7 +25,7 @@ interface MemberDashboardProps {
 }
 
 export function MemberDashboard({ userTasks, userName, userRole }: MemberDashboardProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const todoTasks = userTasks.filter(task => task.status === 'todo')
   const inProgressTasks = userTasks.filter(task => task.status === 'in_progress')
   const completedTasks = userTasks.filter(task => task.status === 'completed')
@@ -42,6 +42,13 @@ export function MemberDashboard({ userTasks, userName, userRole }: MemberDashboa
     const threeDaysFromNow = new Date(today.getTime() + (3 * 24 * 60 * 60 * 1000))
     return dueDate >= today && dueDate <= threeDaysFromNow && task.status !== 'completed'
   })
+
+  const taskStatusTranslationKeys = {
+    todo: 'dashboard.todo',
+    in_progress: 'dashboard.inProgress',
+    completed: 'dashboard.completed',
+    unknown: 'dashboard.unknown', // Added this key
+  };
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -67,7 +74,7 @@ export function MemberDashboard({ userTasks, userName, userRole }: MemberDashboa
       <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border">
         <div className="flex items-center gap-4">
           <div className="bg-blue-100 p-3 rounded-full">
-            <User className="h-6 w-6 text-blue-600" />
+            <User className="h-6 w-6" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-gray-900">{t('dashboard.welcomeBack', { name: userName })}</h1>
@@ -238,7 +245,7 @@ export function MemberDashboard({ userTasks, userName, userRole }: MemberDashboa
                     </div>
                     <div className="flex items-center gap-2">
                       <Badge className={getStatusColor(task.status)}>
-                        {t(`dashboard.${task.status === 'in_progress' ? 'inProgress' : task.status}`)}
+                        {t(taskStatusTranslationKeys[task.status])}
                       </Badge>
                       {task.due_date && (
                         <span className="text-xs text-gray-500">

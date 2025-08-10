@@ -10,21 +10,6 @@
     "deleteSuccess": "Zone area deleted successfully.",
     "existingZoneAreas": "Existing Zone Areas",
     "name": "Name",
-    "noZoneAreasYet": "No zone areas found yet.",
-    "title": "Zone Areas",
-    "subtitle": "Manage geographic zones for your lofts.",
-    "addNewZoneArea": "Add New Zone Area",
-    "createNewZoneArea": "Create New Zone Area",
-    "createSuccess": "Zone area created successfully.",
-    "createZoneArea": "Create Zone Area",
-    "editZoneArea": "Edit Zone Area",
-    "enterZoneInfo": "Enter zone area information",
-    "namePlaceholder": "Enter zone area name",
-    "nameRequired": "Zone area name is required.",
-    "updateSuccess": "Zone area updated successfully.",
-    "updateZoneArea": "Update Zone Area",
-    "updateZoneAreaInfo": "Update zone area information",
-    "zoneAreaName": "Zone Area Name",
-    "zoneDetails": "Zone Details"
+    "noZoneAreasYet": "No zone areas found yet."
   }
 }

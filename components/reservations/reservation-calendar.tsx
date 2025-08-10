@@ -7,7 +7,7 @@ import { enUS, fr, ar } from 'date-fns/locale';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from 'react-i18next';
 import { Loader2, Calendar as CalendarIcon, Plus } from 'lucide-react';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
@@ -64,7 +64,8 @@ export default function ReservationCalendar({
   onReservationSelect,
   onDateSelect,
 }: ReservationCalendarProps) {
-  const { t, language } = useTranslation();
+  const { t, i18n } = useTranslation('reservations');
+  const language = i18n.language;
   const [reservations, setReservations] = useState<Reservation[]>([]);
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [loading, setLoading] = useState(true);

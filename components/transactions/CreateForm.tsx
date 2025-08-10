@@ -5,77 +5,118 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { useTranslation } from 'react-i18next'
 
-export function CreateForm({ onSubmit }: { onSubmit: (data: any) => Promise<void> }) {
+export function CreateForm({
+  onSubmit,
+  categories,
+  lofts,
+  currencies,
+  paymentMethods
+}: {
+  onSubmit: (data: any) => Promise<void>,
+  categories: any[],
+  lofts: any[],
+  currencies: any[],
+  paymentMethods: any[]
+}) {
+  const { t } = useTranslation('transactions')
   const [formData, setFormData] = useState({
     amount: '',
     type: 'income',
     status: 'completed',
-    description: ''
+    description: '',
+    categoryId: '',
+    loftId: '',
+    currencyId: '',
+    paymentMethodId: '',
+    date: new Date().toISOString().split('T')[0]
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    console.log(`Field ${name} changed to:`, value)
     setFormData(prev => ({...prev, [name]: value}))
   }
 
   const handleSelect = (name: string, value: string) => {
-    console.log(`Select ${name} changed to:`, value)
     setFormData(prev => ({...prev, [name]: value}))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Submitting form data:', formData)
-    onSubmit(formData)
+    onSubmit({
+      ...formData,
+      amount: parseFloat(formData.amount)
+    })
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <Label>Amount</Label>
-        <Input 
-          name="amount"
-          type="number"
-          value={formData.amount}
-          onChange={handleChange}
-        />
+    <form onSubmit={handleSubmit} className="p-6 space-y-6 bg-card border rounded-lg">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="p-4 bg-background rounded-lg">
+          <p className="text-sm text-muted-foreground">{t('transactions.totalIncome')}</p>
+          <p className="text-2xl font-bold">0.00 DA</p>
+        </div>
+        <div className="p-4 bg-background rounded-lg">
+          <p className="text-sm text-muted-foreground">{t('transactions.totalExpenses')}</p>
+          <p className="text-2xl font-bold">0.00 DA</p>
+        </div>
+        <div className="p-4 bg-background rounded-lg">
+          <p className="text-sm text-muted-foreground">{t('transactions.netIncome')}</p>
+          <p className="text-2xl font-bold">0.00 DA</p>
+        </div>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <Label>{t('transactions.date')}</Label>
+          <Input type="date" name="date" value={formData.date} onChange={handleChange} />
+        </div>
+        <div>
+          <Label>{t('transactions.amount')}</Label>
+          <Input type="number" name="amount" value={formData.amount} onChange={handleChange} />
+        </div>
       </div>
 
       <div>
-        <Label>Type</Label>
-        <Select 
-          value={formData.type}
-          onValueChange={(value) => handleSelect('type', value)}
-        >
-          <SelectTrigger>
-            <SelectValue />
-          </SelectTrigger>
+        <Label>{t('transactions.description')}</Label>
+        <Input name="description" value={formData.description} onChange={handleChange} />
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <Select name="type" onValueChange={(value) => handleSelect('type', value)}>
+          <SelectTrigger><SelectValue placeholder={t('transactions.type')} /></SelectTrigger>
           <SelectContent>
-            <SelectItem value="income">Income</SelectItem>
-            <SelectItem value="expense">Expense</SelectItem>
+            <SelectItem value="income">{t('transactions.income')}</SelectItem>
+            <SelectItem value="expense">{t('transactions.expense')}</SelectItem>
+          </SelectContent>
+        </Select>
+        <Select name="categoryId" onValueChange={(value) => handleSelect('categoryId', value)}>
+          <SelectTrigger><SelectValue placeholder={t('transactions.category')} /></SelectTrigger>
+          <SelectContent>
+            {categories.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
+          </SelectContent>
+        </Select>
+        <Select name="loftId" onValueChange={(value) => handleSelect('loftId', value)}>
+          <SelectTrigger><SelectValue placeholder={t('transactions.loft')} /></SelectTrigger>
+          <SelectContent>
+            {lofts.map(l => <SelectItem key={l.id} value={l.id}>{l.name}</SelectItem>)}
+          </SelectContent>
+        </Select>
+        <Select name="currencyId" onValueChange={(value) => handleSelect('currencyId', value)}>
+          <SelectTrigger><SelectValue placeholder={t('transactions.currency')} /></SelectTrigger>
+          <SelectContent>
+            {currencies.map(c => <SelectItem key={c.id} value={c.id}>{c.name} ({c.symbol})</SelectItem>)}
+          </SelectContent>
+        </Select>
+        <Select name="paymentMethodId" onValueChange={(value) => handleSelect('paymentMethodId', value)}>
+          <SelectTrigger><SelectValue placeholder={t('transactions.paymentMethod')} /></SelectTrigger>
+          <SelectContent>
+            {paymentMethods.map(p => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}
           </SelectContent>
         </Select>
       </div>
-
-      <div>
-        <Label>Status</Label>
-        <Select
-          value={formData.status} 
-          onValueChange={(value) => handleSelect('status', value)}
-        >
-          <SelectTrigger>
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="pending">Pending</SelectItem>
-            <SelectItem value="completed">Completed</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      <Button type="submit">Create</Button>
+      <Button type="submit">{t('transactions.createTransaction')}</Button>
     </form>
   )
 }

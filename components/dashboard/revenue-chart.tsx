@@ -16,7 +16,7 @@ interface RevenueChartProps {
 }
 
 export function RevenueChart({ monthlyRevenue }: RevenueChartProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   
   const chartConfig = {
     revenue: {

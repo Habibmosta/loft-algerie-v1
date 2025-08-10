@@ -4,7 +4,7 @@ import { createContext, useContext, useState, useEffect } from 'react'
 import { createClient } from '@/utils/supabase/client'
 import { toast } from 'sonner'
 import { useNotificationSound } from '@/lib/hooks/use-notification-sound'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 
 interface NotificationContextType {
   unreadCount: number
@@ -25,7 +25,7 @@ export function useNotifications() {
 export function NotificationProvider({ children, userId }: { children: React.ReactNode, userId: string }) {
   const [unreadCount, setUnreadCount] = useState(0)
   const { playNotificationSound } = useNotificationSound()
-  const { t } = useTranslation()
+  const { t } = useTranslation('notifications');
   const supabase = createClient()
 
   const refreshNotifications = async () => {

@@ -5,16 +5,17 @@ import { Plus } from "lucide-react"
 import Link from "next/link"
 import { LoftsList } from "./lofts-list"
 import { createClient } from '@/utils/supabase/server' // Import the new createClient
-import { getTranslations } from "@/lib/i18n/server"
 
 type Loft = Database['public']['Tables']['lofts']['Row']
 type LoftOwner = Database['public']['Tables']['loft_owners']['Row']
 type ZoneArea = Database['public']['Tables']['zone_areas']['Row']
 
+import { getTranslations } from "@/lib/i18n/server";
+
 export default async function LoftsPage() {
-  const session = await requireRole(["admin", "manager"])
+  const { t } = await getTranslations("common");
+  const session = await requireRole(["admin", "manager"]);
   const supabase = await createClient()
-  const t = await getTranslations()
 
   try {
     const { data: loftsData, error: loftsError } = await supabase

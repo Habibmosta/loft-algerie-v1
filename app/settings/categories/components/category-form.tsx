@@ -19,7 +19,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Category } from "@/lib/types"
 import { useRouter } from "next/navigation"
 import { toast } from "@/components/ui/use-toast"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 import { Tag, TrendingUp, TrendingDown, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
@@ -42,7 +42,7 @@ export function CategoryForm({
   createCategory,
   updateCategory,
 }: CategoryFormProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const router = useRouter()
   const form = useForm<CategoryFormValues>({
     resolver: zodResolver(categorySchema),

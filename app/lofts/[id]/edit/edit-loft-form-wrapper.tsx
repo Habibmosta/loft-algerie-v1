@@ -4,11 +4,11 @@ import { useRouter } from "next/navigation"
 import { LoftForm } from "@/components/forms/loft-form"
 import { updateLoft } from "@/app/actions/lofts"
 import { toast } from "sonner"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 
 export function EditLoftFormWrapper({ loft, owners, zoneAreas, internetConnectionTypes }: any) {
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const handleSubmit = async (data: any) => {
     try {

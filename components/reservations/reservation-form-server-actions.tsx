@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from 'react-i18next';
 import { Loader2, Calendar, Users, CreditCard } from 'lucide-react';
 import { format, addDays } from 'date-fns';
 import { createReservation, checkAvailability } from '@/lib/actions/reservations';
@@ -42,7 +42,7 @@ export default function ReservationFormServerActions({
   onSuccess,
   onCancel,
 }: ReservationFormServerActionsProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('reservations');
   const [lofts, setLofts] = useState<Loft[]>([]);
   const [pricing, setPricing] = useState<PricingData | null>(null);
   const [availability, setAvailability] = useState<boolean | null>(null);

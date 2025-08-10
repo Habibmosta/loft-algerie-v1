@@ -1,13 +1,15 @@
+"use client"
+
 import { requireRole } from "@/lib/auth"
 import { createClient } from "@/utils/supabase/server"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { getTranslations } from "@/lib/i18n/server"
+import { useTranslation } from "react-i18next"
 import ReportChartsWrapper from './report-charts-wrapper'
 
 export default async function ReportsPage() {
   const session = await requireRole(["admin", "manager"])
   const supabase = await createClient()
-  const t = await getTranslations()
+  const { t } = useTranslation()
 
   // Fetch financial data by loft
   const { data: lofts, error: loftsError } = await supabase

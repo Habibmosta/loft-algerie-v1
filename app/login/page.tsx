@@ -1,7 +1,7 @@
 "use client"
 
 import { LoginForm } from "@/components/auth/login-form"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 import { Building2 } from "lucide-react"
 
 export default function LoginPage() {

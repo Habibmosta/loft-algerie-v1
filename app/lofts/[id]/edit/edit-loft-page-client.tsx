@@ -1,6 +1,6 @@
 "use client"
 
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 import { EditLoftFormWrapper } from "./edit-loft-form-wrapper"
 
 interface EditLoftPageClientProps {
@@ -11,7 +11,7 @@ interface EditLoftPageClientProps {
 }
 
 export function EditLoftPageClient({ loft, owners, zoneAreas, internetConnectionTypes }: EditLoftPageClientProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <div className="space-y-6 p-6">

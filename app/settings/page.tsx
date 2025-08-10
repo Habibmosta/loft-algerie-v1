@@ -7,13 +7,13 @@ import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { User, Shield, Bell, Database } from "lucide-react"
 import Link from "next/link"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 import { useEffect, useState } from "react"
 import { getSession } from "@/lib/auth"
 import type { AuthSession } from "@/lib/types"
 
 export default function SettingsPage() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [session, setSession] = useState<AuthSession | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -45,6 +45,12 @@ export default function SettingsPage() {
     return null
   }
 
+  const userRoleTranslationKeys = {
+    admin: "auth.admin",
+    manager: "auth.manager",
+    member: "auth.member",
+  };
+
   return (
     <div className="space-y-6">
       <div>
@@ -74,7 +80,7 @@ export default function SettingsPage() {
               <Label>{t('settings.role')}</Label>
               <div>
                 <Badge variant="secondary" className="capitalize">
-                  {t(`auth.${session.user.role}`)}
+                  {t(userRoleTranslationKeys[session.user.role])}
                 </Badge>
               </div>
             </div>

@@ -10,7 +10,7 @@ import { Plus, DollarSign, Star, Globe } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { getColumns } from "../columns"
 import { Currency } from "@/lib/types"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 
 interface CurrencyClientProps {
   data: Currency[]
@@ -19,7 +19,7 @@ interface CurrencyClientProps {
 }
 
 export const CurrencyClient = ({ data, onSetDefault, onDelete }: CurrencyClientProps) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const router = useRouter()
 
   const defaultCurrency = data.find(currency => currency.is_default)

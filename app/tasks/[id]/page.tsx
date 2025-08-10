@@ -10,13 +10,13 @@ import { notFound, useParams, useRouter } from "next/navigation"
 import type { Task, AuthSession } from "@/lib/types"
 import { getSession } from "@/lib/auth"
 import { DeleteTaskButton } from "./delete-button"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 
 export default function TaskPage() {
   const params = useParams()
   const router = useRouter()
   const id = params?.id as string
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const [task, setTask] = useState<Task | null>(null)
   const [session, setSession] = useState<AuthSession | null>(null)
@@ -69,6 +69,12 @@ export default function TaskPage() {
     return notFound();
   }
 
+  const taskStatusTranslationKeys = {
+    todo: "tasks.status.todo",
+    in_progress: "tasks.status.inProgress",
+    completed: "tasks.status.completed",
+  };
+
   return (
     <div className="space-y-6">
       <Card>
@@ -81,7 +87,7 @@ export default function TaskPage() {
               </CardDescription>
             </div>
             <Badge className={getStatusColor(task.status)}>
-              {t(`tasks.status.${task.status === 'in_progress' ? 'inProgress' : task.status}`)}
+              {t(taskStatusTranslationKeys[task.status])}
             </Badge>
           </div>
         </CardHeader>

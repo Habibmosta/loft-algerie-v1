@@ -13,6 +13,8 @@ import Link from "next/link"
 import { requestPasswordReset } from "@/lib/auth"
 import { z } from "zod"
 
+import { useTranslation } from "react-i18next"
+
 const forgotPasswordSchema = z.object({
   email: z.string().email("Invalid email address"),
 })
@@ -23,6 +25,7 @@ export function ForgotPasswordForm() {
   const [isLoading, setIsLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState("")
+  const { t } = useTranslation();
 
   const {
     register,
@@ -41,10 +44,10 @@ export function ForgotPasswordForm() {
       if (result.success) {
         setSuccess(true)
       } else {
-        setError(result.error || "Failed to send reset email")
+        setError(result.error || t('auth.failedToSendResetEmail'))
       }
     } catch (err) {
-      setError("An unexpected error occurred")
+      setError(t('auth.unexpectedError'))
     } finally {
       setIsLoading(false)
     }
@@ -54,17 +57,17 @@ export function ForgotPasswordForm() {
     return (
       <FormWrapper 
         maxWidth="md"
-        title="Vérifiez votre email"
-        description="Nous avons envoyé un lien de réinitialisation à votre adresse email."
+        title={t('auth.checkYourEmail')}
+        description={t('auth.passwordResetEmailSentDescription')}
         icon="📧"
       >
         <FormSection colorScheme="green">
           <div className="text-center">
             <p className="text-green-700 mb-4">
-              Un email de réinitialisation a été envoyé avec succès !
+              {t('auth.passwordResetEmailSentSuccess')}
             </p>
             <Link href="/login" className="text-green-800 hover:underline font-medium">
-              Retour à la connexion
+              {t('auth.backToLogin')}
             </Link>
           </div>
         </FormSection>
@@ -75,8 +78,8 @@ export function ForgotPasswordForm() {
   return (
     <FormWrapper 
       maxWidth="md"
-      title="Mot de passe oublié ?"
-      description="Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe."
+      title={t('auth.forgotPasswordTitle')}
+      description={t('auth.forgotPasswordDescription')}
       icon="🔑"
     >
       <FormSection>
@@ -88,20 +91,20 @@ export function ForgotPasswordForm() {
           )}
 
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input 
-              id="email" 
-              type="email" 
-              placeholder="Entrez votre email" 
-              {...register("email")} 
-              disabled={isLoading} 
-              className="bg-white" 
+            <Label htmlFor="email">{t('auth.email')}</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder={t('auth.enterEmail')}
+              {...register("email")}
+              disabled={isLoading}
+              className="bg-white"
             />
             {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
           </div>
 
           <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? "Envoi en cours..." : "Envoyer le lien de réinitialisation"}
+            {isLoading ? t('auth.sending') : t('auth.sendResetLink')}
           </Button>
         </form>
       </FormSection>
@@ -109,7 +112,7 @@ export function ForgotPasswordForm() {
       <FormSection colorScheme="blue">
         <div className="text-center">
           <Link href="/login" className="text-blue-800 hover:underline font-medium">
-            Retour à la connexion
+            {t('auth.backToLogin')}
           </Link>
         </div>
       </FormSection>

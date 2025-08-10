@@ -16,7 +16,7 @@ interface BillStats {
 }
 
 export function BillMonitoringStats() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [stats, setStats] = useState<BillStats>({
     upcomingBills: 0,
     overdueBills: 0,

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { FormWrapper, FormSection } from "@/components/ui/form-wrapper"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 import {
   Select,
   SelectContent,
@@ -22,7 +22,7 @@ const typeOptions = ["income", "expense"] as const
 export function NewTransactionForm({ onSubmit }: { 
   onSubmit: (data: z.infer<typeof transactionSchema>) => Promise<void> 
 }) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm<z.infer<typeof transactionSchema>>({
     defaultValues: {
       transaction_type: "income",

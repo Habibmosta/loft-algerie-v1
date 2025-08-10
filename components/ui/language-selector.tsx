@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Languages, Globe } from 'lucide-react';
-import { Language } from '@/lib/i18n/translations';
+type Language = 'en' | 'fr' | 'ar';
 import { FlagIcon } from './flag-icon';
 
 const languages = [
@@ -32,7 +32,9 @@ export function LanguageSelector({
   showText = false,
   className = ""
 }: LanguageSelectorProps) {
-  const { language, setLanguage, t } = useTranslation();
+  const { i18n, changeLanguage } = useTranslation();
+  const language = i18n.language;
+  const setLanguage = (lng: string) => changeLanguage(lng);
   
   // Always find a language, fallback to Arabic if not found
   const currentLanguage = languages.find(lang => lang.code === language) || languages.find(lang => lang.code === 'ar');

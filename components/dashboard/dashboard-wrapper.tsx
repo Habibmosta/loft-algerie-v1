@@ -10,7 +10,6 @@ import { MemberDashboard } from "@/components/dashboard/member-dashboard"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AlertTriangle } from "lucide-react"
 
-
 interface DashboardWrapperProps {
   userRole: string
   userName: string
@@ -21,31 +20,21 @@ interface DashboardWrapperProps {
   errors?: string[]
 }
 
-export function DashboardWrapper({ 
-  userRole, 
-  userName, 
-  stats, 
-  recentTasks, 
-  monthlyRevenue, 
-  userTasks, 
-  errors = [] 
+export function DashboardWrapper({
+  userRole,
+  userName,
+  stats,
+  recentTasks,
+  monthlyRevenue,
+  userTasks,
+  errors = []
 }: DashboardWrapperProps) {
-  // Always call the hook at the top level
-  const { t: translateFn } = useTranslation();
-  
-  const t = translateFn || ((key: string) => {
-    const fallbacks: Record<string, string> = {
-      'dashboard.title': 'Dashboard',
-      'dashboard.subtitle': 'Overview of your loft management system',
-      'dashboard.someDataError': 'Some data couldn\'t be loaded'
-    };
-    return fallbacks[key] || key;
-  });
+  const { t } = useTranslation();
 
   if (userRole === 'member') {
     return (
       <div className="p-4 md:p-8">
-        <MemberDashboard 
+        <MemberDashboard
           userTasks={userTasks || []}
           userName={userName}
           userRole={userRole}
@@ -63,8 +52,6 @@ export function DashboardWrapper({
             {t('dashboard.subtitle')} - {t('dashboard.welcomeBack', { name: userName })}
           </p>
         </div>
-
-
 
         {errors.length > 0 && (
           <Alert>
@@ -100,19 +87,7 @@ export function DashboardWrapper({
 }
 
 export function DashboardError({ userRole }: { userRole: string }) {
-  // Always call the hook at the top level
-  const { t: translateFn } = useTranslation();
-  
-  const t = translateFn || ((key: string) => {
-    const fallbacks: Record<string, string> = {
-      'dashboard.title': 'Dashboard',
-      'dashboard.errorLoadingYour': 'Error loading your dashboard',
-      'dashboard.errorLoadingData': 'Error loading dashboard data',
-      'dashboard.unableToLoadTasks': 'Unable to load your tasks and dashboard data. Please try refreshing the page.',
-      'dashboard.unableToLoadData': 'Unable to load dashboard data. Please try refreshing the page.'
-    };
-    return fallbacks[key] || key;
-  });
+  const { t } = useTranslation();
 
   return (
     <div className="p-4 md:p-8">
@@ -126,7 +101,7 @@ export function DashboardError({ userRole }: { userRole: string }) {
         <Alert>
           <AlertTriangle className="h-4 w-4" />
           <AlertDescription>
-            {userRole === 'member' 
+            {userRole === 'member'
               ? t('dashboard.unableToLoadTasks')
               : t('dashboard.unableToLoadData')
             }

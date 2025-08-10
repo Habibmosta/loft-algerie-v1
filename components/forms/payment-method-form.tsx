@@ -11,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { FormWrapper, FormSection } from "@/components/ui/form-wrapper"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 import { z } from "zod"
 import type { Database } from "@/lib/types"
 
@@ -31,7 +31,7 @@ interface PaymentMethodFormProps {
 }
 
 export function PaymentMethodForm({ paymentMethod, action }: PaymentMethodFormProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const router = useRouter()

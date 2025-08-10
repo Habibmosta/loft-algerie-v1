@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { MessagesSquare, AlertTriangle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 
 interface ConversationsPageClientProps {
   conversations: any[]
@@ -12,7 +12,7 @@ interface ConversationsPageClientProps {
 }
 
 export function ConversationsPageClient({ conversations, currentUserId }: ConversationsPageClientProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [unreadCounts, setUnreadCounts] = useState<Record<string, number>>({})
 
   // Fonction pour récupérer les compteurs de messages non lus

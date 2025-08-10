@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -31,7 +31,7 @@ interface ConversationHeaderProps {
 
 export function ConversationHeader({ conversation, currentUserId }: ConversationHeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const getConversationName = () => {
     if (conversation.name) {

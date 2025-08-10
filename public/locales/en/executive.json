@@ -51,5 +51,10 @@
   "trend": "Trend",
   "vsLastMonth": "vs last month",
   "yearOverYearDesc": "Compare current year performance with previous year.",
-  "yearOverYearPerformance": "Year over Year Performance"
+  "yearOverYearPerformance": "Year over Year Performance",
+  "alerts": {
+    "resolved": "Alert resolved successfully",
+    "resolveError": "Error resolving alert",
+    "resolve": "Resolve"
+  }
 }

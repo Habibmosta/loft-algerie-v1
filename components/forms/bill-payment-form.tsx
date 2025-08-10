@@ -16,14 +16,13 @@ import { Calendar, DollarSign, FileText } from 'lucide-react'
 import { createClient } from '@/utils/supabase/client'
 import { toast } from 'sonner'
 import { markBillAsPaid } from '@/app/actions/bill-notifications'
-import { useTranslation } from '@/lib/i18n/context'
-import { billPaymentTranslations } from '@/lib/i18n/bill-payment-translations'
+import { useTranslation } from 'react-i18next'
 
 const UTILITY_LABELS = {
-  eau: 'Water',
-  energie: 'Energy',
-  telephone: 'Phone',
-  internet: 'Internet'
+  eau: 'bills.utilities.eau',
+  energie: 'bills.utilities.energie', 
+  telephone: 'bills.utilities.telephone',
+  internet: 'bills.utilities.internet'
 }
 
 const UTILITY_CATEGORIES = {
@@ -68,10 +67,9 @@ export function BillPaymentForm({
   const [selectedCurrencyId, setSelectedCurrencyId] = useState<string>('')
   const [convertedAmount, setConvertedAmount] = useState<number | null>(null)
   const supabase = createClient()
-  const { t, language } = useTranslation()
+  const { t } = useTranslation('bills');
 
-  const getUtilityLabel = () => t(`bills.utilities.${utilityType}`)
-  const translations = billPaymentTranslations[language]
+  const getUtilityLabel = () => t(UTILITY_LABELS[utilityType as UtilityType])
 
   const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm<BillPaymentFormData>({
     resolver: zodResolver(billPaymentSchema),
@@ -83,11 +81,11 @@ export function BillPaymentForm({
 
   // Set description after translations are loaded
   useEffect(() => {
-    if (translations && utilityType && loftName) {
-      const utilityLabel = t(`bills.utilities.${utilityType}`)
+    if (utilityType && loftName) {
+      const utilityLabel = t(UTILITY_LABELS[utilityType as UtilityType])
       setValue('description', `${utilityLabel} bill payment for ${loftName}`)
     }
-  }, [translations, utilityType, loftName, t, setValue])
+  }, [utilityType, loftName, t, setValue])
 
   // Load payment methods and currencies
   useEffect(() => {
@@ -176,7 +174,7 @@ export function BillPaymentForm({
       // Safe utility label function
       const getUtilityLabelSafe = () => {
         try {
-          return t(`bills.utilities.${utilityType}`) || utilityType
+          return t(UTILITY_LABELS[utilityType as UtilityType]) || utilityType
         } catch {
           return utilityType
         }
@@ -197,15 +195,13 @@ export function BillPaymentForm({
       }
 
       // Safe success message
-      const successMsg = translations?.successMessage 
-        ? translations.successMessage.replace('{utility}', getUtilityLabelSafe())
-        : 'Bill payment recorded successfully!'
+      const successMsg = t('bills.successMessage', { utility: getUtilityLabelSafe() })
       
       toast.success(successMsg)
       onSuccess()
     } catch (error) {
       console.error('Error recording bill payment:', error)
-      const errorMsg = translations?.errorMessage || 'Failed to record bill payment'
+      const errorMsg = t('bills.errorMessage')
       toast.error(errorMsg)
     } finally {
       setIsSubmitting(false)
@@ -217,7 +213,7 @@ export function BillPaymentForm({
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <DollarSign className="h-5 w-5" />
-          {translations.title}
+          {t('bills.title')}
         </CardTitle>
         <div className="space-y-2">
           <div className="flex items-center gap-2">
@@ -228,14 +224,14 @@ export function BillPaymentForm({
           </div>
           <div className="flex items-center gap-2 text-sm text-gray-600">
             <Calendar className="h-4 w-4" />
-            {translations.due}: {new Date(dueDate).toLocaleDateString()}
+            {t('bills.due')}: {new Date(dueDate).toLocaleDateString()}
           </div>
         </div>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="amount">{translations.amount}</Label>
+            <Label htmlFor="amount">{t('bills.amount')}</Label>
             <div className="flex gap-2">
               <Input
                 id="amount"
@@ -275,7 +271,7 @@ export function BillPaymentForm({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="date">{translations.paymentDate}</Label>
+            <Label htmlFor="date">{t('bills.paymentDate')}</Label>
             <Input
               id="date"
               type="date"
@@ -287,13 +283,13 @@ export function BillPaymentForm({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="payment_method">{translations.paymentMethod}</Label>
+            <Label htmlFor="payment_method">{t('bills.paymentMethod')}</Label>
             <Select 
               value={watch('payment_method_id') || ''} 
               onValueChange={(value) => setValue('payment_method_id', value)}
             >
               <SelectTrigger className="bg-white">
-                <SelectValue placeholder={translations.selectPaymentMethod} />
+                <SelectValue placeholder={t('bills.selectPaymentMethod')} />
               </SelectTrigger>
               <SelectContent>
                 {paymentMethods.map((method) => (
@@ -306,10 +302,10 @@ export function BillPaymentForm({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description">{translations.description}</Label>
+            <Label htmlFor="description">{t('bills.description')}</Label>
             <Textarea
               id="description"
-              placeholder={translations.descriptionPlaceholder}
+              placeholder={t('bills.descriptionPlaceholder')}
               {...register('description')} className="bg-white"
             />
           </div>
@@ -320,7 +316,7 @@ export function BillPaymentForm({
               disabled={isSubmitting}
               className="flex-1"
             >
-              {isSubmitting ? translations.recording : translations.recordPayment}
+              {isSubmitting ? t('bills.recording') : t('bills.recordPayment')}
             </Button>
             <Button
               type="button"
@@ -328,7 +324,7 @@ export function BillPaymentForm({
               onClick={onCancel}
               disabled={isSubmitting}
             >
-              {translations.cancel}
+              {t('bills.cancel')}
             </Button>
           </div>
         </form>

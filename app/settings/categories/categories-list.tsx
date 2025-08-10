@@ -5,7 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { deleteCategory } from "@/app/actions/categories"
 import Link from "next/link"
 import { Category } from "@/lib/types"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 
 interface CategoriesListProps {
   categories: Category[]
@@ -13,7 +13,12 @@ interface CategoriesListProps {
 }
 
 export function CategoriesList({ categories, onDelete }: CategoriesListProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+
+  const transactionTypeTranslationKeys = {
+    income: 'transactions.income',
+    expense: 'transactions.expense',
+  };
 
   return (
     <Table>
@@ -32,11 +37,11 @@ export function CategoriesList({ categories, onDelete }: CategoriesListProps) {
             <TableCell className="text-muted-foreground">{category.description || '-'}</TableCell>
             <TableCell>
               <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                category.type === 'income' 
+                category.type === 'income'
                   ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
                   : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
               }`}>
-                {t(`transactions.${category.type}`)}
+                {t(transactionTypeTranslationKeys[category.type])}
               </span>
             </TableCell>
             <TableCell className="text-center">

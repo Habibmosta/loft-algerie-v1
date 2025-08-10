@@ -7,15 +7,33 @@ import { ZoneAreaList } from "@/components/zone-areas/zone-areas-list";
 import { ZoneAreaForm } from "@/components/forms/zone-area-form";
 import { getZoneAreas, ZoneArea } from "@/app/actions/zone-areas";
 import { toast } from "@/components/ui/use-toast";
-import { useTranslation } from "@/lib/i18n/context";
 import { MapPin, Plus, Edit } from "lucide-react";
+
+type Translations = {
+  pageTitle: string;
+  subtitle: string;
+  addNew: string;
+  updateZoneArea: string;
+  createZoneArea: string;
+  updateZoneAreaInfo: string;
+  createNewZoneArea: string;
+  existingZoneAreas: string;
+  totalZoneAreas: string;
+  noZoneAreasFound: string;
+  addFirstZoneArea: string;
+  success: string;
+  error: string;
+  updateSuccess: string;
+  createSuccess: string;
+  refreshError: string;
+};
 
 interface ZoneAreasClientWrapperProps {
   initialZoneAreas: ZoneArea[];
+  translations: Translations;
 }
 
-export default function ZoneAreasClientWrapper({ initialZoneAreas }: ZoneAreasClientWrapperProps) {
-  const { t } = useTranslation();
+export default function ZoneAreasClientWrapper({ initialZoneAreas, translations: tStrings }: ZoneAreasClientWrapperProps) {
   const [editingZoneArea, setEditingZoneArea] = useState<ZoneArea | undefined>(undefined);
   const [zoneAreas, setZoneAreas] = useState<ZoneArea[]>(initialZoneAreas);
   const [showForm, setShowForm] = useState(false);
@@ -33,16 +51,16 @@ export default function ZoneAreasClientWrapper({ initialZoneAreas }: ZoneAreasCl
       const updatedZoneAreas = await getZoneAreas();
       setZoneAreas(updatedZoneAreas);
       toast({
-        title: "✅ " + t('common.success'),
-        description: editingZoneArea 
-          ? t('zoneAreas.updateSuccess') 
-          : t('zoneAreas.createSuccess'),
+        title: "✅ " + tStrings.success,
+        description: editingZoneArea
+          ? tStrings.updateSuccess
+          : tStrings.createSuccess,
         duration: 3000,
       });
     } catch (error) {
       toast({
-        title: "❌ " + t('common.error'),
-        description: t('settings.zoneAreas.refreshError'),
+        title: "❌ " + tStrings.error,
+        description: tStrings.refreshError,
         variant: "destructive",
       });
     }
@@ -61,17 +79,17 @@ export default function ZoneAreasClientWrapper({ initialZoneAreas }: ZoneAreasCl
             <div className="p-2 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5">
               <MapPin className="h-8 w-8 text-primary" />
             </div>
-            {t('nav.zoneAreas')}
+            {tStrings.pageTitle}
           </h1>
-          <p className="text-muted-foreground text-lg">{t('zoneAreas.subtitle')}</p>
+          <p className="text-muted-foreground text-lg">{tStrings.subtitle}</p>
         </div>
         {!showForm && (
-          <Button 
-            onClick={() => setShowForm(true)} 
+          <Button
+            onClick={() => setShowForm(true)}
             className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg hover:shadow-xl transition-all duration-300"
           >
             <Plus className="mr-2 h-4 w-4" />
-            {t('settings.zoneAreas.addNew')}
+            {tStrings.addNew}
           </Button>
         )}
       </div>
@@ -83,17 +101,17 @@ export default function ZoneAreasClientWrapper({ initialZoneAreas }: ZoneAreasCl
               <div className="p-2 rounded-full bg-primary/10">
                 {editingZoneArea ? <Edit className="h-5 w-5 text-primary" /> : <Plus className="h-5 w-5 text-primary" />}
               </div>
-              {editingZoneArea ? t('zoneAreas.updateZoneArea') : t('zoneAreas.createZoneArea')}
+              {editingZoneArea ? tStrings.updateZoneArea : tStrings.createZoneArea}
             </CardTitle>
             <CardDescription className="text-base">
-              {editingZoneArea 
-                ? t('settings.zoneAreas.updateZoneAreaInfo') 
-                : t('settings.zoneAreas.createNewZoneArea')}
+              {editingZoneArea
+                ? tStrings.updateZoneAreaInfo
+                : tStrings.createNewZoneArea}
             </CardDescription>
           </CardHeader>
           <CardContent className="p-6">
-            <ZoneAreaForm 
-              zoneArea={editingZoneArea} 
+            <ZoneAreaForm
+              zoneArea={editingZoneArea}
               onSuccess={handleFormSuccess}
               onCancel={handleCancel}
             />
@@ -105,10 +123,10 @@ export default function ZoneAreasClientWrapper({ initialZoneAreas }: ZoneAreasCl
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <MapPin className="h-5 w-5" />
-            {t('settings.zoneAreas.existingZoneAreas')}
+            {tStrings.existingZoneAreas}
           </CardTitle>
           <CardDescription>
-            {t('settings.zoneAreas.totalZoneAreas', { count: zoneAreas.length })}
+            {tStrings.totalZoneAreas.replace('{count}', zoneAreas.length.toString())}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -116,21 +134,21 @@ export default function ZoneAreasClientWrapper({ initialZoneAreas }: ZoneAreasCl
             <div className="text-center py-12">
               <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
               <p className="text-muted-foreground text-lg mb-2">
-                {t('settings.zoneAreas.noZoneAreasFound')}
+                {tStrings.noZoneAreasFound}
               </p>
               <p className="text-muted-foreground text-sm mb-4">
-                {t('settings.zoneAreas.addFirstZoneArea')}
+                {tStrings.addFirstZoneArea}
               </p>
               <Button onClick={() => setShowForm(true)}>
                 <Plus className="mr-2 h-4 w-4" />
-                {t('settings.zoneAreas.addNew')}
+                {tStrings.addNew}
               </Button>
             </div>
           ) : (
-            <ZoneAreaList 
-              zoneAreas={zoneAreas} 
-              onEdit={handleEdit} 
-              onRefresh={handleFormSuccess} 
+            <ZoneAreaList
+              zoneAreas={zoneAreas}
+              onEdit={handleEdit}
+              onRefresh={handleFormSuccess}
             />
           )}
         </CardContent>

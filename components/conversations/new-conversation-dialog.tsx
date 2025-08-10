@@ -22,7 +22,7 @@ import { SearchInput } from '@/components/ui/search'
 import { Checkbox } from '@/components/ui/checkbox'
 // Remove direct imports since we'll use API endpoints
 import { User, Users, X, Loader2 } from 'lucide-react'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 
 interface NewConversationDialogProps {
   children: React.ReactNode
@@ -46,7 +46,7 @@ export function NewConversationDialog({ children, userId }: NewConversationDialo
   const [isSearching, setIsSearching] = useState(false)
   const [isCreating, setIsCreating] = useState(false)
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const handleSearch = async (query: string) => {
     setSearchQuery(query)

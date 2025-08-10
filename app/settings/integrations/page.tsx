@@ -2,27 +2,29 @@ import { requireRole } from "@/lib/auth"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { getTranslations } from "@/lib/i18n/server"
 
 export default async function IntegrationsPage() {
   await requireRole(["admin"])
+  const t = await getTranslations()
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Integrations</h1>
-          <p className="text-muted-foreground">Manage your third-party integrations</p>
+          <h1 className="text-3xl font-bold tracking-tight">{t('settings.integrations.title')}</h1>
+          <p className="text-muted-foreground">{t('settings.integrations.subtitle')}</p>
         </div>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Airbnb</CardTitle>
-          <CardDescription>Connect your Airbnb account to sync your lofts and bookings.</CardDescription>
+          <CardTitle>{t('settings.integrations.airbnbTitle')}</CardTitle>
+          <CardDescription>{t('settings.integrations.airbnbDescription')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Button asChild>
-            <Link href="/api/auth/airbnb">Connect to Airbnb</Link>
+            <Link href="/api/auth/airbnb">{t('settings.integrations.connectToAirbnb')}</Link>
           </Button>
         </CardContent>
       </Card>

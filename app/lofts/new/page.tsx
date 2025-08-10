@@ -1,11 +1,8 @@
 import { getOwners } from "@/app/actions/owners"
 import { getZoneAreas } from "@/app/actions/zone-areas"
 import { getInternetConnectionTypes } from "@/app/actions/internet-connections"
-import { LoftForm } from "@/components/forms/loft-form"
-import { createLoft } from "@/app/actions/lofts"
+import { NewLoftFormWrapper } from "./new-loft-form"
 import { getTranslations } from "@/lib/i18n/server"
-import { toast } from "sonner"
-import { redirect } from "next/navigation"
 
 export default async function NewLoftPage() {
   const owners = await getOwners()
@@ -22,17 +19,6 @@ export default async function NewLoftPage() {
     console.error('Failed to load internet connection types:', error)
   }
 
-  const handleSubmit = async (data: any) => {
-    "use server"
-    const result = await createLoft(data)
-    if (result?.success) {
-      toast.success(`🏠 Loft "${data.name}" created successfully!`)
-      redirect("/lofts")
-    } else {
-      toast.error("❌ Error creating loft.")
-    }
-  }
-
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="text-center mb-10">
@@ -44,11 +30,18 @@ export default async function NewLoftPage() {
         </p>
       </div>
       <div className="max-w-4xl mx-auto">
-        <LoftForm
+        <NewLoftFormWrapper
           owners={owners}
           zoneAreas={zoneAreas}
           internetConnectionTypes={internetConnectionTypes}
-          onSubmit={handleSubmit}
+          translations={{
+            loftCreatedSuccess: t('lofts.loftCreatedSuccess'),
+            loftCreatedSuccessDescription: t('lofts.loftCreatedSuccessDescription'),
+            errorCreatingLoft: t('lofts.errorCreatingLoft'),
+            errorCreatingLoftDescription: t('lofts.errorCreatingLoftDescription'),
+            systemError: t('lofts.systemError'),
+            systemErrorDescription: t('lofts.systemErrorDescription'),
+          }}
         />
       </div>
     </div>

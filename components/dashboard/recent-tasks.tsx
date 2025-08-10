@@ -17,7 +17,7 @@ interface RecentTasksProps {
 }
 
 export function RecentTasks({ tasks }: RecentTasksProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   
   const getStatusColor = (status: string) => {
     switch (status) {

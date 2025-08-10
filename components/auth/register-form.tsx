@@ -14,14 +14,14 @@ import { Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
 import { register as registerUser } from "@/lib/auth"
 import { registerSchema, type RegisterFormData } from "@/lib/validations"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 
 export function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const {
     register,

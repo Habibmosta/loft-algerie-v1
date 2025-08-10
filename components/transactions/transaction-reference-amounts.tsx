@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -24,7 +24,7 @@ interface TransactionReference {
 }
 
 export function TransactionReferenceAmounts() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [references, setReferences] = useState<TransactionReference[]>([])
   const [loading, setLoading] = useState(true)
   const [editDialog, setEditDialog] = useState<{ open: boolean; reference: TransactionReference | null }>({ open: false, reference: null })
@@ -270,7 +270,7 @@ interface ReferenceCardProps {
 }
 
 function ReferenceCard({ reference, onUpdate }: ReferenceCardProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   
   const getCategoryIcon = (category: string) => {
     const icons: Record<string, string> = {
@@ -329,7 +329,7 @@ interface EditReferenceFormProps {
 }
 
 function EditReferenceForm({ reference, onSave }: EditReferenceFormProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [amount, setAmount] = useState(reference.reference_amount.toString())
   const [description, setDescription] = useState(reference.description)
 

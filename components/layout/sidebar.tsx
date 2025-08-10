@@ -17,7 +17,7 @@ import { LanguageSelector } from "@/components/ui/language-selector"
 import { NotificationBadge, NotificationDot } from "@/components/ui/notification-badge"
 import { useEnhancedRealtime } from "@/components/providers/enhanced-realtime-provider"
 import { useNotifications } from "@/components/providers/notification-context"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   user: User;
@@ -29,7 +29,7 @@ export function Sidebar({ user, unreadCount, className }: SidebarProps) {
   const [isSettingsOpen, setIsSettingsOpen] = useState(pathname?.startsWith('/settings') || false)
   const { unreadMessagesCount } = useEnhancedRealtime()
   const { unreadCount: realtimeUnreadCount } = useNotifications()
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const navigation = [
     { name: "🎯 Executive", href: "/executive", icon: LayoutDashboard, roles: ["executive"], className: "bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold" },
@@ -52,7 +52,7 @@ export function Sidebar({ user, unreadCount, className }: SidebarProps) {
         { name: t('nav.categories'), href: "/settings/categories", icon: ClipboardList, roles: ["admin"] },
         { name: t('nav.currencies'), href: "/settings/currencies", icon: DollarSign, roles: ["admin"] },
         { name: t('nav.zoneAreas'), href: "/settings/zone-areas", icon: Home, roles: ["admin"] },
-        { name: t('nav.paymentMethods'), href: "/settings/payment-methods", icon: CreditCard, roles: ["admin"] },
+        { name: t('nav.paymentMethodsNav'), href: "/settings/payment-methods", icon: CreditCard, roles: ["admin"] },
         { name: t('nav.internetConnections'), href: "/settings/internet-connections", icon: Building2, roles: ["admin"] },
         { name: t('nav.application'), href: "/settings/application", icon: Settings, roles: ["admin"] }
       ]

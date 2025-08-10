@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { InternetConnectionType } from '@/lib/types';
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from 'react-i18next';
 
 export default function InternetConnectionsClientPage({
   initialInternetConnectionTypes,

@@ -2,8 +2,10 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from 'react-i18next'
 
 export default function DebugForm() {
+  const { t } = useTranslation();
   const [type, setType] = useState('income')
   const [status, setStatus] = useState('completed')
 
@@ -23,8 +25,8 @@ export default function DebugForm() {
   return (
     <div className="space-y-4 p-4">
       <div>
-        <label>Type:</label>
-        <select 
+        <label>{t('transactions.type')}:</label>
+        <select
           value={type}
           onChange={(e) => {
             console.log('Type changed to:', e.target.value)
@@ -32,13 +34,13 @@ export default function DebugForm() {
           }}
           className="border p-2 ml-2"
         >
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>
+          <option value="income">{t('transactions.income')}</option>
+          <option value="expense">{t('transactions.expense')}</option>
         </select>
       </div>
 
       <div>
-        <label>Status:</label>
+        <label>{t('transactions.status')}:</label>
         <select
           value={status}
           onChange={(e) => {
@@ -47,12 +49,12 @@ export default function DebugForm() {
           }}
           className="border p-2 ml-2"
         >
-          <option value="pending">Pending</option>
-          <option value="completed">Completed</option>
+          <option value="pending">{t('transactions.pending')}</option>
+          <option value="completed">{t('transactions.completed')}</option>
         </select>
       </div>
 
-      <Button onClick={handleSubmit}>Submit</Button>
+      <Button onClick={handleSubmit}>{t('common.submit')}</Button>
     </div>
   )
 }

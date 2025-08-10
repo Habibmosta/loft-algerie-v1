@@ -12,32 +12,40 @@ interface NewLoftFormWrapperProps {
   owners: LoftOwner[];
   zoneAreas: ZoneArea[];
   internetConnectionTypes: InternetConnectionType[];
+  translations: {
+    loftCreatedSuccess: string;
+    loftCreatedSuccessDescription: string;
+    errorCreatingLoft: string;
+    errorCreatingLoftDescription: string;
+    systemError: string;
+    systemErrorDescription: string;
+  }
 }
 
-export function NewLoftFormWrapper({ owners, zoneAreas, internetConnectionTypes }: NewLoftFormWrapperProps) {
+export function NewLoftFormWrapper({ owners, zoneAreas, internetConnectionTypes, translations: t }: NewLoftFormWrapperProps) {
   const router = useRouter()
 
   const handleSubmit = async (data: any) => {
     try {
       const result = await createLoft(data)
       if (result?.success) {
-        toast.success(`🏠 Loft "${data.name}" créé avec succès !`, {
-          description: "Le loft a été ajouté à votre système de gestion",
+        toast.success(t.loftCreatedSuccess.replace('{name}', data.name), {
+          description: t.loftCreatedSuccessDescription,
           duration: 4000,
         })
         setTimeout(() => {
           router.push("/lofts")
         }, 1500)
       } else {
-        toast.error("❌ Erreur lors de la création", {
-          description: "Impossible de créer le loft. Vérifiez vos données et réessayez.",
+        toast.error(t.errorCreatingLoft, {
+          description: t.errorCreatingLoftDescription,
           duration: 5000,
         })
       }
     } catch (error) {
       console.error('Error creating loft:', error)
-      toast.error("💥 Erreur système", {
-        description: "Une erreur inattendue s'est produite. Contactez le support si le problème persiste.",
+      toast.error(t.systemError, {
+        description: t.systemErrorDescription,
         duration: 6000,
       })
     }

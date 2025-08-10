@@ -10,7 +10,7 @@ import { SearchInput } from '@/components/ui/search'
 import { cn } from '@/lib/utils'
 import { Conversation } from '@/lib/services/conversations'
 import { Users, User } from 'lucide-react'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 
 interface ConversationsListProps {
   conversations: Conversation[]
@@ -21,7 +21,7 @@ interface ConversationsListProps {
 export function ConversationsList({ conversations, currentUserId, onConversationClick }: ConversationsListProps) {
   const [searchTerm, setSearchTerm] = useState('')
   const pathname = usePathname()
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   // Filter conversations based on search
   const filteredConversations = conversations.filter(conversation => {

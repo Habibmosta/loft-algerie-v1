@@ -1,20 +1,18 @@
 {
-  "bills": {
-    "amount": "",
-    "cancel": "",
-    "description": "",
-    "descriptionPlaceholder": "",
-    "due": "",
-    "errorMessage": "",
-    "paymentDate": "",
-    "paymentMethod": "",
-    "recording": "",
-    "recordPayment": "",
-    "selectPaymentMethod": "",
-    "successMessage": "",
-    "title": ""
-  },
-  "paymentModal": {
-    "title": ""
-  }
+  "due": "Dû",
+  "failedToLoadAlerts": "Échec du chargement des alertes de facturation.",
+  "markPaid": "Marquer comme payée",
+  "noOverdueBills": "Aucune facture en retard.",
+  "noUpcomingBills": "Aucune facture à venir.",
+  "overdueBills": "Factures en retard",
+  "upcomingBills": "Factures à venir",
+  "dueToday": "Dû aujourd'hui",
+  "dayOverdue": "En retard de 1 jour",
+  "dueTomorrow": "Dû demain",
+  "daysOverdue": "En retard de {{count}} jours",
+  "days": "jours",
+  "utilities.eau": "Eau",
+  "utilities.energie": "Énergie",
+  "utilities.telephone": "Téléphone",
+  "utilities.internet": "Internet"
 }

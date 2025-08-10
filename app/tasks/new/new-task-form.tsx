@@ -6,7 +6,7 @@ import { TaskFormData, TaskStatusUpdateData } from '@/lib/validations'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from '@/components/ui/use-toast'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 import type { User } from '@/lib/types'
 
 interface NewTaskFormProps {
@@ -16,7 +16,7 @@ interface NewTaskFormProps {
 export default function NewTaskForm({ users }: NewTaskFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const handleCreateTask = async (data: TaskFormData | TaskStatusUpdateData) => {
     setIsSubmitting(true)

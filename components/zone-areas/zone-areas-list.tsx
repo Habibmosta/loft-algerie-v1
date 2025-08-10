@@ -1,6 +1,6 @@
 "use client"
 
-import { useTranslation } from "@/lib/i18n/context";
+import { useTranslation } from "react-i18next";
 import {
   Table,
   TableBody,
@@ -21,7 +21,7 @@ interface ZoneAreaListProps {
 }
 
 export function ZoneAreaList({ zoneAreas, onEdit, onRefresh }: ZoneAreaListProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('zoneAreas');
   
   const handleDelete = async (id: string) => {
     if (confirm(t('zoneAreas.deleteConfirm'))) {

@@ -3,12 +3,12 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { LanguageSelector } from "@/components/ui/language-selector"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 import { Building2, DollarSign, CheckSquare, Bell, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 export function LandingPage() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const features = [
     {

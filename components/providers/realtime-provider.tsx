@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
 import { toast } from 'sonner'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 
 interface RealtimeContextType {
   unreadMessagesCount: number
@@ -30,7 +30,7 @@ export function RealtimeProvider({ children, userId }: RealtimeProviderProps) {
   const [unreadMessagesCount, setUnreadMessagesCount] = useState(0)
   const [isOnline, setIsOnline] = useState(true)
   const supabase = createClient()
-  const { t } = useTranslation()
+  const { t } = useTranslation('notifications');
 
   const refreshUnreadCount = async () => {
     try {

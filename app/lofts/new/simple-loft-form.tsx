@@ -6,8 +6,10 @@ import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
 import { createLoft } from "@/app/actions/lofts"
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 
 export function SimpleLoftForm() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: "",
     address: "",
@@ -28,8 +30,8 @@ export function SimpleLoftForm() {
 
       if (result?.success) {
         toast({
-          title: "✅ Success",
-          description: `Loft "${formData.name}" created successfully`,
+          title: t('common.success'),
+          description: t('lofts.loftCreatedSuccess', { name: formData.name }),
           duration: 3000
         })
         setFormData({ name: "", address: "", price: "" }) // Reset form
@@ -38,8 +40,8 @@ export function SimpleLoftForm() {
         }, 1000)
       } else {
         toast({
-          title: "❌ Error",
-          description: "Failed to create loft - please try again",
+          title: t('common.error'),
+          description: t('lofts.loftCreateError'),
           variant: "destructive",
           duration: 5000
         })
@@ -47,8 +49,8 @@ export function SimpleLoftForm() {
     } catch (error) {
       console.error('Error creating loft:', error)
       toast({
-        title: "❌ Error",
-        description: "Failed to create loft - please check your data and try again",
+        title: t('common.error'),
+        description: t('lofts.loftCreateError'),
         variant: "destructive",
         duration: 5000
       })
@@ -60,7 +62,7 @@ export function SimpleLoftForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto p-6">
       <div className="space-y-2">
-        <Label htmlFor="name">Loft Name</Label>
+        <Label htmlFor="name">{t('lofts.loftName')}</Label>
         <Input
           id="name"
           value={formData.name}
@@ -70,7 +72,7 @@ export function SimpleLoftForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="address">Address</Label>
+        <Label htmlFor="address">{t('lofts.loftAddress')}</Label>
         <Input
           id="address"
           value={formData.address}
@@ -80,7 +82,7 @@ export function SimpleLoftForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="price">Monthly Price ($)</Label>
+        <Label htmlFor="price">{t('lofts.pricePerMonth')}</Label>
         <Input
           id="price"
           type="number"
@@ -91,7 +93,7 @@ export function SimpleLoftForm() {
       </div>
 
       <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Creating..." : "Create Loft"}
+        {isSubmitting ? t('lofts.creating') : t('lofts.createLoft')}
       </Button>
     </form>
   )

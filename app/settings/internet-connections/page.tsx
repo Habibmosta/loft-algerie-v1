@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Plus, Wifi, Signal, Globe, Edit, Trash2 } from "lucide-react";
 import Link from "next/link";
-import { useTranslation } from "@/lib/i18n/context";
+import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import type { InternetConnectionType } from "@/lib/types";
 
@@ -42,7 +42,7 @@ const getConnectionColor = (status: string) => {
 }
 
 export default function InternetConnectionsPage() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [internetConnectionTypes, setInternetConnectionTypes] = useState<InternetConnectionType[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)

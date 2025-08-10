@@ -1,150 +1,95 @@
-'use client'
+"use client"
 
-import React, { createContext, useContext, ReactNode } from 'react'
-import { translations, Language } from './translations'
+import React, { createContext, useContext, useEffect, useState } from "react"
+import { I18nextProvider } from "react-i18next"
+import i18next from "i18next"
 
 interface I18nContextType {
-  t: (key: string, params?: Record<string, string | number>) => string
-  language: Language
-  setLanguage: (lang: Language) => void
+  t: typeof i18next.t;
+  i18n: typeof i18next;
+  ready: boolean;
+  language: string;
+  changeLanguage: (lng: string) => Promise<void>;
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined)
 
 interface I18nProviderProps {
-  children: ReactNode
-  initialLanguage?: Language
+  children: React.ReactNode;
 }
 
-export function I18nProvider({ children, initialLanguage = 'fr' }: I18nProviderProps) {
-  // Always start with French to avoid language mixing issues
-  const [language, setLanguageState] = React.useState<Language>('fr')
-  const [isHydrated, setIsHydrated] = React.useState(false)
+export function I18nProvider({ children }: I18nProviderProps) {
+  const [ready, setReady] = useState(false)
+  const [i18nInstance, setI18nInstance] = useState<typeof i18next | null>(null)
+  const [currentLanguage, setCurrentLanguage] = useState('en')
 
-  // Hydrate with cookie value after initial render
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedLanguage = document.cookie
-        .split('; ')
-        .find(row => row.startsWith('language='))
-        ?.split('=')[1] as Language
-      
-      // Only use saved language if it's valid and has complete translations
-      if (savedLanguage && translations[savedLanguage] && savedLanguage !== language) {
-        // Verify that the saved language has the required translations
-        if (translations[savedLanguage].settings && translations[savedLanguage].zoneAreas) {
-          setLanguageState(savedLanguage)
-        } else {
-          // If translations are incomplete, force French and clear the cookie
-          console.warn(`Incomplete translations for ${savedLanguage}, forcing French`)
-          document.cookie = 'language=fr; path=/; max-age=' + (60 * 60 * 24 * 365)
-          setLanguageState('fr')
+  useEffect(() => {
+    const initializeI18n = async () => {
+      try {
+        // Import and initialize the i18n configuration
+        const { default: i18nInstance } = await import("./index")
+        if (!i18nInstance.isInitialized) {
+          await i18nInstance.init()
         }
+        setI18nInstance(i18nInstance)
+        setCurrentLanguage(i18nInstance.language || 'en')
+        
+        // Listen for language changes
+        i18nInstance.on('languageChanged', (lng: string) => {
+          setCurrentLanguage(lng)
+        })
+        
+        setReady(true)
+      } catch (error) {
+        console.error('Failed to initialize i18n:', error)
+        setReady(true) // Set ready even on error to prevent infinite loading
       }
-      setIsHydrated(true)
     }
+
+    initializeI18n()
   }, [])
 
-  // Save initial language to cookie if not already set
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const currentCookie = document.cookie
-        .split('; ')
-        .find(row => row.startsWith('language='))
-      
-      if (!currentCookie) {
-        document.cookie = `language=${language}; path=/; max-age=${60 * 60 * 24 * 365}` // 1 year
-      }
-    }
-  }, [language])
-
-  const setLanguage = (lang: Language) => {
-    setLanguageState(lang)
-    // Save to cookie immediately
-    if (typeof window !== 'undefined') {
-      document.cookie = `language=${lang}; path=/; max-age=${60 * 60 * 24 * 365}` // 1 year
-      // Force page reload to update server-side translations
-      window.location.reload()
-    }
-  }
-
-  const t = (key: string, params?: Record<string, string | number>): string => {
-    const keys = key.split('.')
-    let result: any = translations[language]
-    
-    // Ensure we have a valid language and translations
-    if (!translations[language]) {
-      console.warn(`Language '${language}' not found, falling back to French`)
-      result = translations.fr
-    }
-    
-    for (const k of keys) {
-      if (result && typeof result === 'object' && k in result) {
-        result = result[k]
-      } else {
-        // Fallback hierarchy: current language -> French -> English -> key
-        let fallbackResult: any = null
-        
-        // Try French first
-        if (language !== 'fr' && translations.fr) {
-          fallbackResult = translations.fr
-          for (const fallbackKey of keys) {
-            if (fallbackResult && typeof fallbackResult === 'object' && fallbackKey in fallbackResult) {
-              fallbackResult = fallbackResult[fallbackKey]
-            } else {
-              fallbackResult = null
-              break
-            }
-          }
+  const contextValue: I18nContextType = {
+    t: i18nInstance?.t.bind(i18nInstance) || (() => ''),
+    i18n: i18nInstance || i18next,
+    ready: ready && !!i18nInstance,
+    language: currentLanguage,
+    changeLanguage: async (lng: string) => {
+      try {
+        if (i18nInstance) {
+          await i18nInstance.changeLanguage(lng)
+          setCurrentLanguage(lng)
         }
-        
-        // If French failed, try English
-        if (!fallbackResult && language !== 'en' && translations.en) {
-          fallbackResult = translations.en
-          for (const fallbackKey of keys) {
-            if (fallbackResult && typeof fallbackResult === 'object' && fallbackKey in fallbackResult) {
-              fallbackResult = fallbackResult[fallbackKey]
-            } else {
-              fallbackResult = null
-              break
-            }
-          }
-        }
-        
-        result = fallbackResult || key
-        break
+      } catch (error) {
+        console.error('Failed to change language:', error)
       }
-    }
-    
-    let translatedString = result || key
-
-    // Ensure we return a string
-    if (typeof translatedString !== 'string') {
-      console.warn(`Translation for '${key}' is not a string:`, translatedString)
-      return key
-    }
-
-    // Replace placeholders if params are provided
-    if (params) {
-      for (const paramKey in params) {
-        translatedString = translatedString.replace(new RegExp(`\\{${paramKey}\\}`, 'g'), String(params[paramKey]))
-      }
-    }
-    
-    return translatedString
+    },
   }
 
   return (
-    <I18nContext.Provider value={{ t, language, setLanguage }}>
-      {children}
-    </I18nContext.Provider>
+    <I18nextProvider i18n={i18nInstance || i18next}>
+      <I18nContext.Provider value={contextValue}>
+        {ready && i18nInstance ? children : <div>Loading translations...</div>}
+      </I18nContext.Provider>
+    </I18nextProvider>
   )
 }
 
-export function useTranslation() {
+export function useTranslation(namespaces?: string | string[]) {
   const context = useContext(I18nContext)
-  if (!context) {
-    throw new Error('useTranslation must be used within I18nProvider')
+  if (context === undefined) {
+    throw new Error("useTranslation must be used within an I18nProvider")
   }
+  
+  // If namespaces are specified, load them
+  if (namespaces && context.i18n) {
+    const nsArray = Array.isArray(namespaces) ? namespaces : [namespaces]
+    nsArray.forEach(ns => {
+      if (!context.i18n.hasResourceBundle(context.i18n.language, ns)) {
+        context.i18n.loadNamespaces(ns)
+      }
+    })
+  }
+  
   return context
 }

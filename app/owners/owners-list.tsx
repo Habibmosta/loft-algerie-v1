@@ -7,12 +7,14 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Mail, Phone, MapPin } from "lucide-react"
 import Link from "next/link"
+import { useTranslation } from "react-i18next"
 
 interface OwnersListProps {
   owners: (LoftOwner & { loft_count: string; total_monthly_value: string })[]
 }
 
 export function OwnersList({ owners }: OwnersListProps) {
+  const { t } = useTranslation();
   const getOwnershipColor = (type: string) => {
     return type === "company" ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100" : "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100"
   }
@@ -26,12 +28,11 @@ export function OwnersList({ owners }: OwnersListProps) {
               <div>
                 <CardTitle className="text-lg">{owner.name}</CardTitle>
                 <CardDescription>
-                  {Number.parseInt(owner.loft_count)} properties • $
-                  {Number.parseFloat(owner.total_monthly_value).toLocaleString()}/month
+                  {t('owners.propertiesCount', { count: Number.parseInt(owner.loft_count) })} • ${Number.parseFloat(owner.total_monthly_value).toLocaleString()}/month
                 </CardDescription>
               </div>
               <Badge className={getOwnershipColor(owner.ownership_type)}>
-                {owner.ownership_type === "company" ? "Company" : "Third Party"}
+                {owner.ownership_type === "company" ? t('owners.company') : t('owners.thirdParty')}
               </Badge>
             </div>
           </CardHeader>
@@ -58,18 +59,18 @@ export function OwnersList({ owners }: OwnersListProps) {
             </div>
             <div className="mt-4 flex gap-2">
               <Button variant="outline" size="sm" asChild>
-                <Link href={`/owners/${owner.id}`}>View</Link>
+                <Link href={`/owners/${owner.id}`}>{t('common.view')}</Link>
               </Button>
               <Button variant="outline" size="sm" asChild>
-                <Link href={`/owners/${owner.id}/edit`}>Edit</Link>
+                <Link href={`/owners/${owner.id}/edit`}>{t('common.edit')}</Link>
               </Button>
               <form action={async () => {
-                if (confirm("Are you sure you want to delete this owner? This will also delete all their lofts.")) {
+                if (confirm(t('owners.deleteOwnerConfirm'))) {
                   await deleteOwner(owner.id)
                 }
               }}>
                 <Button variant="destructive" size="sm" type="submit">
-                  Delete
+                  {t('common.delete')}
                 </Button>
               </form>
             </div>

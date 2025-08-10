@@ -9,7 +9,7 @@ import { Send, ArrowLeft, AlertTriangle } from 'lucide-react'
 import { toast } from 'sonner'
 import Link from 'next/link'
 import { SimpleMessage } from '@/lib/services/conversations-simple'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 
 interface SimpleConversationPageClientProps {
   conversationId: string
@@ -22,7 +22,7 @@ export function SimpleConversationPageClient({
   initialMessages, 
   currentUserId 
 }: SimpleConversationPageClientProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [messages, setMessages] = useState<SimpleMessage[]>(initialMessages)
   const [newMessage, setNewMessage] = useState('')
   const [isSending, setIsSending] = useState(false)

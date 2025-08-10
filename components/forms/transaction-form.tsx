@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import type { Currency, Transaction } from '@/lib/types'
 import { Transaction as TransactionFormData } from '@/lib/validations'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 
 interface Category {
   id: string;
@@ -43,7 +43,7 @@ interface TransactionFormProps {
 
 export function TransactionForm({ transaction, categories, lofts, currencies, paymentMethods, onSubmit, isSubmitting = false }: TransactionFormProps) {
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm<TransactionFormData>({
     resolver: zodResolver(transactionSchema),
     defaultValues: {

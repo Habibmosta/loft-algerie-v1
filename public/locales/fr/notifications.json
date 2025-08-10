@@ -1,13 +1,6 @@
 {
   "notifications": {
     "newMessageFrom": "Nouveau message de {{sender}}",
-    "view": "Voir",
-    "title": "Notifications",
-    "mark_all_as_read": "Marquer tout comme lu",
-    "no_notifications": "Vous n'avez aucune nouvelle notification.",
-    "new_reservation": "Nouvelle réservation pour {{loftName}}",
-    "reservation_cancelled": "Réservation pour {{loftName}} annulée",
-    "payment_received": "Paiement de {{amount}} reçu",
-    "task_assigned": "Nouvelle tâche vous a été assignée : {{taskName}}"
+    "view": "Voir"
   }
 }

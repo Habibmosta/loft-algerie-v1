@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from 'react-i18next';
 import { Loader2, Calendar, Users, CreditCard, CheckCircle, AlertCircle, Star, Building2 } from 'lucide-react';
 import { format, addDays } from 'date-fns';
 import { createReservation } from '@/lib/actions/reservations';
@@ -54,7 +54,7 @@ export default function ReservationFormHybrid({
   onSuccess,
   onCancel,
 }: ReservationFormHybridProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('reservations');
   const [lofts, setLofts] = useState<Loft[]>([]);
   const [availabilityData, setAvailabilityData] = useState<AvailabilityData | null>(null);
   const [checkingAvailability, setCheckingAvailability] = useState(false);

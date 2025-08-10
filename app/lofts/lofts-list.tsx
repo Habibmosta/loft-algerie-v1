@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { useTranslation } from "@/lib/i18n/context"
 import type { LoftWithRelations, LoftOwner, ZoneArea, LoftStatus } from "@/lib/types"
 import { deleteLoft } from "@/app/actions/lofts"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -10,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
+import { useTranslation } from "react-i18next"
 
 interface LoftsListProps {
   lofts: LoftWithRelations[]
@@ -46,6 +46,12 @@ export function LoftsList({ lofts, owners, zoneAreas, isAdmin }: LoftsListProps)
     return statusMatch && ownerMatch && zoneAreaMatch
   })
 
+  const statusTranslationKeys = {
+    available: "lofts.status.available",
+    occupied: "lofts.status.occupied",
+    maintenance: "lofts.status.maintenance",
+  };
+
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -59,7 +65,7 @@ export function LoftsList({ lofts, owners, zoneAreas, isAdmin }: LoftsListProps)
               <SelectItem value="all">{t('lofts.allStatuses')}</SelectItem>
               {LOFT_STATUSES.map((status) => (
                 <SelectItem key={status} value={status} className="capitalize">
-                  {t(`lofts.status.${status}`)}
+                  {t(statusTranslationKeys[status])}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -108,7 +114,9 @@ export function LoftsList({ lofts, owners, zoneAreas, isAdmin }: LoftsListProps)
                   <CardTitle className="text-lg">{loft.name}</CardTitle>
                   <CardDescription>{loft.address}</CardDescription>
                 </div>
-                <Badge className={getStatusColor(loft.status)}>{t(`lofts.status.${loft.status}`)}</Badge>
+                <Badge className={getStatusColor(loft.status)}>
+                  {t(statusTranslationKeys[loft.status])}
+                </Badge>
               </div>
             </CardHeader>
             <CardContent>

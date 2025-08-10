@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
 import Link from "next/link"
 import { TasksList } from "./tasks-list"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 import type { Task, User } from "@/lib/types"
 
 interface TasksPageClientProps {
@@ -15,7 +15,7 @@ interface TasksPageClientProps {
 }
 
 export function TasksPageClient({ tasks, users, userRole, currentUserId }: TasksPageClientProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <div className="space-y-6">

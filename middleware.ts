@@ -8,12 +8,18 @@ export async function middleware(request: NextRequest) {
   })
 
   // Log incoming cookies (development only)
+  // Set default language to 'ar' if not explicitly set
+  let language = request.cookies.get('language')?.value;
+  if (!language || !['en', 'fr', 'ar'].includes(language)) {
+    supabaseResponse.cookies.set('language', 'ar', { path: '/' });
+  }
+
   if (process.env.NODE_ENV === 'development') {
     const cookies = request.cookies.getAll();
     console.log("Middleware: Incoming cookies:", cookies.map(c => c.name));
     
     // Check for cookie size issues
-    const totalCookieSize = cookies.reduce((total, cookie) => 
+    const totalCookieSize = cookies.reduce((total, cookie) =>
       total + cookie.name.length + (cookie.value?.length || 0), 0
     );
     

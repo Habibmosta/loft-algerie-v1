@@ -1,3 +1,5 @@
+"use client"
+
 import { requireRole } from "@/lib/auth"
 import { createClient } from "@/utils/supabase/server"
 import type { LoftOwner } from "@/lib/types"
@@ -5,12 +7,12 @@ import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
 import Link from "next/link"
 import { OwnersList } from "./owners-list"
-import { getTranslations } from "@/lib/i18n/server"
+import { useTranslation } from "react-i18next"
 
 export default async function OwnersPage() {
   const session = await requireRole(["admin"])
   const supabase = await createClient()
-  const t = await getTranslations()
+  const { t } = useTranslation()
 
   const { data: ownersData, error } = await supabase
     .from("loft_owners")

@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation'
 import type { Task, User, AuthSession } from '@/lib/types'
 import { getSession } from '@/lib/auth'
 import { useState, useEffect } from 'react'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 
 interface TaskFormProps {
   task?: Task
@@ -25,7 +25,7 @@ interface TaskFormProps {
 export function TaskForm({ task, users, onSubmit, isSubmitting = false }: TaskFormProps) {
   const router = useRouter()
   const [session, setSession] = useState<AuthSession | null>(null)
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchSession() {

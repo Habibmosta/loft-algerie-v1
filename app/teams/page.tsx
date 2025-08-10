@@ -1,3 +1,5 @@
+"use client"
+
 import { requireRole } from "@/lib/auth"
 import { createClient } from "@/utils/supabase/server"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -5,12 +7,12 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Plus, Users } from "lucide-react"
 import Link from "next/link"
-import { getTranslations } from "@/lib/i18n/server"
+import { useTranslation } from "react-i18next"
 
 export default async function TeamsPage() {
   const session = await requireRole(["admin", "manager"])
   const supabase = await createClient()
-  const t = await getTranslations()
+  const { t } = useTranslation()
 
   const { data: teams, error } = await supabase
     .from("teams")

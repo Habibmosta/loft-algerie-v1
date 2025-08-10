@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { Moon, Sun, Monitor } from 'lucide-react'
 import { useTheme } from 'next-themes'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -21,7 +21,7 @@ interface ThemeToggleProps {
 
 export function ThemeToggle({ variant = 'ghost', size = 'icon', className = "" }: ThemeToggleProps) {
   const { setTheme, theme } = useTheme()
-  const { t } = useTranslation()
+  const { t } = useTranslation('theme');
 
   return (
     <DropdownMenu>

@@ -30,7 +30,7 @@ import {
   Pie,
   Cell
 } from 'recharts'
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 
 interface ExecutiveDashboardProps {
   metrics: ExecutiveMetrics
@@ -39,7 +39,7 @@ interface ExecutiveDashboardProps {
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8']
 
 export function ExecutiveDashboard({ metrics }: ExecutiveDashboardProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('fr-DZ', {
@@ -213,7 +213,7 @@ export function ExecutiveDashboard({ metrics }: ExecutiveDashboardProps) {
           </CardContent>
         </Card>
 
-        {/* Répartition des Revenus */}
+        {/* Revenue Distribution */}}
         <Card>
           <CardHeader>
             <CardTitle>{t('executive.revenueDistribution')}</CardTitle>
@@ -244,7 +244,7 @@ export function ExecutiveDashboard({ metrics }: ExecutiveDashboardProps) {
         </Card>
       </div>
 
-      {/* Comparaison Année sur Année */}
+      {/* Year over Year Comparison */}}
       <Card>
         <CardHeader>
           <CardTitle>{t('executive.yearOverYearPerformance')}</CardTitle>
@@ -301,7 +301,7 @@ export function ExecutiveDashboard({ metrics }: ExecutiveDashboardProps) {
         </CardContent>
       </Card>
 
-      {/* Métriques Détaillées */}
+      {/* Detailed Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <Card>
           <CardHeader>

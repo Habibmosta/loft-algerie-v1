@@ -18,7 +18,7 @@ import {
   createInternetConnectionType,
   updateInternetConnectionType,
 } from "@/app/actions/internet-connections";
-import { useTranslation } from "@/lib/i18n/context";
+import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import { FormWrapper, FormSection } from "@/components/ui/form-wrapper";
 import toast from "react-hot-toast";

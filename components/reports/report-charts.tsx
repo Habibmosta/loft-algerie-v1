@@ -1,6 +1,6 @@
 "use client"
 
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   BarChart,
@@ -66,7 +66,7 @@ interface ReportChartsProps {
 }
 
 export default function ReportCharts({ loftRevenue, monthlyRevenue }: ReportChartsProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('analytics');
   const top5Lofts = loftRevenue.slice(0, 5);
 
   return (

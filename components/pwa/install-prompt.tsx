@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Download, X } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>
@@ -10,6 +11,7 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 export function InstallPrompt() {
+  const { t } = useTranslation(['common'])
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
   const [showInstallPrompt, setShowInstallPrompt] = useState(false)
 
@@ -51,14 +53,14 @@ export function InstallPrompt() {
       <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-4">
         <div className="flex items-start justify-between">
           <div className="flex-1">
-            <h3 className="font-semibold text-sm mb-1">Installer Loft Algérie</h3>
+            <h3 className="font-semibold text-sm mb-1">{t('pwa.installTitle')}</h3>
             <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">
-              Installez l'application pour un accès rapide et une meilleure expérience
+              {t('pwa.installDescription')}
             </p>
             <div className="flex gap-2">
               <Button onClick={handleInstall} size="sm" className="flex-1">
                 <Download className="w-4 h-4 mr-1" />
-                Installer
+                {t('pwa.install')}
               </Button>
               <Button onClick={handleDismiss} variant="outline" size="sm">
                 <X className="w-4 h-4" />

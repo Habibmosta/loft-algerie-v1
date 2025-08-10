@@ -15,14 +15,14 @@ import { Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
 import { login } from "@/lib/auth"
 import { loginSchema, type LoginFormData } from "@/lib/validations"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const {
     register,

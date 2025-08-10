@@ -4,24 +4,26 @@ import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
 import { deleteOwner } from "@/app/actions/owners"
 import { useToast } from "@/components/ui/use-toast"
+import { useTranslation } from "react-i18next"
 
 export function DeleteOwnerButton({ id }: { id: string }) {
   const router = useRouter()
   const { toast } = useToast()
+  const { t } = useTranslation();
 
   const handleDelete = async () => {
-    if (confirm("Are you sure you want to delete this owner?")) {
+    if (confirm(t('owners.deleteConfirm'))) {
       try {
         await deleteOwner(id)
         toast({
-          title: "Owner deleted",
-          description: "The owner has been successfully removed",
+          title: t('owners.deleteSuccessTitle'),
+          description: t('owners.deleteSuccessDescription'),
         })
         router.push("/owners")
       } catch (error) {
         toast({
-          title: "Error",
-          description: error instanceof Error ? error.message : "Failed to delete owner",
+          title: t('common.error'),
+          description: error instanceof Error ? error.message : t('owners.deleteError'),
           variant: "destructive"
         })
       }
@@ -29,12 +31,12 @@ export function DeleteOwnerButton({ id }: { id: string }) {
   }
 
   return (
-    <Button 
-      variant="destructive" 
-      size="sm" 
+    <Button
+      variant="destructive"
+      size="sm"
       onClick={handleDelete}
     >
-      Delete Owner
+      {t('owners.deleteOwner')}
     </Button>
   )
 }

@@ -3,11 +3,11 @@
 import { getCurrencies, setDefaultCurrency, deleteCurrency } from "../../actions/currencies"
 import { CurrencyClient } from "./components/client"
 import { useEffect, useState } from "react"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 import type { Currency } from "@/lib/types"
 
 export default function CurrenciesPage() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [currencies, setCurrencies] = useState<Currency[]>([])
   const [loading, setLoading] = useState(true)
 

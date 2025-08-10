@@ -6,11 +6,13 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { linkLoftToAirbnb } from "@/app/actions/lofts"
+import { useTranslation } from "react-i18next"
 
 export default async function LinkAirbnbPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   await requireRole(["admin"])
   const supabase = await createClient()
+  const { t } = useTranslation();
 
   const { data: loft, error } = await supabase
     .from("lofts")
@@ -25,20 +27,20 @@ export default async function LinkAirbnbPage({ params }: { params: Promise<{ id:
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Link {loft.name} to Airbnb</h1>
+        <h1 className="text-3xl font-bold tracking-tight">{t('lofts.linkToAirbnbTitle', { name: loft.name })}</h1>
         <p className="text-muted-foreground">
-          Enter the Airbnb listing ID to link this loft to an Airbnb listing.
+          {t('lofts.linkToAirbnbDescription')}
         </p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Link to Airbnb</CardTitle>
+          <CardTitle>{t('lofts.linkToAirbnb')}</CardTitle>
         </CardHeader>
         <CardContent>
           <form action={linkLoftToAirbnb.bind(null, loft.id)}>
             <div className="space-y-2">
-              <Label htmlFor="airbnb_listing_id">Airbnb Listing ID</Label>
+              <Label htmlFor="airbnb_listing_id">{t('lofts.airbnbListingId')}</Label>
               <Input
                 id="airbnb_listing_id"
                 name="airbnb_listing_id"
@@ -46,7 +48,7 @@ export default async function LinkAirbnbPage({ params }: { params: Promise<{ id:
               />
             </div>
             <div className="mt-4">
-              <Button type="submit">Link</Button>
+              <Button type="submit">{t('lofts.link')}</Button>
             </div>
           </form>
         </CardContent>

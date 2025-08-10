@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Plus, CreditCard, Banknote, Smartphone, Building2, Edit, Trash2 } from "lucide-react"
 import Link from "next/link"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 import { useEffect, useState } from "react"
 import type { PaymentMethod } from "@/lib/types"
 
@@ -52,7 +52,7 @@ const getPaymentMethodColor = (type: string) => {
 }
 
 export default function PaymentMethodsPage() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([])
   const [loading, setLoading] = useState(true)
 

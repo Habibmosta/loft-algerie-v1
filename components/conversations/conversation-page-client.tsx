@@ -8,7 +8,7 @@ import { MessagesList } from '@/components/conversations/messages-list'
 import { MessageInputRealtime } from '@/components/conversations/message-input-realtime'
 import { Conversation, Message } from '@/lib/services/conversations'
 import { toast } from 'sonner'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 
 interface ConversationPageClientProps {
   initialConversation: Conversation
@@ -24,7 +24,7 @@ export function ConversationPageClient({
   const [conversation, setConversation] = useState(initialConversation)
   const [messages, setMessages] = useState(initialMessages)
   const [isLoading, setIsLoading] = useState(false)
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const supabase = createClient()
   const router = useRouter()
 

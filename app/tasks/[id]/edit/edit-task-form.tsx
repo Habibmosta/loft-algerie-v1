@@ -5,7 +5,7 @@ import { getTask, updateTask } from '@/app/actions/tasks'
 import { TaskFormData, TaskStatusUpdateData } from '@/lib/validations'
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 import { toast } from '@/components/ui/use-toast'
 import type { Task, User } from '@/lib/types'
 
@@ -17,7 +17,7 @@ interface EditTaskFormProps {
 export default function EditTaskForm({ initialTask, users }: EditTaskFormProps) {
   const params = useParams()
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const id = params?.id as string
   const [task, setTask] = useState<Task | null>(initialTask)
   const [isSubmitting, setIsSubmitting] = useState(false)

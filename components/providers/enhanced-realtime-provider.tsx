@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState, useCallback } from 'rea
 import { useSupabase } from './supabase-provider'
 import { toast } from 'sonner'
 import { useNotificationSound } from '@/lib/hooks/use-notification-sound'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 
 interface EnhancedRealtimeContextType {
   unreadMessagesCount: number
@@ -36,7 +36,7 @@ export function EnhancedRealtimeProvider({ children, userId }: EnhancedRealtimeP
   const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0)
   const [isOnline, setIsOnline] = useState(true)
   const { playNotificationSound } = useNotificationSound()
-  const { t } = useTranslation()
+  const { t } = useTranslation('notifications');
   const { supabase } = useSupabase()
 
   const refreshCounts = useCallback(async () => {

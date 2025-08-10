@@ -51,5 +51,10 @@
   "trend": "الاتجاه",
   "vsLastMonth": "مقارنة بالشهر الماضي",
   "yearOverYearDesc": "قارن أداء السنة الحالية بالسنة السابقة.",
-  "yearOverYearPerformance": "الأداء السنوي"
+  "yearOverYearPerformance": "الأداء السنوي",
+  "alerts": {
+    "resolved": "تم حل التنبيه بنجاح",
+    "resolveError": "خطأ في حل التنبيه",
+    "resolve": "حل"
+  }
 }

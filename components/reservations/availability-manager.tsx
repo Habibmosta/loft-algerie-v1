@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from 'react-i18next';
 import { Calendar, Ban, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
 import { blockDates, unblockDates } from '@/lib/actions/reservations';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -29,7 +29,7 @@ export default function AvailabilityManager({
   selectedLoftId,
   onUpdate,
 }: AvailabilityManagerProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('reservations');
   const [isPending, startTransition] = useTransition();
   const [mode, setMode] = useState<'block' | 'unblock'>('block');
   

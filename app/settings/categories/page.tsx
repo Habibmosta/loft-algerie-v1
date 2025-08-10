@@ -8,12 +8,12 @@ import { CategoriesList } from "./categories-list"
 import { CategoryForm } from "./components/category-form"
 import { Plus, Tag, TrendingUp, TrendingDown } from "lucide-react"
 import Link from "next/link"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 import { useEffect, useState } from "react"
 import type { Category } from "@/lib/types"
 
 export default function CategoriesPage() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [categories, setCategories] = useState<Category[]>([])
   const [loading, setLoading] = useState(true)
 

@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from 'react-i18next';
 import { 
   CheckCircle, 
   XCircle, 
@@ -51,7 +51,7 @@ export default function ReservationStatusActions({
   reservation,
   onUpdate,
 }: ReservationStatusActionsProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('reservations');
   const [isPending, startTransition] = useTransition();
   const [cancelState, cancelAction] = useActionState(cancelReservation, null);
 

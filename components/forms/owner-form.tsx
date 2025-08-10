@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { FormWrapper, FormSection } from "@/components/ui/form-wrapper"
 import { toast } from "@/components/ui/use-toast"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 import { loftOwnerSchema, type LoftOwnerFormData } from "@/lib/validations"
 import type { LoftOwner } from "@/lib/types"
 
@@ -22,7 +22,7 @@ interface OwnerFormProps {
 }
 
 export function OwnerForm({ owner, action }: OwnerFormProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
   const router = useRouter()

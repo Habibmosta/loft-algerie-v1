@@ -1,6 +1,6 @@
 "use client"
 
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 import { 
   translateTransactionDescription, 
   translateTransactionStatus, 
@@ -10,7 +10,8 @@ import {
 } from '@/lib/utils/transaction-translator'
 
 export function useTransactionTranslations() {
-  const { language } = useTranslation()
+  const { i18n } = useTranslation('transactions')
+  const { language } = i18n
   
   return {
     translateDescription: (description: string) => 

@@ -1,20 +1,18 @@
 {
-  "bills": {
-    "amount": "",
-    "cancel": "",
-    "description": "",
-    "descriptionPlaceholder": "",
-    "due": "",
-    "errorMessage": "",
-    "paymentDate": "",
-    "paymentMethod": "",
-    "recording": "",
-    "recordPayment": "",
-    "selectPaymentMethod": "",
-    "successMessage": "",
-    "title": ""
-  },
-  "paymentModal": {
-    "title": ""
-  }
+  "due": "Due",
+  "failedToLoadAlerts": "Failed to load billing alerts.",
+  "markPaid": "Mark as Paid",
+  "noOverdueBills": "No overdue bills.",
+  "noUpcomingBills": "No upcoming bills.",
+  "overdueBills": "Overdue Bills",
+  "upcomingBills": "Upcoming Bills",
+  "dueToday": "Due today",
+  "dayOverdue": "1 day overdue",
+  "dueTomorrow": "Due tomorrow",
+  "daysOverdue": "{{count}} days overdue",
+  "days": "days",
+  "utilities.eau": "Water",
+  "utilities.energie": "Energy",
+  "utilities.telephone": "Phone",
+  "utilities.internet": "Internet"
 }

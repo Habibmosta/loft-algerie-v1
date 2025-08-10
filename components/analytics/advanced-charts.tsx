@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useTranslation } from '@/lib/i18n/context'
+import { useTranslation } from 'react-i18next'
 import {
   LineChart,
   Line,
@@ -48,7 +48,7 @@ export function AdvancedCharts({
   maintenanceCosts
 }: AdvancedChartsProps) {
   const [timeRange, setTimeRange] = useState('12months')
-  const { t } = useTranslation()
+  const { t } = useTranslation('analytics');
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {

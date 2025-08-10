@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useTranslation } from "@/lib/i18n/context"
+import { useTranslation } from "react-i18next"
 import { useTransactionTranslations } from "@/lib/hooks/use-transaction-translations"
 import type { Transaction, Category, Loft, Currency } from "@/lib/types"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -35,7 +35,7 @@ interface TransactionsListProps {
 }
 
 export function TransactionsList({ transactions, categories, lofts, currencies, paymentMethods, isAdmin }: TransactionsListProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const { translateDescription, translateStatus, translatePaymentMethod, formatDate } = useTransactionTranslations()
   const [startDate, setStartDate] = React.useState<Date | undefined>()
   const [endDate, setEndDate] = React.useState<Date | undefined>()
@@ -45,6 +45,8 @@ export function TransactionsList({ transactions, categories, lofts, currencies, 
   const [currencyFilter, setCurrencyFilter] = React.useState<string>("all")
   const [paymentMethodFilter, setPaymentMethodFilter] = React.useState<string>("all")
   const [localTransactions, setLocalTransactions] = React.useState(transactions)
+  // diag: confirm ns binding; remove after verification
+  console.log('[i18n] transactions-list ns check ->', { sample: t('title') })
 
   const getStatusColor = (status: string) => {
     switch (status) {

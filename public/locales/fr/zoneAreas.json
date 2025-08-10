@@ -10,21 +10,6 @@
     "deleteSuccess": "Zone géographique supprimée avec succès.",
     "existingZoneAreas": "Zones géographiques existantes",
     "name": "Nom",
-    "noZoneAreasYet": "Aucune zone géographique trouvée pour l'instant.",
-    "title": "Zones Géographiques",
-    "subtitle": "Gérez les zones géographiques pour vos lofts.",
-    "addNewZoneArea": "Ajouter une nouvelle zone géographique",
-    "createNewZoneArea": "Créer une nouvelle zone géographique",
-    "createSuccess": "Zone géographique créée avec succès.",
-    "createZoneArea": "Créer une zone géographique",
-    "editZoneArea": "Modifier la zone géographique",
-    "enterZoneInfo": "Entrez les informations de la zone géographique",
-    "namePlaceholder": "Entrez le nom de la zone géographique",
-    "nameRequired": "Le nom de la zone géographique est requis.",
-    "updateSuccess": "Zone géographique mise à jour avec succès.",
-    "updateZoneArea": "Mettre à jour la zone géographique",
-    "updateZoneAreaInfo": "Mettre à jour les informations de la zone géographique",
-    "zoneAreaName": "Nom de la zone géographique",
-    "zoneDetails": "Détails de la zone"
+    "noZoneAreasYet": "Aucune zone géographique trouvée pour l'instant."
   }
 }

@@ -51,5 +51,10 @@
   "trend": "Tendance",
   "vsLastMonth": "vs le mois dernier",
   "yearOverYearDesc": "Comparez la performance de l'année en cours avec l'année précédente.",
-  "yearOverYearPerformance": "Performance d'une Année sur l'Autre"
+  "yearOverYearPerformance": "Performance d'une Année sur l'Autre",
+  "alerts": {
+    "resolved": "Alerte résolue avec succès",
+    "resolveError": "Erreur lors de la résolution de l'alerte",
+    "resolve": "Résoudre"
+  }
 }

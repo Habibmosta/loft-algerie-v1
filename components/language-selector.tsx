@@ -13,7 +13,9 @@ import { Globe } from 'lucide-react'
 import { FlagIcon } from '@/components/ui/flag-icon'
 
 export function LanguageSelector() {
-  const { language, setLanguage } = useTranslation()
+  const { i18n, changeLanguage } = useTranslation();
+  const language = i18n.language;
+  const setLanguage = (lng: string) => changeLanguage(lng);
 
   const languages = [
     { code: 'ar', name: 'العربية', flagCode: 'DZ' as const },
@@ -35,7 +37,7 @@ export function LanguageSelector() {
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
-            onClick={() => setLanguage(lang.code as 'ar' | 'fr' | 'en')}
+            onClick={() => setLanguage(lang.code)}
             className={language === lang.code ? 'bg-accent' : ''}
           >
             <FlagIcon country={lang.flagCode} className="w-4 h-3 mr-2" />
