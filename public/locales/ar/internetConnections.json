@@ -1,0 +1,11 @@
+{
+  "subtitle": "إدارة أنواع اتصالات الإنترنت",
+  "addNewConnectionType": "إضافة نوع اتصال جديد",
+  "existingConnectionTypes": "أنواع الاتصالات الموجودة",
+  "loadError": "خطأ في تحميل أنواع اتصالات الإنترنت",
+  "totalConnections": "المجموع: {count} نوع اتصال",
+  "noConnectionTypesFound": "لا توجد أنواع اتصالات إنترنت",
+  "addFirstConnection": "أضف نوع الاتصال الأول للبدء",
+  "cost": "التكلفة",
+  "provider": "المزود"
+}

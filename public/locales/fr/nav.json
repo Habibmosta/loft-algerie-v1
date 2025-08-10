@@ -1,0 +1,20 @@
+{
+  "dashboard": "Tableau de Bord",
+  "conversations": "Conversations",
+  "lofts": "Lofts",
+  "reservations": "Réservations",
+  "tasks": "Tâches",
+  "transactions": "Transactions",
+  "teams": "Équipes",
+  "owners": "Propriétaires",
+  "reports": "Rapports",
+  "notifications": "Notifications",
+  "settings": "Paramètres",
+  "categories": "Catégories",
+  "currencies": "Devises",
+  "zoneAreas": "Zones Géographiques",
+  "paymentMethods": "Méthodes de Paiement",
+  "internetConnections": "Connexions Internet",
+  "application": "Application",
+  "paymentMethodsNav": "Méthodes de Paiement"
+}

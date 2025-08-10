@@ -1,0 +1,11 @@
+{
+  "subtitle": "Gérer les types de connexions internet",
+  "addNewConnectionType": "Ajouter un Nouveau Type de Connexion",
+  "existingConnectionTypes": "Types de Connexions Existants",
+  "loadError": "Erreur lors du chargement des types de connexion Internet",
+  "totalConnections": "Total : {count} types de connexion",
+  "noConnectionTypesFound": "Aucun type de connexion Internet trouvé",
+  "addFirstConnection": "Ajouter votre premier type de connexion pour commencer",
+  "cost": "Coût",
+  "provider": "Fournisseur"
+}

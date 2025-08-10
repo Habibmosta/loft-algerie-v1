@@ -1,0 +1,33 @@
+{
+  "title": "الفرق",
+  "subtitle": "إدارة فرقك وأعضائها والمهام الموكلة إليهم.",
+  "add_team": "إضافة فريق",
+  "edit_team": "تعديل الفريق",
+  "delete_team": "حذف الفريق",
+  "team_details": "تفاصيل الفريق",
+  "activeTasks": "المهام النشطة",
+  "createdBy": "تم إنشاؤه بواسطة",
+  "description": "الوصف",
+  "cancel": "إلغاء",
+  "saving": "جاري الحفظ...",
+  "table": {
+    "id": "المعرف",
+    "name": "الاسم",
+    "members": "الأعضاء",
+    "actions": "الإجراءات"
+  },
+  "form": {
+    "name": "اسم الفريق",
+    "name_placeholder": "أدخل اسم الفريق",
+    "members": "الأعضاء",
+    "add_member": "إضافة عضو",
+    "enterTeamInfo": "أدخل معلومات الفريق",
+    "updateTeamInfo": "تحديث معلومات الفريق"
+  },
+  "messages": {
+    "created_success": "تم إنشاء الفريق بنجاح.",
+    "updated_success": "تم تحديث الفريق بنجاح.",
+    "deleted_success": "تم حذف الفريق بنجاح.",
+    "delete_confirm": "هل أنت متأكد أنك تريد حذف هذا الفريق؟"
+  }
+}

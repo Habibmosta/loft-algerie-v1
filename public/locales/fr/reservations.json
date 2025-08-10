@@ -1,0 +1,90 @@
+{
+  "common": {
+    "cancel": "Annuler",
+    "date": "Date",
+    "loading": "Chargement...",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "time": "Heure",
+    "today": "Aujourd'hui"
+  },
+  "reservations": {
+    "availability": {
+      "blockDates": "Bloquer les dates",
+      "chooseLoft": "Choisissez un loft",
+      "endDate": "Date de fin",
+      "maintenance": "Maintenance",
+      "management": "Gestion des disponibilités",
+      "minimumStay": "Séjour minimum : {{count}} nuits",
+      "other": "Autre",
+      "personalUse": "Usage personnel",
+      "priceOverride": "Forcer le prix",
+      "priceOverridePlaceholder": "Nouveau prix par nuit",
+      "reasonForBlocking": "Raison du blocage",
+      "renovation": "Rénovation",
+      "selectLoft": "Sélectionnez d'abord un loft",
+      "selectReason": "Sélectionnez une raison",
+      "startDate": "Date de début",
+      "unblockDates": "Débloquer les dates"
+    },
+    "calendar": {
+      "agenda": "Agenda",
+      "allDay": "Toute la journée",
+      "day": "Jour",
+      "event": "Événement",
+      "month": "Mois",
+      "noEventsInRange": "Aucun événement dans cette période",
+      "showMore": "+{{count}} de plus",
+      "title": "Calendrier des réservations",
+      "tomorrow": "Demain",
+      "week": "Semaine",
+      "work_week": "Semaine de travail",
+      "yesterday": "Hier"
+    },
+    "details": {
+      "dates": "Dates",
+      "guest": "Client",
+      "loft": "Loft",
+      "title": "Détails de la réservation",
+      "total": "Total"
+    },
+    "form": {
+      "available": "Disponible",
+      "basePrice": "Prix de base",
+      "checkIn": "Arrivée",
+      "checkingAvailability": "Vérification de la disponibilité...",
+      "checkOut": "Départ",
+      "cleaningFee": "Frais de nettoyage",
+      "createReservation": "Créer la réservation",
+      "creating": "Création en cours...",
+      "guest": "Client",
+      "guestCount": "Nombre de clients",
+      "guestEmail": "E-mail du client",
+      "guestInfo": "Informations sur le client",
+      "guestName": "Nom du client",
+      "guestNationality": "Nationalité du client",
+      "guestPhone": "Téléphone du client",
+      "guests": "Clients",
+      "loft": "Loft",
+      "notAvailable": "Non disponible pour les dates sélectionnées.",
+      "selectLoft": "Sélectionnez un loft",
+      "serviceFee": "Frais de service",
+      "specialRequests": "Demandes spéciales",
+      "specialRequestsPlaceholder": "Des demandes spéciales pour le client ?",
+      "taxes": "Taxes",
+      "title": "Nouvelle réservation",
+      "total": "Prix total"
+    },
+    "nights": "{{count}} nuits",
+    "status": {
+      "cancelled": "Annulée",
+      "completed": "Terminée",
+      "confirmed": "Confirmée",
+      "pending": "En attente"
+    },
+    "upcoming": {
+      "empty": "Aucune réservation à venir.",
+      "title": "Réservations à venir"
+    }
+  }
+}

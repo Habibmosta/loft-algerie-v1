@@ -1,0 +1,90 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "date": "Date",
+    "loading": "Loading...",
+    "next": "Next",
+    "previous": "Previous",
+    "time": "Time",
+    "today": "Today"
+  },
+  "reservations": {
+    "availability": {
+      "blockDates": "Block Dates",
+      "chooseLoft": "Choose a loft",
+      "endDate": "End Date",
+      "maintenance": "Maintenance",
+      "management": "Availability Management",
+      "minimumStay": "Minimum stay: {{count}} nights",
+      "other": "Other",
+      "personalUse": "Personal Use",
+      "priceOverride": "Price Override",
+      "priceOverridePlaceholder": "New price per night",
+      "reasonForBlocking": "Reason for blocking",
+      "renovation": "Renovation",
+      "selectLoft": "Select a loft first",
+      "selectReason": "Select a reason",
+      "startDate": "Start Date",
+      "unblockDates": "Unblock Dates"
+    },
+    "calendar": {
+      "agenda": "Agenda",
+      "allDay": "All Day",
+      "day": "Day",
+      "event": "Event",
+      "month": "Month",
+      "noEventsInRange": "No events in this range",
+      "showMore": "+{{count}} more",
+      "title": "Reservations Calendar",
+      "tomorrow": "Tomorrow",
+      "week": "Week",
+      "work_week": "Work Week",
+      "yesterday": "Yesterday"
+    },
+    "details": {
+      "dates": "Dates",
+      "guest": "Guest",
+      "loft": "Loft",
+      "title": "Reservation Details",
+      "total": "Total"
+    },
+    "form": {
+      "available": "Available",
+      "basePrice": "Base Price",
+      "checkIn": "Check-in",
+      "checkingAvailability": "Checking availability...",
+      "checkOut": "Check-out",
+      "cleaningFee": "Cleaning Fee",
+      "createReservation": "Create Reservation",
+      "creating": "Creating...",
+      "guest": "Guest",
+      "guestCount": "Number of Guests",
+      "guestEmail": "Guest Email",
+      "guestInfo": "Guest Information",
+      "guestName": "Guest Name",
+      "guestNationality": "Guest Nationality",
+      "guestPhone": "Guest Phone",
+      "guests": "Guests",
+      "loft": "Loft",
+      "notAvailable": "Not available for the selected dates.",
+      "selectLoft": "Select a loft",
+      "serviceFee": "Service Fee",
+      "specialRequests": "Special Requests",
+      "specialRequestsPlaceholder": "Any special requests for the guest?",
+      "taxes": "Taxes",
+      "title": "New Reservation",
+      "total": "Total Price"
+    },
+    "nights": "{{count}} nights",
+    "status": {
+      "cancelled": "Cancelled",
+      "completed": "Completed",
+      "confirmed": "Confirmed",
+      "pending": "Pending"
+    },
+    "upcoming": {
+      "empty": "No upcoming reservations.",
+      "title": "Upcoming Reservations"
+    }
+  }
+}

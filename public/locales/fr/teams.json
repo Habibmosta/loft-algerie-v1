@@ -1,0 +1,33 @@
+{
+  "title": "Équipes",
+  "subtitle": "Gérez vos équipes, leurs membres et les tâches qui leur sont assignées.",
+  "add_team": "Ajouter une équipe",
+  "edit_team": "Modifier l'équipe",
+  "delete_team": "Supprimer l'équipe",
+  "team_details": "Détails de l'équipe",
+  "activeTasks": "Tâches actives",
+  "createdBy": "Créé par",
+  "description": "Description",
+  "cancel": "Annuler",
+  "saving": "Enregistrement...",
+  "table": {
+    "id": "ID",
+    "name": "Nom",
+    "members": "Membres",
+    "actions": "Actions"
+  },
+  "form": {
+    "name": "Nom de l'équipe",
+    "name_placeholder": "Entrez le nom de l'équipe",
+    "members": "Membres",
+    "add_member": "Ajouter un membre",
+    "enterTeamInfo": "Entrez les informations de l'équipe",
+    "updateTeamInfo": "Mettre à jour les informations de l'équipe"
+  },
+  "messages": {
+    "created_success": "Équipe créée avec succès.",
+    "updated_success": "Équipe mise à jour avec succès.",
+    "deleted_success": "Équipe supprimée avec succès.",
+    "delete_confirm": "Êtes-vous sûr de vouloir supprimer cette équipe ?"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Teams",
+  "subtitle": "Manage your teams, members, and their assigned tasks.",
+  "add_team": "Add Team",
+  "edit_team": "Edit Team",
+  "delete_team": "Delete Team",
+  "team_details": "Team Details",
+  "activeTasks": "Active Tasks",
+  "createdBy": "Created by",
+  "description": "Description",
+  "cancel": "Cancel",
+  "saving": "Saving...",
+  "table": {
+    "id": "ID",
+    "name": "Name",
+    "members": "Members",
+    "actions": "Actions"
+  },
+  "form": {
+    "name": "Team Name",
+    "name_placeholder": "Enter team name",
+    "members": "Members",
+    "add_member": "Add Member",
+    "enterTeamInfo": "Enter team information",
+    "updateTeamInfo": "Update team information"
+  },
+  "messages": {
+    "created_success": "Team created successfully.",
+    "updated_success": "Team updated successfully.",
+    "deleted_success": "Team deleted successfully.",
+    "delete_confirm": "Are you sure you want to delete this team?"
+  }
+}

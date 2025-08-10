@@ -1,0 +1,35 @@
+{
+  "title": "Loft Algérie",
+  "subtitle": "Plateforme Professionnelle de Gestion Immobilière",
+  "description": "Rationalisez votre gestion immobilière avec notre plateforme complète pour lofts, réservations et suivi financier.",
+  "features": {
+    "title": "Fonctionnalités",
+    "financial": {
+      "title": "Gestion financière",
+      "description": "Suivez vos revenus et dépenses"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "Restez informé des événements importants"
+    },
+    "property": {
+      "title": "Gestion immobilière",
+      "description": "Gérez vos propriétés efficacement"
+    },
+    "tasks": {
+      "title": "Gestion des tâches",
+      "description": "Organisez et suivez vos tâches"
+    }
+  },
+  "getStarted": "Get Started",
+  "signIn": "Sign In",
+  "features.financial.description": "Track revenue, expenses, and financial performance",
+  "features.financial.title": "Financial Management",
+  "features.notifications.description": "Stay informed with real-time alerts and notifications",
+  "features.notifications.title": "Smart Notifications",
+  "features.property.description": "Manage all your properties in one place",
+  "features.property.title": "Property Management",
+  "features.tasks.description": "Assign and track tasks with your team",
+  "features.tasks.title": "Task Management",
+  "features.title": "Features"
+}

@@ -1,0 +1,41 @@
+{
+  "title": "التقارير",
+  "subtitle": "إنشاء وعرض التقارير.",
+  "generate_report": "إنشاء تقرير",
+  "report_details": "تفاصيل التقرير",
+  "table": {
+    "id": "المعرف",
+    "name": "الاسم",
+    "type": "النوع",
+    "date_created": "تاريخ الإنشاء",
+    "actions": "الإجراءات"
+  },
+  "form": {
+    "report_name": "اسم التقرير",
+    "report_name_placeholder": "أدخل اسم التقرير",
+    "report_type": "نوع التقرير",
+    "sales_report": "تقرير المبيعات",
+    "occupancy_report": "تقرير الإشغال",
+    "financial_report": "تقرير مالي",
+    "start_date": "تاريخ البدء",
+    "end_date": "تاريخ الانتهاء"
+  },
+  "messages": {
+    "generated_success": "تم إنشاء التقرير بنجاح.",
+    "deleted_success": "تم حذف التقرير بنجاح.",
+    "delete_confirm": "هل أنت متأكد أنك تريد حذف هذا التقرير؟"
+  },
+  "customRange": "نطاق مخصص",
+  "dateRange": "نطاق زمني",
+  "downloadReports": "تنزيل التقارير",
+  "endDate": "تاريخ الانتهاهاء",
+  "export": "تصدير",
+  "exportReports": "تصدير التقارير",
+  "exporting": "جاري التصدير...",
+  "format": "الصيغة",
+  "startDate": "تاريخ البدء",
+  "thisMonth": "هذا الشهر",
+  "thisQuarter": "هذا الربع",
+  "thisWeek": "هذا الأسبوع",
+  "thisYear": "هذه السنة"
+}

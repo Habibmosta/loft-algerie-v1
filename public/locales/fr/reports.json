@@ -1,0 +1,41 @@
+{
+  "title": "Rapports",
+  "subtitle": "Générez et consultez des rapports.",
+  "generate_report": "Générer un rapport",
+  "report_details": "Détails du rapport",
+  "table": {
+    "id": "ID",
+    "name": "Nom",
+    "type": "Type",
+    "date_created": "Date de création",
+    "actions": "Actions"
+  },
+  "form": {
+    "report_name": "Nom du rapport",
+    "report_name_placeholder": "Entrez le nom du rapport",
+    "report_type": "Type de rapport",
+    "sales_report": "Rapport des ventes",
+    "occupancy_report": "Rapport d'occupation",
+    "financial_report": "Rapport financier",
+    "start_date": "Date de début",
+    "end_date": "Date de fin"
+  },
+  "messages": {
+    "generated_success": "Rapport généré avec succès.",
+    "deleted_success": "Rapport supprimé avec succès.",
+    "delete_confirm": "Êtes-vous sûr de vouloir supprimer ce rapport ?"
+  },
+  "customRange": "Plage personnalisée",
+  "dateRange": "Plage de dates",
+  "downloadReports": "Télécharger les rapports",
+  "endDate": "Date de fin",
+  "export": "Exporter",
+  "exportReports": "Exporter les rapports",
+  "exporting": "Exportation en cours...",
+  "format": "Format",
+  "startDate": "Date de début",
+  "thisMonth": "Ce mois-ci",
+  "thisQuarter": "Ce trimestre",
+  "thisWeek": "Cette semaine",
+  "thisYear": "Cette année"
+}

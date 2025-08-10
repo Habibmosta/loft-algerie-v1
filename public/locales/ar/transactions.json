@@ -1,0 +1,22 @@
+{
+  "transactions": {
+    "addNewTransaction": "إضافة معاملة جديدة",
+    "amount": "المبلغ",
+    "category": "الفئة",
+    "createTransaction": "إنشاء معاملة",
+    "currency": "العملة",
+    "date": "التاريخ",
+    "description": "الوصف",
+    "expense": "مصروف",
+    "income": "دخل",
+    "loft": "الشقة",
+    "netIncome": "صافي الدخل",
+    "paymentMethod": "طريقة الدفع",
+    "referenceAmounts": "المبالغ المرجعية",
+    "subtitle": "تتبع جميع تحركاتك المالية، بما في ذلك الدخل والمصروفات.",
+    "title": "المعاملات",
+    "totalExpenses": "إجمالي المصروفات",
+    "totalIncome": "إجمالي الدخل",
+    "type": "النوع"
+  }
+}

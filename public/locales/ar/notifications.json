@@ -1,0 +1,13 @@
+{
+  "notifications": {
+    "newMessageFrom": "رسالة جديدة من {{sender}}",
+    "view": "عرض",
+    "title": "الإشعارات",
+    "mark_all_as_read": "تحديد الكل كمقروء",
+    "no_notifications": "ليس لديك إشعارات جديدة.",
+    "new_reservation": "حجز جديد لـ {{loftName}}",
+    "reservation_cancelled": "تم إلغاء حجز {{loftName}}",
+    "payment_received": "تم استلام دفعة بقيمة {{amount}}",
+    "task_assigned": "تم تعيين مهمة جديدة لك: {{taskName}}"
+  }
+}

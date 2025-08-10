@@ -1,0 +1,13 @@
+{
+  "notifications": {
+    "newMessageFrom": "New message from {{sender}}",
+    "view": "View",
+    "title": "Notifications",
+    "mark_all_as_read": "Mark all as read",
+    "no_notifications": "You have no new notifications.",
+    "new_reservation": "New reservation for {{loftName}}",
+    "reservation_cancelled": "Reservation for {{loftName}} cancelled",
+    "payment_received": "Payment of {{amount}} received",
+    "task_assigned": "New task assigned to you: {{taskName}}"
+  }
+}

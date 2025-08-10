@@ -1,0 +1,20 @@
+{
+  "dashboard": "Dashboard",
+  "conversations": "Conversations",
+  "lofts": "Lofts",
+  "reservations": "Reservations",
+  "tasks": "Tasks",
+  "transactions": "Transactions",
+  "teams": "Teams",
+  "owners": "Owners",
+  "reports": "Reports",
+  "notifications": "Notifications",
+  "settings": "Settings",
+  "categories": "Categories",
+  "currencies": "Currencies",
+  "zoneAreas": "Geographic Zones",
+  "paymentMethods": "Payment Methods",
+  "internetConnections": "Internet Connections",
+  "application": "Application",
+  "paymentMethodsNav": "Payment Methods"
+}

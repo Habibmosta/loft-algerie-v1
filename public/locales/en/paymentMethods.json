@@ -1,0 +1,44 @@
+{
+  "title": "Payment Methods",
+  "subtitle": "Manage your payment methods.",
+  "add_method": "Add Payment Method",
+  "edit_method": "Edit Payment Method",
+  "delete_method": "Delete Payment Method",
+  "method_details": "Payment Method Details",
+  "table": {
+    "id": "ID",
+    "name": "Name",
+    "type": "Type",
+    "details": "Details",
+    "actions": "Actions"
+  },
+  "form": {
+    "name": "Payment Method Name",
+    "name_placeholder": "Enter payment method name",
+    "type": "Payment Method Type",
+    "credit_card": "Credit Card",
+    "bank_transfer": "Bank Transfer",
+    "paypal": "PayPal",
+    "details": "Details",
+    "details_placeholder": "Enter additional details"
+  },
+  "messages": {
+    "created_success": "Payment method created successfully.",
+    "updated_success": "Payment method updated successfully.",
+    "deleted_success": "Payment method deleted successfully.",
+    "delete_confirm": "Are you sure you want to delete this payment method?"
+  },
+  "cancel": "Cancel",
+  "createNewPaymentMethod": "Create new payment method",
+  "createPaymentMethod": "Create Payment Method",
+  "details": "Details",
+  "editPaymentMethod": "Edit Payment Method",
+  "enterPaymentInfo": "Enter payment information",
+  "name": "Name",
+  "paymentDetails": "Payment Details",
+  "saving": "Saving...",
+  "type": "Type",
+  "updatePaymentMethod": "Update Payment Method",
+  "updatePaymentMethodInfo": "Update payment method information",
+  "addPaymentMethod": "Add Payment Method"
+}

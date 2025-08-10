@@ -1,0 +1,16 @@
+{
+  "title": "Loft Algerie",
+  "subtitle": "Professional Property Management Platform",
+  "description": "Streamline your property management with our comprehensive platform for lofts, reservations, and financial tracking.",
+  "features.financial.description": "Monitor your revenue streams and expenses with our detailed financial reports and analytics.",
+  "features.financial.title": "In-Depth Financial Tracking",
+  "features.notifications.description": "Receive real-time alerts for new bookings, guest messages, and important property updates.",
+  "features.notifications.title": "Instant Notifications",
+  "features.property.description": "Effortlessly oversee all your properties from a single, intuitive dashboard.",
+  "features.property.title": "Centralized Property Management",
+  "features.tasks.description": "Assign, track, and manage tasks across your team to ensure smooth operations.",
+  "features.tasks.title": "Collaborative Task Management",
+  "features.title": "Core Features",
+  "getStarted": "Get Started",
+  "signIn": "Sign In"
+}

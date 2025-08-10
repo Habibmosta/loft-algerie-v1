@@ -1,0 +1,90 @@
+{
+  "common": {
+    "cancel": "إلغاء",
+    "date": "التاريخ",
+    "loading": "جاري التحميل...",
+    "next": "التالي",
+    "previous": "السابق",
+    "time": "الوقت",
+    "today": "اليوم"
+  },
+  "reservations": {
+    "availability": {
+      "blockDates": "حظر التواريخ",
+      "chooseLoft": "اختر شقة",
+      "endDate": "تاريخ الانتهاء",
+      "maintenance": "صيانة",
+      "management": "إدارة التوافر",
+      "minimumStay": "الحد الأدنى للإقامة: {{count}} ليالٍ",
+      "other": "أخرى",
+      "personalUse": "استخدام شخصي",
+      "priceOverride": "تجاوز السعر",
+      "priceOverridePlaceholder": "سعر جديد لليلة",
+      "reasonForBlocking": "سبب الحظر",
+      "renovation": "تجديد",
+      "selectLoft": "اختر شقة أولاً",
+      "selectReason": "اختر سببًا",
+      "startDate": "تاريخ البدء",
+      "unblockDates": "إلغاء حظر التواريخ"
+    },
+    "calendar": {
+      "agenda": "جدول أعمال",
+      "allDay": "طوال اليوم",
+      "day": "يوم",
+      "event": "حدث",
+      "month": "شهر",
+      "noEventsInRange": "لا توجد أحداث في هذا النطاق",
+      "showMore": "+{{count}} المزيد",
+      "title": "تقويم الحجوزات",
+      "tomorrow": "غداً",
+      "week": "أسبوع",
+      "work_week": "أسبوع عمل",
+      "yesterday": "أمس"
+    },
+    "details": {
+      "dates": "التواريخ",
+      "guest": "الضيف",
+      "loft": "الشقة",
+      "title": "تفاصيل الحجز",
+      "total": "المجموع"
+    },
+    "form": {
+      "available": "متاح",
+      "basePrice": "السعر الأساسي",
+      "checkIn": "تسجيل الوصول",
+      "checkingAvailability": "التحقق من التوافر...",
+      "checkOut": "تسجيل المغادرة",
+      "cleaningFee": "رسوم التنظيف",
+      "createReservation": "إنشاء الحجز",
+      "creating": "جاري الإنشاء...",
+      "guest": "الضيف",
+      "guestCount": "عدد الضيوف",
+      "guestEmail": "البريد الإلكتروني للضيف",
+      "guestInfo": "معلومات الضيف",
+      "guestName": "اسم الضيف",
+      "guestNationality": "جنسية الضيف",
+      "guestPhone": "هاتف الضيف",
+      "guests": "الضيوف",
+      "loft": "الشقة",
+      "notAvailable": "غير متاح للتواريخ المحددة.",
+      "selectLoft": "اختر شقة",
+      "serviceFee": "رسوم الخدمة",
+      "specialRequests": "طلبات خاصة",
+      "specialRequestsPlaceholder": "هل هناك أي طلبات خاصة للضيف؟",
+      "taxes": "الضرائب",
+      "title": "حجز جديد",
+      "total": "السعر الإجمالي"
+    },
+    "nights": "{{count}} ليالٍ",
+    "status": {
+      "cancelled": "ملغى",
+      "completed": "مكتمل",
+      "confirmed": "مؤكد",
+      "pending": "قيد الانتظار"
+    },
+    "upcoming": {
+      "empty": "لا توجد حجوزات قادمة.",
+      "title": "الحجوزات القادمة"
+    }
+  }
+}

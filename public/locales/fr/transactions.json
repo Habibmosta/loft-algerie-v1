@@ -1,0 +1,22 @@
+{
+  "transactions": {
+    "addNewTransaction": "Ajouter une nouvelle transaction",
+    "amount": "Montant",
+    "category": "Catégorie",
+    "createTransaction": "Créer une transaction",
+    "currency": "Devise",
+    "date": "Date",
+    "description": "Description",
+    "expense": "Dépense",
+    "income": "Revenu",
+    "loft": "Loft",
+    "netIncome": "Revenu net",
+    "paymentMethod": "Moyen de paiement",
+    "referenceAmounts": "Montants de référence",
+    "subtitle": "Suivez tous vos mouvements financiers, y compris les revenus et les dépenses.",
+    "title": "Transactions",
+    "totalExpenses": "Total des dépenses",
+    "totalIncome": "Total des revenus",
+    "type": "Type"
+  }
+}

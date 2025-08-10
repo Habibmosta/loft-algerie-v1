@@ -1,0 +1,15 @@
+{
+  "addPaymentMethod": "Ajouter une méthode de paiement",
+  "cancel": "Annuler",
+  "createNewPaymentMethod": "Créer une nouvelle méthode de paiement",
+  "createPaymentMethod": "Créer une méthode de paiement",
+  "details": "Détails",
+  "editPaymentMethod": "Modifier la méthode de paiement",
+  "enterPaymentInfo": "Entrez les informations de paiement",
+  "name": "Nom",
+  "paymentDetails": "Détails de paiement",
+  "saving": "Enregistrement...",
+  "type": "Type",
+  "updatePaymentMethod": "Mettre à jour la méthode de paiement",
+  "updatePaymentMethodInfo": "Mettre à jour les informations de la méthode de paiement"
+}

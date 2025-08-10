@@ -1,0 +1,44 @@
+{
+  "title": "طرق الدفع",
+  "subtitle": "إدارة طرق الدفع.",
+  "add_method": "إضافة طريقة دفع",
+  "edit_method": "تعديل طريقة الدفع",
+  "delete_method": "حذف طريقة الدفع",
+  "method_details": "تفاصيل طريقة الدفع",
+  "table": {
+    "id": "المعرف",
+    "name": "الاسم",
+    "type": "النوع",
+    "details": "التفاصيل",
+    "actions": "الإجراءات"
+  },
+  "form": {
+    "name": "اسم طريقة الدفع",
+    "name_placeholder": "ادخل اسم طريقة الدفع",
+    "type": "نوع طريقة الدفع",
+    "credit_card": "بطاقة ائتمان",
+    "bank_transfer": "تحويل بنكي",
+    "paypal": "باي بال",
+    "details": "التفاصيل",
+    "details_placeholder": "ادخل تفاصيل إضافية"
+  },
+  "messages": {
+    "created_success": "تم إنشاء طريقة الدفع بنجاح.",
+    "updated_success": "تم تحديث طريقة الدفع بنجاح.",
+    "deleted_success": "تم حذف طريقة الدفع بنجاح.",
+    "delete_confirm": "هل أنت متأكد أنك تريد حذف طريقة الدفع هذه؟"
+  },
+  "cancel": "Cancel",
+  "createNewPaymentMethod": "Create new payment method",
+  "createPaymentMethod": "Create Payment Method",
+  "details": "Details",
+  "editPaymentMethod": "Edit Payment Method",
+  "enterPaymentInfo": "Enter payment information",
+  "name": "Name",
+  "paymentDetails": "Payment Details",
+  "saving": "Saving...",
+  "type": "Type",
+  "updatePaymentMethod": "Update Payment Method",
+  "updatePaymentMethodInfo": "Update payment method information",
+  "addPaymentMethod": "Add Payment Method"
+}

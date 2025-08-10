@@ -1,0 +1,22 @@
+{
+  "transactions": {
+    "addNewTransaction": "Add New Transaction",
+    "amount": "Amount",
+    "category": "Category",
+    "createTransaction": "Create Transaction",
+    "currency": "Currency",
+    "date": "Date",
+    "description": "Description",
+    "expense": "Expense",
+    "income": "Income",
+    "loft": "Loft",
+    "netIncome": "Net Income",
+    "paymentMethod": "Payment Method",
+    "referenceAmounts": "Reference Amounts",
+    "subtitle": "Track all your financial movements, including income and expenses.",
+    "title": "Transactions",
+    "totalExpenses": "Total Expenses",
+    "totalIncome": "Total Income",
+    "type": "Type"
+  }
+}

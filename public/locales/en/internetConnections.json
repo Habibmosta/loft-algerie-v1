@@ -1,0 +1,11 @@
+{
+  "subtitle": "Manage internet connection types",
+  "addNewConnectionType": "Add New Connection Type",
+  "existingConnectionTypes": "Existing Connection Types",
+  "loadError": "Error loading internet connection types",
+  "totalConnections": "Total: {count} connection types",
+  "noConnectionTypesFound": "No internet connection types found",
+  "addFirstConnection": "Add your first connection type to get started",
+  "cost": "Cost",
+  "provider": "Provider"
+}

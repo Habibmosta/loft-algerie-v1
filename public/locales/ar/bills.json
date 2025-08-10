@@ -1,0 +1,20 @@
+{
+  "bills": {
+    "amount": "",
+    "cancel": "",
+    "description": "",
+    "descriptionPlaceholder": "",
+    "due": "",
+    "errorMessage": "",
+    "paymentDate": "",
+    "paymentMethod": "",
+    "recording": "",
+    "recordPayment": "",
+    "selectPaymentMethod": "",
+    "successMessage": "",
+    "title": ""
+  },
+  "paymentModal": {
+    "title": ""
+  }
+}
