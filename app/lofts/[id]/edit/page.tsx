@@ -1,17 +1,13 @@
-"use client"
-
 import { getOwners } from "@/app/actions/owners"
 import { getZoneAreas } from "@/app/actions/zone-areas"
 import { getInternetConnectionTypes } from "@/app/actions/internet-connections"
 import { createClient } from "@/utils/supabase/server"
 import { notFound } from "next/navigation"
-import { EditLoftClientPage } from "./edit-loft-client-page"
-import { useTranslation } from "react-i18next"
+import { EditLoftWrapper } from "@/components/lofts/edit-loft-wrapper"
 
 export default async function EditLoftPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const supabase = await createClient()
-  const { t } = useTranslation()
 
   const { data: loft, error } = await supabase
     .from("lofts")
@@ -30,17 +26,11 @@ export default async function EditLoftPage({ params }: { params: Promise<{ id: s
   const internetConnectionTypes = internetConnectionTypesData || []
 
   return (
-    <EditLoftClientPage
+    <EditLoftWrapper
       loft={loft}
       owners={owners}
       zoneAreas={zoneAreas}
       internetConnectionTypes={internetConnectionTypes}
-      translations={{
-        editLoft: t('lofts.editLoft'),
-        updatePropertyDetails: t('lofts.updatePropertyDetails'),
-        loftUpdated: t('lofts.loftUpdated'),
-        error: t('common.error'),
-      }}
     />
   )
 }

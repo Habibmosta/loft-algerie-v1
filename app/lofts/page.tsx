@@ -1,19 +1,13 @@
 import { requireRole } from "@/lib/auth"
-import type { Database, LoftWithRelations } from "@/lib/types" // Import Database type
-import { Button } from "@/components/ui/button"
-import { Plus } from "lucide-react"
-import Link from "next/link"
-import { LoftsList } from "./lofts-list"
-import { createClient } from '@/utils/supabase/server' // Import the new createClient
+import type { Database, LoftWithRelations } from "@/lib/types"
+import { LoftsWrapper } from "@/components/lofts/lofts-wrapper"
+import { createClient } from '@/utils/supabase/server'
 
 type Loft = Database['public']['Tables']['lofts']['Row']
 type LoftOwner = Database['public']['Tables']['loft_owners']['Row']
 type ZoneArea = Database['public']['Tables']['zone_areas']['Row']
 
-import { getTranslations } from "@/lib/i18n/server";
-
 export default async function LoftsPage() {
-  const { t } = await getTranslations("common");
   const session = await requireRole(["admin", "manager"]);
   const supabase = await createClient()
 
@@ -57,28 +51,13 @@ export default async function LoftsPage() {
     const zoneAreas: ZoneArea[] = zoneAreasData || []
 
     return (
-      <div className="space-y-6">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight">{t('lofts.title')}</h1>
-            <p className="text-muted-foreground">{t('lofts.subtitle')}</p>
-          </div>
-          {(session.user.role === "admin" || session.user.role === "manager") && (
-            <Button asChild>
-              <Link href="/lofts/new">
-                <Plus className="mr-2 h-4 w-4" />
-                {t('lofts.addLoft')}
-              </Link>
-            </Button>
-          )}
-        </div>
-        <LoftsList
-          lofts={lofts}
-          owners={owners}
-          zoneAreas={zoneAreas}
-          isAdmin={session.user.role === "admin"}
-        />
-      </div>
+      <LoftsWrapper
+        lofts={lofts}
+        owners={owners}
+        zoneAreas={zoneAreas}
+        isAdmin={session.user.role === "admin"}
+        canManage={session.user.role === "admin" || session.user.role === "manager"}
+      />
     )
   } catch (error) {
     console.error("Error fetching lofts page data:", error)

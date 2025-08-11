@@ -1,15 +1,11 @@
-"use client"
-
 import { requireRole } from "@/lib/auth"
 import { createClient } from "@/utils/supabase/server"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { useTranslation } from "react-i18next"
+import { ReportsWrapper } from "@/components/reports/reports-wrapper"
 import ReportChartsWrapper from './report-charts-wrapper'
 
 export default async function ReportsPage() {
   const session = await requireRole(["admin", "manager"])
   const supabase = await createClient()
-  const { t } = useTranslation()
 
   // Fetch financial data by loft
   const { data: lofts, error: loftsError } = await supabase
@@ -45,13 +41,9 @@ export default async function ReportsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">{t('analytics.title')}</h1>
-        <p className="text-muted-foreground">{t('analytics.subtitle')}</p>
-      </div>
-
-      <ReportChartsWrapper loftRevenue={loftRevenue} monthlyRevenue={monthlyRevenue} />
-    </div>
+    <ReportsWrapper 
+      loftRevenue={loftRevenue} 
+      monthlyRevenue={monthlyRevenue}
+    />
   )
 }

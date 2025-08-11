@@ -89,6 +89,7 @@
     "submit": "إرسال",
     "success": "نجاح",
     "symbol": "الرمز",
+    "status": "الحالة",
     "view": "عرض",
     "yes": "نعم"
   },
@@ -328,7 +329,7 @@
     "filterByStatus": "التصفية حسب الحالة",
     "filterByZoneArea": "التصفية حسب المنطقة",
     "link": "",
-    "linkToAirbnb": "",
+    "linkToAirbnb": "ربط بـ Airbnb",
     "linkToAirbnbDescription": "",
     "linkToAirbnbTitle": "",
     "loftAddress": "",
@@ -552,7 +553,8 @@
       "totalCurrencies_two": "عملتان",
       "totalCurrencies_few": "{{count}} عملات",
       "totalCurrencies_many": "{{count}} عملات",
-      "totalCurrencies_other": "{{count}} عملات"
+      "totalCurrencies_other": "{{count}} عملات",
+      "da": "دج"
     },
     "currentPassword": "كلمة المرور الحالية",
     "dataExport": "تصدير البيانات",

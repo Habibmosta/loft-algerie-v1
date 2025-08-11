@@ -1,8 +1,8 @@
-export function getOptions(lng = 'en', ns = ['common', 'bills']) {
+export function getOptions(lng = 'ar', ns = ['common', 'bills', 'lofts']) {
   return {
     debug: true,
     supportedLngs: ['en', 'fr', 'ar'],
-    fallbackLng: 'en',
+    fallbackLng: 'ar',
     lng,
     fallbackNS: 'common',
     defaultNS: 'common',

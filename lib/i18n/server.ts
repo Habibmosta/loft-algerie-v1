@@ -4,7 +4,7 @@ import { cookies } from 'next/headers'
 import { getOptions } from './settings'
 
 export async function getTranslations(ns) {
-  const lng = cookies().get('language')?.value || 'en'
+  const lng = cookies().get('language')?.value || 'ar'
   const i18n = createInstance()
   await i18n
     .use(Backend)

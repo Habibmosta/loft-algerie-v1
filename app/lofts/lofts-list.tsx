@@ -21,7 +21,7 @@ interface LoftsListProps {
 const LOFT_STATUSES: LoftStatus[] = ["available", "occupied", "maintenance"]
 
 export function LoftsList({ lofts, owners, zoneAreas, isAdmin }: LoftsListProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation(["common", "lofts"])
   const [statusFilter, setStatusFilter] = React.useState<string>("all")
   const [ownerFilter, setOwnerFilter] = React.useState<string>("all")
   const [zoneAreaFilter, setZoneAreaFilter] = React.useState<string>("all")

@@ -1,18 +1,11 @@
-"use client"
-
 import { requireRole } from "@/lib/auth"
 import { createClient } from "@/utils/supabase/server"
 import type { LoftOwner } from "@/lib/types"
-import { Button } from "@/components/ui/button"
-import { Plus } from "lucide-react"
-import Link from "next/link"
-import { OwnersList } from "./owners-list"
-import { useTranslation } from "react-i18next"
+import { OwnersWrapper } from "@/components/owners/owners-wrapper"
 
 export default async function OwnersPage() {
   const session = await requireRole(["admin"])
   const supabase = await createClient()
-  const { t } = useTranslation()
 
   const { data: ownersData, error } = await supabase
     .from("loft_owners")
@@ -46,21 +39,6 @@ export default async function OwnersPage() {
   }) as (LoftOwner & { loft_count: string; total_monthly_value: string })[]
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">{t('owners.title')}</h1>
-          <p className="text-muted-foreground">{t('owners.subtitle')}</p>
-        </div>
-        <Button asChild>
-          <Link href="/owners/new">
-            <Plus className="mr-2 h-4 w-4" />
-            {t('owners.addOwner')}
-          </Link>
-        </Button>
-      </div>
-
-      <OwnersList owners={owners} />
-    </div>
+    <OwnersWrapper owners={owners} />
   )
 }
