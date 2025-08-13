@@ -1,23 +1,4 @@
 {
-  "title": "الشقق",
-  "subtitle": "إدارة الممتلكات الخاصة بك وتفاصيلها",
-  "addLoft": "إضافة شقة",
-  "status.available": "متاح",
-  "status.occupied": "مشغول", 
-  "status.maintenance": "قيد الصيانة",
-  "filterByStatus": "تصفية حسب الحالة",
-  "filterByOwner": "تصفية حسب المالك",
-  "filterByZoneArea": "تصفية حسب المنطقة",
-  "allStatuses": "جميع الحالات",
-  "allOwners": "جميع المالكين",
-  "allZoneAreas": "جميع المناطق",
-  "dailyRent": "الإيجار اليومي",
-  "companyShare": "حصة الشركة",
-  "owner": "المالك",
-  "zoneArea": "المنطقة",
-  "unknown": "غير معروف",
-  "deleteConfirm": "هل أنت متأكد من حذف هذه الشقة؟",
-  "noLoftsMatch": "لا توجد شقق تطابق المعايير المحددة",
   "billingAlerts": "تنبيهات الفواتير",
   "billingAlertsDescription": "تكوين الترددات وتواريخ الاستحقاق لتتبع الفواتير تلقائيًا",
   "billingSections": {
@@ -71,6 +52,7 @@
   "nextPhoneBill": "فاتورة الهاتف التالية المستحقة",
   "nextTvBill": "فاتورة التلفزيون التالية المستحقة",
   "nextWaterBill": "فاتورة المياه التالية المستحقة",
+  "owner": "المالك",
   "ownerPercentage": "نسبة المالك",
   "phoneBillFrequency": "تكرار فاتورة الهاتف",
   "phoneNumber": "رقم الهاتف",
@@ -85,5 +67,6 @@
   "waterBillFrequency": "تكرار فاتورة المياه",
   "waterContractCode": "رمز عقد المياه",
   "waterCustomerCode": "رمز عميل المياه",
-  "waterMeterNumber": "رقم عداد المياه"
+  "waterMeterNumber": "رقم عداد المياه",
+  "zoneArea": "المنطقة"
 }

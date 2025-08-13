@@ -5,9 +5,12 @@ import { Button } from "@/components/ui/button"
 import { Plus, DollarSign } from "lucide-react"
 import Link from "next/link"
 import { TransactionsList } from "@/components/transactions/transactions-list"
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "@/lib/i18n/hooks/useTranslation"
 import { CreateForm } from "@/components/transactions/CreateForm"
 import { createTransaction } from "@/app/actions/transactions"
+import { DatePickerWithRange } from "@/components/ui/date-range-picker"
+import { DateRange } from "react-day-picker"
+import { format } from "date-fns"
 
 interface TransactionsPageClientProps {
   session: any
@@ -26,12 +29,24 @@ export function TransactionsPageClient({
   currencies,
   paymentMethods
 }: TransactionsPageClientProps) {
-  const { t } = useTranslation('transactions')
+  const { t } = useTranslation(["transactions", "common"])
   const [transactions, setTransactions] = useState<any[]>([])
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined)
 
   useEffect(() => {
-    setTransactions(initialTransactions)
-  }, [initialTransactions])
+    let filteredTransactions = initialTransactions
+    if (dateRange?.from) {
+      filteredTransactions = filteredTransactions.filter(
+        (transaction: any) => new Date(transaction.date) >= dateRange.from!
+      )
+    }
+    if (dateRange?.to) {
+      filteredTransactions = filteredTransactions.filter(
+        (transaction: any) => new Date(transaction.date) <= dateRange.to!
+      )
+    }
+    setTransactions(filteredTransactions)
+  }, [initialTransactions, dateRange])
 
   const handleCreateTransaction = async (data: any) => {
     try {
@@ -68,6 +83,10 @@ export function TransactionsPageClient({
           )}
         </div>
       </div>
+
+      <div className="flex items-center space-x-4">
+        <DatePickerWithRange value={dateRange} onChange={setDateRange} />
+      </div>
       
       {session.user.role === "admin" && (
         <CreateForm
@@ -86,8 +105,15 @@ export function TransactionsPageClient({
         currencies={currencies}
         paymentMethods={paymentMethods}
         isAdmin={session.user.role === "admin"}
-      />
+      >
+        {transactions.map((transaction: any) => (
+          <div key={transaction.id} className="transaction-item border p-4 rounded-md mb-2">
+            <div className="font-semibold">{transaction.description}</div>
+            <div>{new Date(transaction.date).toLocaleDateString()}</div>
+            <div>{transaction.type === 'expense' ? '-' : '+'}{transaction.amount.toLocaleString()} {transaction.currency}</div>
+          </div>
+        ))}
+      </TransactionsList>
     </div>
   )
 }
-

@@ -13,37 +13,12 @@
     "netIncome": "صافي الدخل",
     "paymentMethod": "طريقة الدفع",
     "referenceAmounts": "المبالغ المرجعية",
-    "subtitle": "تتبع جميع تحركاتك المالية، بما في ذلك الدخل والمصروفات.",
+    "subtitle": "تتبع جميع تحركاتك المالية، بما في ذلك الإيرادات والمصروفات.",
     "title": "المعاملات",
     "totalExpenses": "إجمالي المصروفات",
     "totalIncome": "إجمالي الدخل",
     "type": "النوع",
-    "overReference": {
-      "title": "المعاملات فوق المراجع",
-      "noTransactions": "لا توجد معاملات فوق المراجع",
-      "allWithinReference": "جميع المعاملات تتوافق مع المبالغ المرجعية",
-      "reference": "مرجع",
-      "loftNotSpecified": "الشقة غير محددة",
-      "categories": {
-        "maintenance": "الصيانة",
-        "cleaning": "التنظيف",
-        "repair": "الإصلاحات",
-        "plumbing": "السباكة",
-        "electrical": "الكهرباء",
-        "painting": "الطلاء",
-        "security": "الأمن",
-        "inspection": "التفتيش",
-        "utilities": "فواتير المرافق",
-        "insurance": "التأمين",
-        "taxes": "الضرائب والرسوم",
-        "supplies": "المستلزمات",
-        "rent": "الإيجار",
-        "deposit": "الودائع",
-        "late_fees": "رسوم التأخير",
-        "parking": "موقف السيارات",
-        "services": "الخدمات",
-        "other": "أخرى"
-      }
-    }
+    "startDate": "تاريخ البدء",
+    "endDate": "تاريخ الانتهاء"
   }
 }

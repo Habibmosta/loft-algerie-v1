@@ -1,4 +1,7 @@
 {
+  "actions": {
+    "save": ""
+  },
   "analytics": {
     "subtitle": "نظرة عامة مفصلة على عملياتك.",
     "title": "التحليلات"
@@ -39,30 +42,26 @@
     "welcomeBack": "مرحبا بعودتك"
   },
   "bills": {
-    "add_bill": "إضافة فاتورة",
-    "bill_details": "تفاصيل الفاتورة",
     "dayOverdue": "متأخرة يوم واحد",
     "days": "أيام",
-    "daysOverdue": "متأخرة {{count}} أيام",
-    "delete_bill": "حذف الفاتورة",
+    "daysOverdue_zero": "",
+    "daysOverdue_one": "",
+    "daysOverdue_two": "",
+    "daysOverdue_few": "",
+    "daysOverdue_many": "",
+    "daysOverdue_other": "",
     "due": "مستحق",
     "dueToday": "مستحقة اليوم",
     "dueTomorrow": "مستحقة غداً",
-    "edit_bill": "تعديل الفاتورة",
     "failedToLoadAlerts": "فشل تحميل تنبيهات الفواتير.",
     "markPaid": "وضع علامة كمدفوعة",
     "noOverdueBills": "لا توجد فواتير متأخرة.",
     "noUpcomingBills": "لا توجد فواتير قادمة.",
     "overdueBills": "الفواتير المتأخرة",
-    "subtitle": "إدارة فواتيرك هنا.",
-    "title": "الفواتير",
-    "upcomingBills": "الفواتير القادمة",
-    "utilities.eau": "ماء",
-    "utilities.energie": "طاقة",
-    "utilities.internet": "إنترنت",
-    "utilities.telephone": "هاتف"
+    "upcomingBills": "الفواتير القادمة"
   },
   "cancel": "إلغاء",
+  "comingSoon": "",
   "common": {
     "actions": "الإجراءات",
     "add": "إضافة",
@@ -72,13 +71,22 @@
     "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا العنصر؟",
     "copyId": "نسخ المعرف",
     "create": "إنشاء",
+    "currencies": {
+      "da": ""
+    },
     "delete": "حذف",
     "edit": "تعديل",
     "error": "خطأ",
     "loading": "جار التحميل...",
+    "lofts": {
+      "linkToAirbnb": ""
+    },
     "name": "الاسم",
     "no": "لا",
     "none": "لا شيء",
+    "owners": {
+      "ownershipType": ""
+    },
     "pickDate": "اختر تاريخًا",
     "pickDateRange": "اختر نطاقًا زمنيًا",
     "ratio": "النسبة",
@@ -86,10 +94,10 @@
     "save": "حفظ",
     "saving": "جار الحفظ...",
     "selectOption": "اختر خيارًا",
+    "status": "الحالة",
     "submit": "إرسال",
     "success": "نجاح",
     "symbol": "الرمز",
-    "status": "الحالة",
     "view": "عرض",
     "yes": "نعم"
   },
@@ -176,7 +184,7 @@
     "noUrgentTasks": "لا توجد مهام عاجلة",
     "occupiedLofts": "الشقق المشغولة",
     "overdue": "متأخر",
-    "pendingTasks": "المهام المعلقة",
+    "pendingTasks": "{{todo}} مهام للقيام بها، {{inProgress}} قيد التنفيذ",
     "quickActions": "إجراءات سريعة",
     "recentTasks": "المهام الأخيرة",
     "revenue": "الإيرادات",
@@ -196,9 +204,10 @@
     "urgentTasks": "مهام عاجلة",
     "viewAllMyTasks": "عرض كل مهامي",
     "viewMyTasks": "عرض مهامي",
-    "welcomeBack": "مرحبا بعودتك",
-    "pendingTasks": "{{todo}} مهام للقيام بها، {{inProgress}} قيد التنفيذ"
+    "welcomeBack": "مرحبا بعودتك"
   },
+  "date": "تاريخ",
+  "enterprise": "",
   "executive": {
     "accessDenied": "الوصول مرفوض",
     "accessDeniedDesc": "ليس لديك الأذونات المطلوبة للوصول إلى هذه الصفحة.",
@@ -297,6 +306,8 @@
     "subtitle": "منصة إدارة العقارات المهنية",
     "title": "لوفت الجزائر"
   },
+  "list": "",
+  "loading": "",
   "lofts": {
     "addLoft": "إضافة شقة",
     "addNewPropertyListing": "إضافة قائمة عقارات جديدة",
@@ -336,6 +347,8 @@
     "loftCreatedSuccess": "",
     "loftCreatedSuccessDescription": "",
     "loftCreateError": "",
+    "loftDescription": "",
+    "loftInfoTitle": "",
     "loftName": "",
     "loftUpdated": "",
     "noLoftsMatch": "لا توجد شقق تطابق الفلاتر",
@@ -347,11 +360,9 @@
     "systemErrorDescription": "",
     "title": "الشقق",
     "unknown": "غير معروف",
+    "updateLoft": "",
     "updatePropertyDetails": "تحديث تفاصيل العقار",
-    "zoneArea": "المنطقة",
-    "status.available": "متاح",
-    "status.occupied": "مشغول",
-    "status.maintenance": "قيد الصيانة"
+    "zoneArea": "المنطقة"
   },
   "nav": {
     "application": "التطبيق",
@@ -373,8 +384,10 @@
     "transactions": "المعاملات",
     "zoneAreas": "المناطق"
   },
+  "next": "التالي",
   "notifications": {
     "newMessageFrom": "رسالة جديدة من",
+    "title": "",
     "viewMembers": "عرض الأعضاء"
   },
   "owners": {
@@ -430,6 +443,12 @@
     "updatePaymentMethod": "تحديث طريقة الدفع",
     "updatePaymentMethodInfo": "تحديث معلومات طريقة الدفع"
   },
+  "previous": "السابق",
+  "pwa": {
+    "install": "تثبيت",
+    "installDescription": "قم بتثبيت التطبيق للوصول السريع وتجربة أفضل",
+    "installTitle": "تثبيت لوفت الجزائر"
+  },
   "reports": {
     "customRange": "نطاق مخصص",
     "dateRange": "نطاق التاريخ",
@@ -444,58 +463,6 @@
     "thisQuarter": "هذا الربع",
     "thisWeek": "هذا الأسبوع",
     "thisYear": "هذه السنة"
-  },
-  "reservations": {
-    "activities": {
-      "bookingCancelled": "تم إلغاء الحجز",
-      "checkinCompleted": "اكتمل تسجيل الوصول",
-      "hourAgo": "قبل ساعة",
-      "hoursAgo": "قبل {{count}} ساعات",
-      "minAgo": "قبل {{count}} دقائق",
-      "newReservation": "حجز جديد"
-    },
-    "analytics": {
-      "guestSatisfaction": "رضا الضيوف",
-      "monthlyRevenue": "الإيرادات الشهرية",
-      "occupancyRate": "معدل الإشغال",
-      "title": "التحليلات",
-      "totalReservations": "إجمالي الحجوزات",
-      "vsLastMonth": "مقابل الشهر الماضي"
-    },
-    "availabilityManagement": "إدارة التوافر",
-    "calendar": {
-      "title": "التقويم"
-    },
-    "create": "إنشاء",
-    "description": "إدارة حجوزاتك.",
-    "details": {
-      "dates": "التواريخ",
-      "guest": "الضيف",
-      "loft": "الشقة",
-      "specialRequests": "طلبات خاصة",
-      "title": "التفاصيل",
-      "total": "الإجمالي"
-    },
-    "form": {
-      "title": "نموذج الحجز"
-    },
-    "list": {
-      "title": "قائمة الحجوزات"
-    },
-    "liveView": "عرض مباشر",
-    "manageGuests": "إدارة الضيوف",
-    "newReservation": "حجز جديد",
-    "nights": "ليالٍ",
-    "proTools": "أدوات احترافية",
-    "quickActions": "إجراءات سريعة",
-    "recentActivity": "النشاط الأخير",
-    "tabs": {
-      "analytics": "التحليلات",
-      "calendar": "التقويم",
-      "list": "القائمة"
-    },
-    "title": "الحجوزات",
-    "viewReports": "عرض التقارير"
   },
   "selectOption": "اختر خيارًا",
   "settings": {
@@ -553,8 +520,7 @@
       "totalCurrencies_two": "عملتان",
       "totalCurrencies_few": "{{count}} عملات",
       "totalCurrencies_many": "{{count}} عملات",
-      "totalCurrencies_other": "{{count}} عملات",
-      "da": "دج"
+      "totalCurrencies_other": "{{count}} عملات"
     },
     "currentPassword": "كلمة المرور الحالية",
     "dataExport": "تصدير البيانات",
@@ -709,15 +675,9 @@
     "volumeUp": "تأكد من رفع مستوى صوت نظامك.",
     "warningSound": ""
   },
-  "testTranslations": {
-    "arabic": "العربية",
-    "currentLanguage": "اللغة الحالية",
-    "english": "الإنجليزية",
-    "french": "الفرنسية",
-    "testedTranslations": "الترجمات المختبرة",
-    "title": "اختبار الترجمات"
-  },
+  "time": "زمن",
   "title": "لوفت الجزائر",
+  "today": "اليوم",
   "transactions": {
     "addCategory": "إضافة فئة",
     "addError": "خطأ في إضافة المعاملة.",
@@ -738,8 +698,6 @@
     "createTransaction": "إنشاء معاملة",
     "currency": "العملة",
     "date": "التاريخ",
-    "deleteConfirmDescription": "لا يمكن التراجع عن هذا الإجراء. سيؤدي هذا إلى حذف المعاملة بشكل دائم.",
-    "deleteConfirmTitle": "هل أنت متأكد؟",
     "description": "الوصف",
     "editTransaction": "تعديل المعاملة",
     "endDate": "تاريخ الانتهاء",
@@ -763,6 +721,13 @@
     "netIncome": "صافي الدخل",
     "noTransactions": "لم يتم العثور على معاملات.",
     "optional": "اختياري",
+    "overReference": {
+      "allWithinReference": "",
+      "loftNotSpecified": "",
+      "noTransactions": "",
+      "reference": "",
+      "title": ""
+    },
     "paymentMethod": "طريقة الدفع",
     "pending": "قيد الانتظار",
     "ratio": "النسبة",
@@ -802,9 +767,5 @@
     "zoneAreaName": "اسم المنطقة",
     "zoneDetails": "تفاصيل المنطقة"
   },
-  "pwa": {
-    "installTitle": "تثبيت لوفت الجزائر",
-    "installDescription": "قم بتثبيت التطبيق للوصول السريع وتجربة أفضل",
-    "install": "تثبيت"
-  }
+  "perMonth": "/شهريا"
 }

@@ -1,60 +1,7 @@
 {
-  "title": "لوحة التحكم التنفيذية",
-  "subtitle": "نظرة عامة على الأداء العام للشركة",
-  "kpis": {
-    "total_revenue": "إجمالي الإيرادات",
-    "total_bookings": "إجمالي الحجوزات",
-    "avg_booking_value": "متوسط قيمة الحجز",
-    "occupancy_rate": "معدل الإشغال"
-  },
-  "charts": {
-    "revenue_by_property": "الإيرادات حسب العقار",
-    "bookings_by_channel": "الحجوزات حسب القناة"
-  },
-  "filters": {
-    "date_range": "نطاق التاريخ",
-    "property": "العقار",
-    "channel": "القناة"
-  },
-  "accessDenied": "الوصول مرفوض",
-  "accessDeniedDesc": "ليس لديك الأذونات اللازمة للوصول إلى هذه الصفحة. يرجى الاتصال بالمسؤول.",
-  "activeAlerts": "التنبيهات النشطة",
-  "averagePrice": "متوسط السعر",
-  "cashFlow": "التدفق النقدي",
-  "companyRevenue": "إيرادات الشركة",
-  "companyShare": "حصة الشركة",
-  "confidential": "سري",
-  "criticalAlerts": "تنبيهات حرجة",
-  "executiveLevelRequired": "المستوى التنفيذي مطلوب",
-  "executiveOnly": "وصول حصري للمديرين التنفيذيين",
-  "expenses": "المصروفات",
-  "financialTrends": "الاتجاهات المالية",
-  "financialTrendsDesc": "تصور اتجاهات الإيرادات والمصروفات مع مرور الوقت.",
-  "growth": "النمو",
-  "maintenanceCosts": "تكاليف الصيانة",
-  "margin": "الهامش",
-  "monthlyCashFlow": "التدفق النقدي الشهري",
-  "netProfit": "صافي الربح",
-  "occupancyRate": "معدل الإشغال",
-  "onTotalRevenue": "من إجمالي الإيرادات",
-  "profit": "الربح",
-  "realEstatePortfolio": "المحفظة العقارية",
-  "revenue": "الإيرادات",
-  "revenueDistribution": "توزيع الإيرادات",
-  "revenueDistributionDesc": "فهم مصدر إيراداتك.",
-  "secured": "مؤمن",
-  "security": "الأمان",
-  "systemStatus": "حالة النظام",
-  "thirdPartyRevenue": "إيرادات الطرف الثالث",
-  "totalLofts": "إجمالي الشقق",
-  "totalRevenue": "إجمالي الإيرادات",
-  "trend": "الاتجاه",
-  "vsLastMonth": "مقارنة بالشهر الماضي",
-  "yearOverYearDesc": "قارن أداء السنة الحالية بالسنة السابقة.",
-  "yearOverYearPerformance": "الأداء السنوي",
   "alerts": {
+    "resolve": "حل",
     "resolved": "تم حل التنبيه بنجاح",
-    "resolveError": "خطأ في حل التنبيه",
-    "resolve": "حل"
+    "resolveError": "خطأ في حل التنبيه"
   }
 }

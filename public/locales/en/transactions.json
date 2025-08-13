@@ -17,33 +17,6 @@
     "title": "Transactions",
     "totalExpenses": "Total Expenses",
     "totalIncome": "Total Income",
-    "type": "Type",
-    "overReference": {
-      "title": "Transactions Above References",
-      "noTransactions": "No transactions above references",
-      "allWithinReference": "All transactions comply with reference amounts",
-      "reference": "Ref",
-      "loftNotSpecified": "Loft not specified",
-      "categories": {
-        "maintenance": "Maintenance",
-        "cleaning": "Cleaning",
-        "repair": "Repairs",
-        "plumbing": "Plumbing",
-        "electrical": "Electrical",
-        "painting": "Painting",
-        "security": "Security",
-        "inspection": "Inspections",
-        "utilities": "Utility Bills",
-        "insurance": "Insurance",
-        "taxes": "Taxes and Duties",
-        "supplies": "Supplies",
-        "rent": "Rent",
-        "deposit": "Deposits",
-        "late_fees": "Late Fees",
-        "parking": "Parking",
-        "services": "Services",
-        "other": "Other"
-      }
-    }
+    "type": "Type"
   }
 }

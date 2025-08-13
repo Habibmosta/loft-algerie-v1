@@ -1,18 +1,24 @@
 {
+  "amount": "المبلغ",
+  "cancel": "إلغاء",
+  "description": "الوصف",
+  "descriptionPlaceholder": "أدخل وصف الفاتورة",
   "due": "مستحق",
-  "failedToLoadAlerts": "فشل تحميل تنبيهات الفواتير.",
-  "markPaid": "وضع علامة كمدفوعة",
-  "noOverdueBills": "لا توجد فواتير متأخرة.",
-  "noUpcomingBills": "لا توجد فواتير قادمة.",
-  "overdueBills": "الفواتير المتأخرة",
-  "upcomingBills": "الفواتير القادمة",
-  "dueToday": "تستحق اليوم",
-  "dayOverdue": "متأخرة يوم واحد",
-  "dueTomorrow": "تستحق غدا",
-  "daysOverdue": "متأخرة {{count}} أيام",
-  "days": "أيام",
-  "utilities.eau": "ماء",
-  "utilities.energie": "طاقة",
-  "utilities.telephone": "هاتف",
-  "utilities.internet": "إنترنت"
+  "errorMessage": "فشل تسجيل الدفعة. يرجى المحاولة مرة أخرى.",
+  "paymentDate": "تاريخ الدفع",
+  "paymentMethod": "طريقة الدفع",
+  "recording": "جاري التسجيل...",
+  "recordPayment": "تسجيل الدفعة",
+  "selectPaymentMethod": "اختر طريقة الدفع",
+  "successMessage": "تم تسجيل الدفعة بنجاح.",
+  "title": "الفواتير",
+  "utilities": {
+    "eau": "فاتورة الماء",
+    "energie": "فاتورة الكهرباء",
+    "telephone": "فاتورة الهاتف",
+    "internet": "فاتورة الإنترنت"
+  },
+  "paymentModal": {
+    "title": "تسجيل دفعة"
+  }
 }

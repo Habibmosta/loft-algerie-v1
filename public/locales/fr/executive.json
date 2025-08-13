@@ -1,60 +1,7 @@
 {
-  "title": "Tableau de Bord Exécutif",
-  "subtitle": "Aperçu de la performance globale de l'entreprise",
-  "kpis": {
-    "total_revenue": "Revenu Total",
-    "total_bookings": "Total des Réservations",
-    "avg_booking_value": "Valeur Moy. des Réservations",
-    "occupancy_rate": "Taux d'Occupation"
-  },
-  "charts": {
-    "revenue_by_property": "Revenu par Propriété",
-    "bookings_by_channel": "Réservations par Canal"
-  },
-  "filters": {
-    "date_range": "Plage de Dates",
-    "property": "Propriété",
-    "channel": "Canal"
-  },
-  "accessDenied": "Accès Refusé",
-  "accessDeniedDesc": "Vous n'avez pas les autorisations nécessaires pour accéder à cette page. Veuillez contacter votre administrateur.",
-  "activeAlerts": "Alertes Actives",
-  "averagePrice": "Prix Moyen",
-  "cashFlow": "Flux de Trésorerie",
-  "companyRevenue": "Revenu de l'Entreprise",
-  "companyShare": "Part de l'Entreprise",
-  "confidential": "Confidentiel",
-  "criticalAlerts": "Alertes Critiques",
-  "executiveLevelRequired": "Niveau Exécutif Requis",
-  "executiveOnly": "Accès Exécutif Uniquement",
-  "expenses": "Dépenses",
-  "financialTrends": "Tendances Financières",
-  "financialTrendsDesc": "Visualisez les tendances des revenus et des dépenses au fil du temps.",
-  "growth": "Croissance",
-  "maintenanceCosts": "Coûts de Maintenance",
-  "margin": "Marge",
-  "monthlyCashFlow": "Flux de Trésorerie Mensuel",
-  "netProfit": "Bénéfice Net",
-  "occupancyRate": "Taux d'Occupation",
-  "onTotalRevenue": "sur le revenu total",
-  "profit": "Bénéfice",
-  "realEstatePortfolio": "Portefeuille Immobilier",
-  "revenue": "Revenu",
-  "revenueDistribution": "Distribution des Revenus",
-  "revenueDistributionDesc": "Comprenez d'où proviennent vos revenus.",
-  "secured": "Sécurisé",
-  "security": "Sécurité",
-  "systemStatus": "État du Système",
-  "thirdPartyRevenue": "Revenu Tiers",
-  "totalLofts": "Total des Lofts",
-  "totalRevenue": "Revenu Total",
-  "trend": "Tendance",
-  "vsLastMonth": "vs le mois dernier",
-  "yearOverYearDesc": "Comparez la performance de l'année en cours avec l'année précédente.",
-  "yearOverYearPerformance": "Performance d'une Année sur l'Autre",
   "alerts": {
+    "resolve": "Résoudre",
     "resolved": "Alerte résolue avec succès",
-    "resolveError": "Erreur lors de la résolution de l'alerte",
-    "resolve": "Résoudre"
+    "resolveError": "Erreur lors de la résolution de l'alerte"
   }
 }

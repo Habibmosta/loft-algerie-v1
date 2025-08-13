@@ -1,4 +1,4 @@
-export function getOptions(lng = 'ar', ns = ['common', 'bills', 'lofts']) {
+export function getOptions(lng = 'ar', ns = ['common', 'bills', 'lofts', 'owners', 'dashboard']) {
   return {
     debug: true,
     supportedLngs: ['en', 'fr', 'ar'],

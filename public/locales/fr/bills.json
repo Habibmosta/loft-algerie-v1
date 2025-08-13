@@ -1,18 +1,24 @@
 {
-  "due": "Dû",
-  "failedToLoadAlerts": "Échec du chargement des alertes de facturation.",
-  "markPaid": "Marquer comme payée",
-  "noOverdueBills": "Aucune facture en retard.",
-  "noUpcomingBills": "Aucune facture à venir.",
-  "overdueBills": "Factures en retard",
-  "upcomingBills": "Factures à venir",
-  "dueToday": "Dû aujourd'hui",
-  "dayOverdue": "En retard de 1 jour",
-  "dueTomorrow": "Dû demain",
-  "daysOverdue": "En retard de {{count}} jours",
-  "days": "jours",
-  "utilities.eau": "Eau",
-  "utilities.energie": "Énergie",
-  "utilities.telephone": "Téléphone",
-  "utilities.internet": "Internet"
+  "amount": "Montant",
+  "cancel": "Annuler",
+  "description": "Description",
+  "descriptionPlaceholder": "Saisir la description de la facture",
+  "due": "Échéance",
+  "errorMessage": "Échec de l'enregistrement du paiement. Veuillez réessayer.",
+  "paymentDate": "Date de paiement",
+  "paymentMethod": "Méthode de paiement",
+  "recording": "Enregistrement...",
+  "recordPayment": "Enregistrer le paiement",
+  "selectPaymentMethod": "Sélectionner la méthode de paiement",
+  "successMessage": "Paiement enregistré avec succès.",
+  "title": "Factures",
+  "utilities": {
+    "eau": "Facture d'eau",
+    "energie": "Facture d'électricité",
+    "telephone": "Facture de téléphone",
+    "internet": "Facture d'Internet"
+  },
+  "paymentModal": {
+    "title": "Enregistrer le paiement"
+  }
 }

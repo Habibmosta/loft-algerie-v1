@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/lib/i18n/context'; // Changed from 'react-i18next' to use the custom context
 import { Calendar, Ban, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
 import { blockDates, unblockDates } from '@/lib/actions/reservations';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -29,7 +29,7 @@ export default function AvailabilityManager({
   selectedLoftId,
   onUpdate,
 }: AvailabilityManagerProps) {
-  const { t } = useTranslation('reservations');
+  const { t, i18n } = useTranslation('reservations');
   const [isPending, startTransition] = useTransition();
   const [mode, setMode] = useState<'block' | 'unblock'>('block');
   
@@ -54,7 +54,7 @@ export default function AvailabilityManager({
       <CardHeader className="bg-gradient-to-r from-purple-600 to-pink-600 text-white">
         <CardTitle className="flex items-center gap-2">
           <Calendar className="h-5 w-5" />
-          {t('reservations.availability.management')}
+          {t('reservations:availability.management')}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-6">
@@ -66,7 +66,7 @@ export default function AvailabilityManager({
               className="flex items-center gap-2"
             >
               <Ban className="h-4 w-4" />
-              {t('reservations.availability.blockDates')}
+              {t('reservations:availability.blockDates')}
             </Button>
             <Button
               variant={mode === 'unblock' ? 'default' : 'outline'}
@@ -74,7 +74,7 @@ export default function AvailabilityManager({
               className="flex items-center gap-2"
             >
               <CheckCircle className="h-4 w-4" />
-              {t('reservations.availability.unblockDates')}
+              {t('reservations:availability.unblockDates')}
             </Button>
           </div>
 
@@ -98,10 +98,10 @@ export default function AvailabilityManager({
             <form action={handleBlockSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="loft_id">{t('reservations.availability.selectLoft')}</Label>
+                  <Label htmlFor="loft_id">{t('reservations:availability.selectLoft')}</Label>
                   <Select name="loft_id" defaultValue={selectedLoftId} required>
                     <SelectTrigger>
-                      <SelectValue placeholder={t('reservations.availability.chooseLoft')} />
+                      <SelectValue placeholder={t('reservations:availability.chooseLoft')} />
                     </SelectTrigger>
                     <SelectContent>
                       {lofts.map((loft) => (
@@ -114,16 +114,16 @@ export default function AvailabilityManager({
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="blocked_reason">{t('reservations.availability.reasonForBlocking')}</Label>
+                  <Label htmlFor="blocked_reason">{t('reservations:availability.reasonForBlocking')}</Label>
                   <Select name="blocked_reason" required>
                     <SelectTrigger>
-                      <SelectValue placeholder={t('reservations.availability.selectReason')} />
+                      <SelectValue placeholder={t('reservations:availability.selectReason')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="maintenance">{t('reservations.availability.maintenance')}</SelectItem>
-                      <SelectItem value="personal_use">{t('reservations.availability.personalUse')}</SelectItem>
-                      <SelectItem value="renovation">{t('reservations.availability.renovation')}</SelectItem>
-                      <SelectItem value="other">{t('reservations.availability.other')}</SelectItem>
+                      <SelectItem value="maintenance">{t('reservations:availability.maintenance')}</SelectItem>
+                      <SelectItem value="personal_use">{t('reservations:availability.personalUse')}</SelectItem>
+                      <SelectItem value="renovation">{t('reservations:availability.renovation')}</SelectItem>
+                      <SelectItem value="other">{t('reservations:availability.other')}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -131,7 +131,7 @@ export default function AvailabilityManager({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="start_date">{t('reservations.availability.startDate')}</Label>
+                  <Label htmlFor="start_date">{t('reservations:availability.startDate')}</Label>
                   <Input
                     type="date"
                     name="start_date"
@@ -141,7 +141,7 @@ export default function AvailabilityManager({
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="end_date">{t('reservations.availability.endDate')}</Label>
+                  <Label htmlFor="end_date">{t('reservations:availability.endDate')}</Label>
                   <Input
                     type="date"
                     name="end_date"
@@ -153,18 +153,18 @@ export default function AvailabilityManager({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="price_override">{t('reservations.availability.priceOverride')}</Label>
+                  <Label htmlFor="price_override">{t('reservations:availability.priceOverride')}</Label>
                   <Input
                     type="number"
                     name="price_override"
                     step="0.01"
                     min="0"
-                    placeholder={t('reservations.availability.priceOverridePlaceholder')}
+                    placeholder={t('reservations:availability.priceOverridePlaceholder')}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="minimum_stay">{t('reservations.availability.minimumStay')}</Label>
+                  <Label htmlFor="minimum_stay">{t('reservations:availability.minimumStay', { count: 1 })}</Label>
                   <Input
                     type="number"
                     name="minimum_stay"
@@ -184,7 +184,7 @@ export default function AvailabilityManager({
                 ) : (
                   <Ban className="h-4 w-4" />
                 )}
-                {t('reservations.availability.blockDates')}
+                {t('reservations:availability.blockDates')}
               </Button>
             </form>
           )}
@@ -193,10 +193,10 @@ export default function AvailabilityManager({
           {mode === 'unblock' && (
             <form action={handleUnblockSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="loft_id">{t('reservations.availability.selectLoft')}</Label>
+                <Label htmlFor="loft_id">{t('reservations:availability.selectLoft')}</Label>
                 <Select name="loft_id" defaultValue={selectedLoftId} required>
                   <SelectTrigger>
-                    <SelectValue placeholder={t('reservations.availability.chooseLoft')} />
+                    <SelectValue placeholder={t('reservations:availability.chooseLoft')} />
                   </SelectTrigger>
                   <SelectContent>
                     {lofts.map((loft) => (
@@ -210,7 +210,7 @@ export default function AvailabilityManager({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="start_date">{t('reservations.availability.startDate')}</Label>
+                  <Label htmlFor="start_date">{t('reservations:availability.startDate')}</Label>
                   <Input
                     type="date"
                     name="start_date"
@@ -220,7 +220,7 @@ export default function AvailabilityManager({
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="end_date">{t('reservations.availability.endDate')}</Label>
+                  <Label htmlFor="end_date">{t('reservations:availability.endDate')}</Label>
                   <Input
                     type="date"
                     name="end_date"
@@ -240,7 +240,7 @@ export default function AvailabilityManager({
                 ) : (
                   <CheckCircle className="h-4 w-4" />
                 )}
-                {t('reservations.availability.unblockDates')}
+                {t('reservations:availability.unblockDates')}
               </Button>
             </form>
           )}

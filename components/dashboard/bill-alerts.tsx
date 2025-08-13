@@ -9,7 +9,6 @@ import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
 import { BillPaymentModal } from "@/components/modals/bill-payment-modal";
 import { useTranslation } from "@/lib/i18n/context";
-import { markBillAsPaid as markBillAsPaidAction } from "@/app/actions/bill-notifications";
 
 interface BillAlert {
   loft_id: string;
@@ -22,13 +21,20 @@ interface BillAlert {
   days_overdue?: number;
 }
 
-type UtilityType = keyof typeof UTILITY_LABELS;
-
-const UTILITY_LABELS = {
-  eau: "bills.utilities.eau",
-  energie: "bills.utilities.energie",
-  telephone: "bills.utilities.telephone",
-  internet: "bills.utilities.internet",
+const getUtilityLabel = (utilityType: string, t: any) => {
+  console.log("getUtilityLabel: utilityType =", utilityType);
+  switch (utilityType) {
+    case "eau":
+      return t("bills:utilities.eau");
+    case "energie":
+      return t("bills:utilities.energie");
+    case "telephone":
+      return t("bills:utilities.telephone");
+    case "internet":
+      return t("bills:utilities.internet");
+    default:
+      return utilityType;
+  }
 };
 
 const UTILITY_COLORS = {
@@ -39,7 +45,7 @@ const UTILITY_COLORS = {
 };
 
 export function BillAlerts() {
-  const { t } = useTranslation(["common", "bills"]);
+  const { t } = useTranslation(["common", "bills", "dashboard"]);
   const [upcomingBills, setUpcomingBills] = useState<BillAlert[]>([]);
   const [overdueBills, setOverdueBills] = useState<BillAlert[]>([]);
   const [loading, setLoading] = useState(true);
@@ -90,11 +96,6 @@ export function BillAlerts() {
     setIsModalOpen(true);
   };
 
-  const handlePayBill = (bill: BillAlert) => {
-    setSelectedBill(bill);
-    setIsModalOpen(true);
-  };
-
   const handlePaymentSuccess = () => {
     fetchBillAlerts(); // Refresh the alerts after successful payment
   };
@@ -135,7 +136,7 @@ export function BillAlerts() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-xl font-bold">
               <Clock className="h-5 w-5" />
               {t("bills.upcomingBills")}
             </CardTitle>
@@ -150,7 +151,7 @@ export function BillAlerts() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-xl font-bold">
               <AlertTriangle className="h-5 w-5" />
               {t("bills.overdueBills")}
             </CardTitle>
@@ -172,7 +173,7 @@ export function BillAlerts() {
       {/* Upcoming Bills */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-xl font-bold">
             <Clock className="h-5 w-5" />
             {t("bills.upcomingBills")} ({upcomingBills.length})
           </CardTitle>
@@ -195,7 +196,7 @@ export function BillAlerts() {
                     <div>
                       <div className="font-medium">{bill.loft_name}</div>
                       <div className="text-sm text-gray-600">
-                        {t(UTILITY_LABELS[bill.utility_type as UtilityType])} -
+                        {getUtilityLabel(bill.utility_type, t)} -{" "}
                         {t("bills.due")}:{" "}
                         {new Date(bill.due_date).toLocaleDateString()}
                       </div>
@@ -230,7 +231,7 @@ export function BillAlerts() {
       {/* Overdue Bills */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-xl font-bold">
             <AlertTriangle className="h-5 w-5 text-red-500" />
             {t("bills.overdueBills")} ({overdueBills.length})
           </CardTitle>
@@ -253,7 +254,7 @@ export function BillAlerts() {
                     <div>
                       <div className="font-medium">{bill.loft_name}</div>
                       <div className="text-sm text-gray-600">
-                        {t(UTILITY_LABELS[bill.utility_type as UtilityType])} -
+                        {getUtilityLabel(bill.utility_type, t)} -{" "}
                         {t("bills.due")}:{" "}
                         {new Date(bill.due_date).toLocaleDateString()}
                       </div>
@@ -283,7 +284,7 @@ export function BillAlerts() {
           onClose={() => setIsModalOpen(false)}
           loftId={selectedBill.loft_id}
           loftName={selectedBill.loft_name}
-          utilityType={selectedBill.utility_type as UtilityType}
+          utilityType={selectedBill.utility_type}
           dueDate={selectedBill.due_date}
           onSuccess={handlePaymentSuccess}
         />

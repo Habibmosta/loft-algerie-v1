@@ -1,4 +1,7 @@
 {
+  "actions": {
+    "save": "actions.save"
+  },
   "analytics": {
     "subtitle": "Detailed overview of your operations.",
     "title": "Analytics"
@@ -39,30 +42,22 @@
     "welcomeBack": "Welcome Back"
   },
   "bills": {
-    "add_bill": "Add Bill",
-    "bill_details": "Bill Details",
     "dayOverdue": "1 day overdue",
     "days": "days",
-    "daysOverdue": "{{count}} days overdue",
-    "delete_bill": "Delete Bill",
+    "daysOverdue_one": "bills.daysOverdue",
+    "daysOverdue_other": "bills.daysOverdue",
     "due": "Due",
     "dueToday": "Due today",
     "dueTomorrow": "Due tomorrow",
-    "edit_bill": "Edit Bill",
     "failedToLoadAlerts": "Failed to load billing alerts.",
     "markPaid": "Mark as Paid",
     "noOverdueBills": "No overdue bills.",
     "noUpcomingBills": "No upcoming bills.",
     "overdueBills": "Overdue Bills",
-    "subtitle": "Manage your bills here.",
-    "title": "Bills",
-    "upcomingBills": "Upcoming Bills",
-    "utilities.eau": "Water",
-    "utilities.energie": "Energy",
-    "utilities.internet": "Internet",
-    "utilities.telephone": "Phone"
+    "upcomingBills": "Upcoming Bills"
   },
   "cancel": "Cancel",
+  "comingSoon": "comingSoon",
   "common": {
     "actions": "Actions",
     "add": "Add",
@@ -72,13 +67,22 @@
     "confirmDelete": "Are you sure you want to delete this item?",
     "copyId": "Copy ID",
     "create": "Create",
+    "currencies": {
+      "da": "common.currencies.da"
+    },
     "delete": "Delete",
     "edit": "Edit",
     "error": "Error",
     "loading": "Loading...",
+    "lofts": {
+      "linkToAirbnb": "common.lofts.linkToAirbnb"
+    },
     "name": "Name",
     "no": "No",
     "none": "None",
+    "owners": {
+      "ownershipType": "common.owners.ownershipType"
+    },
     "pickDate": "Pick a date",
     "pickDateRange": "Pick date range",
     "ratio": "Ratio",
@@ -86,10 +90,10 @@
     "save": "Save",
     "saving": "Saving...",
     "selectOption": "Select an option",
+    "status": "Status",
     "submit": "Submit",
     "success": "Success",
     "symbol": "Symbol",
-    "status": "Status",
     "view": "View",
     "yes": "Yes"
   },
@@ -176,7 +180,7 @@
     "noUrgentTasks": "No urgent tasks",
     "occupiedLofts": "Occupied Lofts",
     "overdue": "Overdue",
-    "pendingTasks": "Pending Tasks",
+    "pendingTasks": "{{todo}} tasks to do, {{inProgress}} in progress",
     "quickActions": "Quick Actions",
     "recentTasks": "Recent Tasks",
     "revenue": "Revenue",
@@ -196,9 +200,10 @@
     "urgentTasks": "Urgent Tasks",
     "viewAllMyTasks": "View all my tasks",
     "viewMyTasks": "View my tasks",
-    "welcomeBack": "Welcome Back",
-    "pendingTasks": "{{todo}} tasks to do, {{inProgress}} in progress"
+    "welcomeBack": "Welcome Back"
   },
+  "date": "date",
+  "enterprise": "enterprise",
   "executive": {
     "accessDenied": "Access Denied",
     "accessDeniedDesc": "You do not have the required permissions to access this page.",
@@ -297,6 +302,8 @@
     "subtitle": "Professional Property Management Platform",
     "title": "Loft Algerie"
   },
+  "list": "list",
+  "loading": "loading",
   "lofts": {
     "addLoft": "Add Loft",
     "addNewPropertyListing": "Add New Property Listing",
@@ -322,7 +329,7 @@
     "deleteSuccessDescription": "lofts.deleteSuccessDescription",
     "deletingDescription": "lofts.deletingDescription",
     "deletingInProgress": "lofts.deletingInProgress",
-    "editLoft": "lofts.editLoft",
+    "editLoft": "",
     "errorCreatingLoft": "lofts.errorCreatingLoft",
     "errorCreatingLoftDescription": "lofts.errorCreatingLoftDescription",
     "filterByOwner": "Filter by Owner",
@@ -336,6 +343,8 @@
     "loftCreatedSuccess": "lofts.loftCreatedSuccess",
     "loftCreatedSuccessDescription": "lofts.loftCreatedSuccessDescription",
     "loftCreateError": "lofts.loftCreateError",
+    "loftDescription": "lofts.loftDescription",
+    "loftInfoTitle": "lofts.loftInfoTitle",
     "loftName": "lofts.loftName",
     "loftUpdated": "lofts.loftUpdated",
     "noLoftsMatch": "No lofts match filters",
@@ -347,11 +356,9 @@
     "systemErrorDescription": "lofts.systemErrorDescription",
     "title": "Lofts",
     "unknown": "Unknown",
+    "updateLoft": "lofts.updateLoft",
     "updatePropertyDetails": "Update Property Details",
-    "zoneArea": "Zone Area",
-    "status.available": "Available",
-    "status.occupied": "Occupied",
-    "status.maintenance": "Maintenance"
+    "zoneArea": "Zone Area"
   },
   "nav": {
     "application": "Application",
@@ -373,8 +380,10 @@
     "transactions": "Transactions",
     "zoneAreas": "Zone Areas"
   },
+  "next": "next",
   "notifications": {
     "newMessageFrom": "New message from",
+    "title": "notifications.title",
     "viewMembers": "View Members"
   },
   "owners": {
@@ -430,6 +439,12 @@
     "updatePaymentMethod": "Update Payment Method",
     "updatePaymentMethodInfo": "Update payment method information"
   },
+  "previous": "previous",
+  "pwa": {
+    "install": "Install",
+    "installDescription": "Install the app for quick access and better experience",
+    "installTitle": "Install Loft Algerie"
+  },
   "reports": {
     "customRange": "Custom Range",
     "dateRange": "Date Range",
@@ -444,58 +459,6 @@
     "thisQuarter": "This Quarter",
     "thisWeek": "This Week",
     "thisYear": "This Year"
-  },
-  "reservations": {
-    "activities": {
-      "bookingCancelled": "Booking cancelled",
-      "checkinCompleted": "Check-in completed",
-      "hourAgo": "An hour ago",
-      "hoursAgo": "{{count}} hours ago",
-      "minAgo": "{{count}} minutes ago",
-      "newReservation": "New reservation"
-    },
-    "analytics": {
-      "guestSatisfaction": "Guest Satisfaction",
-      "monthlyRevenue": "Monthly Revenue",
-      "occupancyRate": "Occupancy Rate",
-      "title": "Analytics",
-      "totalReservations": "Total Reservations",
-      "vsLastMonth": "vs. last month"
-    },
-    "availabilityManagement": "Availability Management",
-    "calendar": {
-      "title": "Calendar"
-    },
-    "create": "Create",
-    "description": "Manage your reservations.",
-    "details": {
-      "dates": "Dates",
-      "guest": "Guest",
-      "loft": "Loft",
-      "specialRequests": "Special Requests",
-      "title": "Details",
-      "total": "Total"
-    },
-    "form": {
-      "title": "Reservation Form"
-    },
-    "list": {
-      "title": "Reservation List"
-    },
-    "liveView": "Live View",
-    "manageGuests": "Manage Guests",
-    "newReservation": "New Reservation",
-    "nights": "Nights",
-    "proTools": "Pro Tools",
-    "quickActions": "Quick Actions",
-    "recentActivity": "Recent Activity",
-    "tabs": {
-      "analytics": "Analytics",
-      "calendar": "Calendar",
-      "list": "List"
-    },
-    "title": "Reservations",
-    "viewReports": "View Reports"
   },
   "selectOption": "Select an option",
   "settings": {
@@ -708,15 +671,9 @@
     "volumeUp": "Make sure your system volume is turned up.",
     "warningSound": "testSound.warningSound"
   },
-  "testTranslations": {
-    "arabic": "Arabic",
-    "currentLanguage": "Current Language",
-    "english": "English",
-    "french": "French",
-    "testedTranslations": "Tested Translations",
-    "title": "Test Translations"
-  },
+  "time": "time",
   "title": "Loft Algerie",
+  "today": "today",
   "transactions": {
     "addCategory": "Add Category",
     "addError": "Error adding transaction.",
@@ -762,6 +719,13 @@
     "netIncome": "Net Income",
     "noTransactions": "No transactions found.",
     "optional": "Optional",
+    "overReference": {
+      "allWithinReference": "transactions.overReference.allWithinReference",
+      "loftNotSpecified": "transactions.overReference.loftNotSpecified",
+      "noTransactions": "transactions.overReference.noTransactions",
+      "reference": "transactions.overReference.reference",
+      "title": "transactions.overReference.title"
+    },
     "paymentMethod": "Payment Method",
     "pending": "Pending",
     "ratio": "Ratio",
@@ -801,9 +765,5 @@
     "zoneAreaName": "Zone Area Name",
     "zoneDetails": "Zone Area Details"
   },
-  "pwa": {
-    "installTitle": "Install Loft Algerie",
-    "installDescription": "Install the app for quick access and better experience",
-    "install": "Install"
-  }
+  "perMonth": "/month"
 }
