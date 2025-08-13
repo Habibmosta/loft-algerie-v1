@@ -356,7 +356,12 @@
     "unknown": "Inconnu",
     "updateLoft": "",
     "updatePropertyDetails": "Mettre à jour les détails de la propriété",
-    "zoneArea": "Zone géographique"
+    "zoneArea": "Zone géographique",
+    "status": {
+      "available": "Disponible",
+      "occupied": "Occupé",
+      "maintenance": "En maintenance"
+    }
   },
   "nav": {
     "application": "Application",

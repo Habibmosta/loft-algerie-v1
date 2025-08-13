@@ -1,8 +1,8 @@
-export function getOptions(lng = 'ar', ns = ['common', 'bills', 'lofts', 'owners', 'dashboard']) {
+export function getOptions(lng = 'fr', ns = ['common', 'bills', 'lofts', 'owners', 'teams', 'reservations']) {
   return {
-    debug: true,
+    debug: false, // Désactiver le debug en production
     supportedLngs: ['en', 'fr', 'ar'],
-    fallbackLng: 'ar',
+    fallbackLng: 'fr',
     lng,
     fallbackNS: 'common',
     defaultNS: 'common',

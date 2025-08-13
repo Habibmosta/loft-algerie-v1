@@ -68,5 +68,10 @@
   "waterContractCode": "Code contrat eau",
   "waterCustomerCode": "Code client eau",
   "waterMeterNumber": "Numéro de compteur eau",
-  "zoneArea": "Zone géographique"
+  "zoneArea": "Zone géographique",
+  "status": {
+    "available": "Disponible",
+    "occupied": "Occupé",
+    "maintenance": "Maintenance"
+  }
 }

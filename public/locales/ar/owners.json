@@ -29,5 +29,11 @@
   "saving": "جاري الحفظ...",
   "selectType": "اختر النوع",
   "updateOwner": "تحديث المالك",
-  "updateOwnerInfo": "تحديث معلومات المالك"
+  "updateOwnerInfo": "تحديث معلومات المالك",
+  "totalOwners": "إجمالي المُلّاك",
+  "totalProperties": "إجمالي العقارات",
+  "totalMonthlyValue": "القيمة الشهرية الإجمالية",
+  "noOwnersFound": "لم يتم العثور على مُلّاك",
+  "noOwnersDescription": "ابدأ بإضافة مالكك الأول لإدارة عقاراتك.",
+  "addFirstOwner": "إضافة مالك"
 }

@@ -23,7 +23,7 @@ export function Header({ user }: HeaderProps) {
       </Link>
       <div className="flex items-center gap-2">
         <div className="flex items-center bg-white/20 dark:bg-gray-800 rounded-md p-1 gap-1">
-          <LanguageSelector variant="ghost" size="sm" className="text-white hover:text-white" />
+          <LanguageSelector />
           <ThemeToggle variant="ghost" size="sm" className="text-white hover:text-white" />
         </div>
         <Sheet>

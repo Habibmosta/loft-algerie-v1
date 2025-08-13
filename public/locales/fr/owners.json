@@ -29,5 +29,11 @@
   "saving": "Enregistrement...",
   "selectType": "Sélectionnez le type",
   "updateOwner": "Mettre à jour le propriétaire",
-  "updateOwnerInfo": "Mettre à jour les informations du propriétaire"
+  "updateOwnerInfo": "Mettre à jour les informations du propriétaire",
+  "totalOwners": "Total des propriétaires",
+  "totalProperties": "Total des propriétés",
+  "totalMonthlyValue": "Valeur mensuelle totale",
+  "noOwnersFound": "Aucun propriétaire trouvé",
+  "noOwnersDescription": "Commencez par ajouter votre premier propriétaire pour gérer vos biens.",
+  "addFirstOwner": "Ajouter un propriétaire"
 }

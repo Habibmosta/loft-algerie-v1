@@ -29,5 +29,11 @@
   "saving": "Saving...",
   "selectType": "Select Type",
   "updateOwner": "Update Owner",
-  "updateOwnerInfo": "Update owner information"
+  "updateOwnerInfo": "Update owner information",
+  "totalOwners": "Total Owners",
+  "totalProperties": "Total Properties",
+  "totalMonthlyValue": "Total Monthly Value",
+  "noOwnersFound": "No owners found",
+  "noOwnersDescription": "Start by adding your first owner to manage your properties.",
+  "addFirstOwner": "Add Owner"
 }

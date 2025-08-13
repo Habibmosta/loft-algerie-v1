@@ -17,10 +17,6 @@ i18n
       order: ['cookie', 'htmlTag', 'path', 'subdomain'],
       caches: ['cookie'],
     },
-  }, (err, t) => {
-    if (err) return console.log('something went wrong loading', err);
-    console.log('i18next initialized with options:', i18n.options);
-    console.log('i18next resources for ar/bills:', JSON.stringify(i18n.getResourceBundle('ar', 'bills'), null, 2));
   })
 
 export default i18n

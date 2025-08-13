@@ -68,5 +68,10 @@
   "waterContractCode": "رمز عقد المياه",
   "waterCustomerCode": "رمز عميل المياه",
   "waterMeterNumber": "رقم عداد المياه",
-  "zoneArea": "المنطقة"
+  "zoneArea": "المنطقة",
+  "status": {
+    "available": "متوفر",
+    "occupied": "مشغول",
+    "maintenance": "صيانة"
+  }
 }

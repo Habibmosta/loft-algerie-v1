@@ -358,7 +358,12 @@
     "unknown": "Unknown",
     "updateLoft": "lofts.updateLoft",
     "updatePropertyDetails": "Update Property Details",
-    "zoneArea": "Zone Area"
+    "zoneArea": "Zone Area",
+    "status": {
+      "available": "Available",
+      "occupied": "Occupied",
+      "maintenance": "Maintenance"
+    }
   },
   "nav": {
     "application": "Application",

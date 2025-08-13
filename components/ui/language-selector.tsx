@@ -1,71 +1,76 @@
 "use client"
 
-import React from 'react';
-import { useTranslation } from '@/lib/i18n/context';
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Languages, Globe } from 'lucide-react';
-type Language = 'en' | 'fr' | 'ar';
-import { FlagIcon } from './flag-icon';
+import { useTranslation } from "@/lib/i18n/context"
+import { Button } from "@/components/ui/button"
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu"
+import { Globe, Check } from "lucide-react"
+import { useState } from "react"
 
 const languages = [
-  { code: 'en' as Language, name: 'English', flagCode: 'US' as const },
-  { code: 'fr' as Language, name: 'Français', flagCode: 'FR' as const },
-  { code: 'ar' as Language, name: 'العربية', flagCode: 'DZ' as const },
-];
+  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'ar', name: 'العربية', flag: '🇩🇿' }
+]
 
-interface LanguageSelectorProps {
-  variant?: 'default' | 'ghost' | 'outline';
-  size?: 'default' | 'sm' | 'lg' | 'icon';
-  showText?: boolean;
-  className?: string;
-}
+export function LanguageSelector() {
+  const { language, changeLanguage } = useTranslation()
+  const [isChanging, setIsChanging] = useState(false)
 
-export function LanguageSelector({ 
-  variant = 'ghost', 
-  size = 'icon',
-  showText = false,
-  className = ""
-}: LanguageSelectorProps) {
-  const { i18n, changeLanguage } = useTranslation();
-  const language = i18n.language;
-  const setLanguage = (lng: string) => changeLanguage(lng);
-  
-  // Always find a language, fallback to Arabic if not found
-  const currentLanguage = languages.find(lang => lang.code === language) || languages.find(lang => lang.code === 'ar');
+  const handleLanguageChange = async (langCode: string) => {
+    if (langCode === language) return
+    
+    setIsChanging(true)
+    try {
+      await changeLanguage(langCode)
+      // Sauvegarder dans localStorage
+      localStorage.setItem('language', langCode)
+    } catch (error) {
+      console.error('Erreur lors du changement de langue:', error)
+    } finally {
+      setIsChanging(false)
+    }
+  }
+
+  const currentLanguage = languages.find(lang => lang.code === language) || languages[0]
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant={variant} size={size} className={`${showText ? "gap-2" : ""} ${className}`}>
-          <FlagIcon country={currentLanguage?.flagCode || 'DZ'} className="w-5 h-4" />
-          {showText && (
-            <span className="ml-2">
-              {currentLanguage?.name || 'العربية'}
-            </span>
+        <Button 
+          variant="ghost" 
+          size="sm" 
+          className="flex items-center gap-1 h-8 w-8 p-0 text-white hover:text-white hover:bg-gray-600"
+          disabled={isChanging}
+        >
+          {isChanging ? (
+            <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-current"></div>
+          ) : (
+            <span className="text-sm">{currentLanguage.flag}</span>
           )}
-          {showText && <Languages className="h-4 w-4 ml-1" />}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-36 z-50">
+      <DropdownMenuContent align="end" className="w-48">
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
-            onClick={() => setLanguage(lang.code)}
-            className={`flex items-center gap-2 ${
-              language === lang.code ? 'bg-accent' : ''
-            }`}
+            onClick={() => handleLanguageChange(lang.code)}
+            className="flex items-center justify-between cursor-pointer"
           >
-            <FlagIcon country={lang.flagCode} className="w-4 h-3" />
-            <span>{lang.name}</span>
+            <div className="flex items-center gap-3">
+              <span className="text-lg">{lang.flag}</span>
+              <span>{lang.name}</span>
+            </div>
+            {language === lang.code && (
+              <Check className="h-4 w-4 text-green-600" />
+            )}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

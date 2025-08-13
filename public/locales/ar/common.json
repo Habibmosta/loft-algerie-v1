@@ -362,7 +362,12 @@
     "unknown": "غير معروف",
     "updateLoft": "",
     "updatePropertyDetails": "تحديث تفاصيل العقار",
-    "zoneArea": "المنطقة"
+    "zoneArea": "المنطقة",
+    "status": {
+      "available": "متاح",
+      "occupied": "مشغول",
+      "maintenance": "قيد الصيانة"
+    }
   },
   "nav": {
     "application": "التطبيق",

@@ -2,6 +2,7 @@
   "title": "الفرق",
   "subtitle": "إدارة فرقك وأعضائها والمهام الموكلة إليهم.",
   "add_team": "إضافة فريق",
+  "addTeam": "إضافة فريق",
   "edit_team": "تعديل الفريق",
   "delete_team": "حذف الفريق",
   "team_details": "تفاصيل الفريق",
@@ -29,5 +30,13 @@
     "updated_success": "تم تحديث الفريق بنجاح.",
     "deleted_success": "تم حذف الفريق بنجاح.",
     "delete_confirm": "هل أنت متأكد أنك تريد حذف هذا الفريق؟"
-  }
+  },
+  "teamNotFound": "الفريق غير موجود",
+  "couldNotFindTeam": "تعذر العثور على الفريق بالمعرف",
+  "teamId": "معرف الفريق",
+  "basicInformation": "معلومات أساسية عن الفريق",
+  "createdAt": "تم الإنشاء في",
+  "totalTeams": "إجمالي الفرق",
+  "activeMembers": "الأعضاء النشطون",
+  "tasksInProgress": "المهام الجارية"
 }

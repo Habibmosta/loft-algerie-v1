@@ -31,8 +31,15 @@ export function I18nProvider({ children }: I18nProviderProps) {
         if (!i18nInstance.isInitialized) {
           await i18nInstance.init()
         }
+        
+        // Vérifier la langue sauvegardée dans localStorage
+        const savedLanguage = typeof window !== 'undefined' ? localStorage.getItem('language') : null
+        if (savedLanguage && ['en', 'fr', 'ar'].includes(savedLanguage)) {
+          await i18nInstance.changeLanguage(savedLanguage)
+        }
+        
         setI18nInstance(i18nInstance)
-        setCurrentLanguage(i18nInstance.language || 'en')
+        setCurrentLanguage(i18nInstance.language || 'fr')
         
         // Listen for language changes
         i18nInstance.on('languageChanged', (lng: string) => {
@@ -60,7 +67,7 @@ export function I18nProvider({ children }: I18nProviderProps) {
           await i18nInstance.changeLanguage(lng);
           setCurrentLanguage(lng);
           // Force reload of resources for the new language
-          await i18nInstance.reloadResources(lng, ['reservations', 'common']);
+          await i18nInstance.reloadResources(lng, ['reservations', 'common', 'teams', 'bills', 'lofts', 'owners']);
         }
       } catch (error) {
         console.error('Failed to change language:', error)

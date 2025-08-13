@@ -68,5 +68,10 @@
   "waterContractCode": "Water Contract Code",
   "waterCustomerCode": "Water Customer Code",
   "waterMeterNumber": "Water Meter Number",
-  "zoneArea": "Zone Area"
+  "zoneArea": "Zone Area",
+  "status": {
+    "available": "Available",
+    "occupied": "Occupied",
+    "maintenance": "Maintenance"
+  }
 }

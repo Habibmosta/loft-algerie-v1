@@ -63,19 +63,19 @@ export function Sidebar({ user, unreadCount, className }: SidebarProps) {
 
   return (
     <div className={cn("flex h-full w-72 flex-col bg-gray-900 dark:bg-gray-900", className)}>
-      <div className="flex h-16 shrink-0 items-center justify-between px-4 border-b border-gray-700 dark:border-gray-700">
-        <Link href="/dashboard" className="flex items-center group">
-          <div className="relative">
-            <Building2 className="h-8 w-8 text-white transition-transform group-hover:scale-110" />
-            <div className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-gray-900 bg-blue-500"></div>
+      <div className="flex h-16 shrink-0 items-center justify-between px-3 border-b border-gray-700 dark:border-gray-700">
+        <Link href="/dashboard" className="flex items-center group min-w-0 flex-1">
+          <div className="relative flex-shrink-0">
+            <Building2 className="h-7 w-7 text-white transition-transform group-hover:scale-110" />
+            <div className="absolute -bottom-1 -right-1 h-2.5 w-2.5 rounded-full border-2 border-gray-900 bg-blue-500"></div>
           </div>
-          <span className="ml-3 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+          <span className="ml-2 text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 truncate">
             LoftManager
           </span>
         </Link>
-        <div className="flex items-center bg-gray-700/50 dark:bg-gray-800 rounded-md p-1 gap-1">
-          <LanguageSelector variant="ghost" size="sm" className="text-white hover:text-white" />
-          <ThemeToggle variant="ghost" size="sm" className="text-white hover:text-white" />
+        <div className="flex items-center bg-gray-700/50 dark:bg-gray-800 rounded-md p-0.5 gap-0.5 flex-shrink-0">
+          <LanguageSelector />
+          <ThemeToggle variant="ghost" size="sm" className="text-white hover:text-white h-8 w-8" />
         </div>
       </div>
 
