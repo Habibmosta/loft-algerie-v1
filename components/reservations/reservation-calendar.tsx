@@ -7,8 +7,8 @@ import { enUS, fr, ar } from 'date-fns/locale';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { useTranslation } from 'react-i18next';
-import { Loader2, Calendar as CalendarIcon, Plus } from 'lucide-react';
+import { useTranslation } from '@/lib/i18n/context';
+import { Loader2, Calendar as CalendarIcon } from 'lucide-react';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 // Add RTL support styles
@@ -64,24 +64,16 @@ export default function ReservationCalendar({
   onReservationSelect,
   onDateSelect,
 }: ReservationCalendarProps) {
-  const { t, i18n } = useTranslation('reservations');
-  const language = i18n.language;
+  const { t, i18n } = useTranslation(['reservations', 'common']);
   const [reservations, setReservations] = useState<Reservation[]>([]);
   const [events, setEvents] = useState<CalendarEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<View>('month');
   const [date, setDate] = useState(new Date());
 
-  // Get the appropriate locale for date-fns
   const getDateFnsLocale = () => {
-    switch (language) {
-      case 'fr':
-        return fr;
-      case 'ar':
-        return ar;
-      default:
-        return enUS;
-    }
+    const lang = i18n.language as keyof typeof locales;
+    return locales[lang] || enUS;
   };
 
   const localizer = dateFnsLocalizer({
@@ -113,7 +105,6 @@ export default function ReservationCalendar({
       const reservations = data.reservations || [];
       setReservations(reservations);
       
-      // Convert reservations to calendar events
       const calendarEvents: CalendarEvent[] = reservations.map((reservation: Reservation) => ({
         id: reservation.id,
         title: `${reservation.guest_name} - ${reservation.lofts.name}`,
@@ -126,7 +117,6 @@ export default function ReservationCalendar({
       setEvents(calendarEvents);
     } catch (error) {
       console.error('Error fetching reservations:', error);
-      // Set empty arrays on error so the calendar still renders
       setReservations([]);
       setEvents([]);
     } finally {
@@ -202,7 +192,7 @@ export default function ReservationCalendar({
       <Card>
         <CardContent className="flex items-center justify-center h-96">
           <Loader2 className="h-8 w-8 animate-spin" />
-          <span className="ml-2">{t('common.loading')}</span>
+          <span className="ml-2">{t('common:loading')}</span>
         </CardContent>
       </Card>
     );
@@ -210,17 +200,12 @@ export default function ReservationCalendar({
 
   return (
     <div className="space-y-4">
-      {/* Add RTL styles for Arabic */}
-      {language === 'ar' && (
-        <style dangerouslySetInnerHTML={{ __html: rtlStyles }} />
-      )}
-      
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2">
               <CalendarIcon className="h-5 w-5" />
-              {t('reservations.calendar.title')}
+              {t('reservations:calendar.title')}
             </CardTitle>
             <div className="flex items-center gap-2">
               <Button
@@ -229,7 +214,7 @@ export default function ReservationCalendar({
                 onClick={() => setView('month')}
                 className={view === 'month' ? 'bg-primary text-primary-foreground' : ''}
               >
-                {t('reservations.calendar.month')}
+                {t('reservations:calendar.month')}
               </Button>
               <Button
                 variant="outline"
@@ -237,7 +222,7 @@ export default function ReservationCalendar({
                 onClick={() => setView('week')}
                 className={view === 'week' ? 'bg-primary text-primary-foreground' : ''}
               >
-                {t('reservations.calendar.week')}
+                {t('reservations:calendar.week')}
               </Button>
               <Button
                 variant="outline"
@@ -245,13 +230,13 @@ export default function ReservationCalendar({
                 onClick={() => setView('day')}
                 className={view === 'day' ? 'bg-primary text-primary-foreground' : ''}
               >
-                {t('reservations.calendar.day')}
+                {t('reservations:calendar.day')}
               </Button>
             </div>
           </div>
         </CardHeader>
         <CardContent>
-          <div className={`h-96 mb-4 ${language === 'ar' ? 'rtl' : 'ltr'}`}>
+          <div className="h-96 mb-4">
             <Calendar
               localizer={localizer}
               events={events}
@@ -265,54 +250,52 @@ export default function ReservationCalendar({
               onSelectSlot={handleSelectSlot}
               selectable
               eventPropGetter={eventStyleGetter}
-              culture={language === 'ar' ? 'ar-SA' : language === 'fr' ? 'fr-FR' : 'en-US'}
+              culture={i18n.language}
               messages={{
-                next: t('common.next'),
-                previous: t('common.previous'),
-                today: t('common.today'),
-                month: t('reservations.calendar.month'),
-                week: t('reservations.calendar.week'),
-                day: t('reservations.calendar.day'),
-                agenda: t('reservations.calendar.agenda'),
-                date: t('common.date'),
-                time: t('common.time'),
-                event: t('reservations.calendar.event'),
-                noEventsInRange: t('reservations.calendar.noEventsInRange'),
-                allDay: t('reservations.calendar.allDay'),
-                work_week: t('reservations.calendar.work_week'),
-                yesterday: t('reservations.calendar.yesterday'),
-                tomorrow: t('reservations.calendar.tomorrow'),
-                showMore: (total: number) => t('reservations.calendar.showMore', { total }),
+                next: t('common:next'),
+                previous: t('common:previous'),
+                today: t('common:today'),
+                month: t('reservations:calendar.month'),
+                week: t('reservations:calendar.week'),
+                day: t('reservations:calendar.day'),
+                agenda: t('reservations:calendar.agenda'),
+                date: t('common:date'),
+                time: t('common:time'),
+                event: t('reservations:calendar.event'),
+                noEventsInRange: t('reservations:calendar.noEventsInRange'),
+                allDay: t('reservations:calendar.allDay'),
+                work_week: t('reservations:calendar.work_week'),
+                yesterday: t('reservations:calendar.yesterday'),
+                tomorrow: t('reservations:calendar.tomorrow'),
+                showMore: (total: number) => t('reservations:calendar.showMore', { count: total }),
               }}
             />
           </div>
           
-          {/* Legend */}
           <div className="flex flex-wrap gap-2 mt-4">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 bg-green-500 rounded"></div>
-              <span className="text-sm">{t('reservations.status.confirmed')}</span>
+              <span className="text-sm">{t('reservations:status.confirmed')}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 bg-yellow-500 rounded"></div>
-              <span className="text-sm">{t('reservations.status.pending')}</span>
+              <span className="text-sm">{t('reservations:status.pending')}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 bg-red-500 rounded"></div>
-              <span className="text-sm">{t('reservations.status.cancelled')}</span>
+              <span className="text-sm">{t('reservations:status.cancelled')}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 bg-gray-500 rounded"></div>
-              <span className="text-sm">{t('reservations.status.completed')}</span>
+              <span className="text-sm">{t('reservations:status.completed')}</span>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Upcoming Reservations */}
       <Card>
         <CardHeader>
-          <CardTitle>{t('reservations.upcoming.title')}</CardTitle>
+          <CardTitle>{t('reservations:upcoming.title')}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
@@ -329,17 +312,17 @@ export default function ReservationCalendar({
                     <div className="flex items-center gap-2">
                       <span className="font-medium">{reservation.guest_name}</span>
                       <Badge className={getStatusColor(reservation.status)}>
-                        {t(`reservations.status.${reservation.status}`)}
+                        {t(`reservations:status.${reservation.status}` as const)}
                       </Badge>
                     </div>
                     <div className="text-sm text-gray-600">
-                      {reservation.lofts.name} • {format(new Date(reservation.check_in_date), 'MMM dd')} - {format(new Date(reservation.check_out_date), 'MMM dd')}
+                      {reservation.lofts.name} • {format(new Date(reservation.check_in_date), 'MMM dd', { locale: getDateFnsLocale() })} - {format(new Date(reservation.check_out_date), 'MMM dd', { locale: getDateFnsLocale() })}
                     </div>
                   </div>
                   <div className="text-right">
                     <div className="font-medium">{reservation.total_amount} DZD</div>
                     <div className="text-sm text-gray-600">
-                      {Math.ceil((new Date(reservation.check_out_date).getTime() - new Date(reservation.check_in_date).getTime()) / (1000 * 60 * 60 * 24))} {t('reservations.nights')}
+                      {Math.ceil((new Date(reservation.check_out_date).getTime() - new Date(reservation.check_in_date).getTime()) / (1000 * 60 * 60 * 24))} {t('reservations:nights')}
                     </div>
                   </div>
                 </div>
@@ -348,7 +331,7 @@ export default function ReservationCalendar({
             {reservations.filter(r => new Date(r.check_in_date) >= new Date() && r.status !== 'cancelled').length === 0 && (
               <div className="text-center py-8 text-gray-500">
                 <CalendarIcon className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                <p>{t('reservations.upcoming.empty')}</p>
+                <p>{t('reservations:upcoming.empty')}</p>
               </div>
             )}
           </div>

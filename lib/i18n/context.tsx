@@ -57,8 +57,10 @@ export function I18nProvider({ children }: I18nProviderProps) {
     changeLanguage: async (lng: string) => {
       try {
         if (i18nInstance) {
-          await i18nInstance.changeLanguage(lng)
-          setCurrentLanguage(lng)
+          await i18nInstance.changeLanguage(lng);
+          setCurrentLanguage(lng);
+          // Force reload of resources for the new language
+          await i18nInstance.reloadResources(lng, ['reservations', 'common']);
         }
       } catch (error) {
         console.error('Failed to change language:', error)
