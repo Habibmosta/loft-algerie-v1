@@ -77,5 +77,16 @@
     "todo": "À faire",
     "unknown": "Inconnu"
   },
-  "yourTasks": "Vos tâches"
+  "yourTasks": "Vos tâches",
+  "clearFilters": "Effacer les filtres",
+  "search": "Rechercher",
+  "searchPlaceholder": "Rechercher par titre ou description...",
+  "dateRange": "Échéance",
+  "allUsers": "Tous les utilisateurs",
+  "tasksList": "Liste des tâches",
+  "noTasksDescription": "Aucune tâche ne correspond aux critères de recherche.",
+  "createNewTask": "Créer une nouvelle tâche",
+  "overdue": "En retard",
+  "myTasks": "Mes tâches",
+  "urgent": "Urgentes"
 }

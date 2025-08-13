@@ -1,6 +1,6 @@
-export function getOptions(lng = 'fr', ns = ['common', 'bills', 'lofts', 'owners', 'teams', 'reservations']) {
+export function getOptions(lng = 'fr', ns = ['common', 'bills', 'lofts', 'owners', 'teams', 'reservations', 'transactions']) {
   return {
-    debug: false, // Désactiver le debug en production
+    debug: true, // Activer le debug pour voir les problèmes
     supportedLngs: ['en', 'fr', 'ar'],
     fallbackLng: 'fr',
     lng,
@@ -9,6 +9,14 @@ export function getOptions(lng = 'fr', ns = ['common', 'bills', 'lofts', 'owners
     ns,
     backend: {
       loadPath: './public/locales/{{lng}}/{{ns}}.json',
+      // Désactiver le cache pour forcer le rechargement
+      allowMultiLoading: false,
+      crossDomain: false,
+      withCredentials: false,
+      requestOptions: {
+        cache: 'no-cache',
+        mode: 'cors',
+      },
     },
   }
 }

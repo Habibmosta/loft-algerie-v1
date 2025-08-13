@@ -67,7 +67,10 @@ export function I18nProvider({ children }: I18nProviderProps) {
           await i18nInstance.changeLanguage(lng);
           setCurrentLanguage(lng);
           // Force reload of resources for the new language
-          await i18nInstance.reloadResources(lng, ['reservations', 'common', 'teams', 'bills', 'lofts', 'owners']);
+          await i18nInstance.reloadResources(lng, ['reservations', 'common', 'teams', 'bills', 'lofts', 'owners', 'transactions']);
+          // Force clear cache and reload transactions specifically
+          i18nInstance.removeResourceBundle(lng, 'transactions');
+          await i18nInstance.loadNamespaces(['transactions']);
         }
       } catch (error) {
         console.error('Failed to change language:', error)

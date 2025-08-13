@@ -74,8 +74,23 @@
   "status": {
     "completed": "مكتملة",
     "inProgress": "قيد التقدم",
+    "in_progress": "قيد التقدم",
     "todo": "قيد الانتظار",
     "unknown": "غير معروف"
   },
-  "yourTasks": "مهامك"
+  "yourTasks": "مهامك",
+  "clearFilters": "مسح المرشحات",
+  "search": "بحث",
+  "searchPlaceholder": "البحث بالعنوان أو الوصف...",
+  "dateRange": "الاستحقاق",
+  "allUsers": "جميع المستخدمين",
+  "tasksList": "قائمة المهام",
+  "noTasksDescription": "لا توجد مهام تطابق معايير البحث.",
+  "createNewTask": "إنشاء مهمة جديدة",
+  "overdue": "متأخرة",
+  "myTasks": "مهامي",
+  "urgent": "عاجلة",
+  "tasks": "مهام",
+  "inProgress": "قيد التقدم",
+  "assigned": "مخصصة"
 }

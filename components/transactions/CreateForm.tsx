@@ -46,7 +46,10 @@ export function CreateForm({
     e.preventDefault()
     onSubmit({
       ...formData,
-      amount: parseFloat(formData.amount)
+      // Valeurs par défaut pour les champs cachés
+      amount: parseFloat(formData.amount) || 0,
+      date: formData.date || new Date().toISOString().split('T')[0],
+      description: formData.description || 'Transaction automatique'
     })
   }
 
@@ -67,21 +70,10 @@ export function CreateForm({
         </div>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <Label>{t('transactions.date')}</Label>
-          <Input type="date" name="date" value={formData.date} onChange={handleChange} />
-        </div>
-        <div>
-          <Label>{t('transactions.amount')}</Label>
-          <Input type="number" name="amount" value={formData.amount} onChange={handleChange} />
-        </div>
-      </div>
-
-      <div>
-        <Label>{t('transactions.description')}</Label>
-        <Input name="description" value={formData.description} onChange={handleChange} />
-      </div>
+      {/* Champs cachés - les données sont toujours envoyées mais pas visibles à l'utilisateur */}
+      <input type="hidden" name="date" value={formData.date} />
+      <input type="hidden" name="amount" value={formData.amount} />
+      <input type="hidden" name="description" value={formData.description} />
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <Select name="type" onValueChange={(value) => handleSelect('type', value)}>

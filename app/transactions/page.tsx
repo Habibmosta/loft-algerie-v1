@@ -4,8 +4,7 @@ import { getCategories } from "@/app/actions/categories"
 import { getAllLofts } from "@/app/actions/auth"
 import { getCurrencies } from "@/app/actions/currencies"
 import { getPaymentMethods } from "@/app/actions/payment-methods"
-import { TransactionsList } from "@/components/transactions/transactions-list"
-import { TransactionsPageClient } from "./transactions-page-client"
+import { SimpleTransactionsPage } from "@/components/transactions/simple-transactions-page"
 
 export default async function TransactionsPage() {
   const session = await requireRole(["admin", "manager"])
@@ -16,7 +15,7 @@ export default async function TransactionsPage() {
   const paymentMethods = await getPaymentMethods()
 
   return (
-    <TransactionsPageClient
+    <SimpleTransactionsPage
       session={session}
       transactions={transactions}
       categories={categories}

@@ -74,8 +74,23 @@
   "status": {
     "completed": "Completed",
     "inProgress": "In Progress",
+    "in_progress": "In Progress",
     "todo": "To Do",
     "unknown": "Unknown"
   },
-  "yourTasks": "Your Tasks"
+  "yourTasks": "Your Tasks",
+  "clearFilters": "Clear Filters",
+  "search": "Search",
+  "searchPlaceholder": "Search by title or description...",
+  "dateRange": "Due Date",
+  "allUsers": "All Users",
+  "tasksList": "Tasks List",
+  "noTasksDescription": "No tasks match the search criteria.",
+  "createNewTask": "Create New Task",
+  "overdue": "Overdue",
+  "myTasks": "My Tasks",
+  "urgent": "Urgent",
+  "tasks": "tasks",
+  "inProgress": "in progress",
+  "assigned": "assigned"
 }

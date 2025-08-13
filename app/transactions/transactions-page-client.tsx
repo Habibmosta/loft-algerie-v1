@@ -108,9 +108,12 @@ export function TransactionsPageClient({
       >
         {transactions.map((transaction: any) => (
           <div key={transaction.id} className="transaction-item border p-4 rounded-md mb-2">
-            <div className="font-semibold">{transaction.description}</div>
-            <div>{new Date(transaction.date).toLocaleDateString()}</div>
-            <div>{transaction.type === 'expense' ? '-' : '+'}{transaction.amount.toLocaleString()} {transaction.currency}</div>
+            {/* Affichage simplifié - date, montant et description cachés */}
+            <div className="font-semibold">Transaction #{transaction.id}</div>
+            <div className="text-sm text-gray-600">
+              Type: {transaction.type === 'expense' ? 'Dépense' : 'Revenu'} • 
+              Statut: {transaction.status}
+            </div>
           </div>
         ))}
       </TransactionsList>
