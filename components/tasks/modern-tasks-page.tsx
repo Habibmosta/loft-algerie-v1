@@ -119,8 +119,8 @@ export function ModernTasksPage({
     switch (status) {
       case 'completed': return 'bg-green-100 text-green-800 border-green-200'
       case 'in_progress': return 'bg-blue-100 text-blue-800 border-blue-200'
-      case 'todo': return 'bg-gray-100 text-gray-800 border-gray-200'
-      default: return 'bg-gray-100 text-gray-800 border-gray-200'
+      case 'todo': return 'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700'
+      default: return 'bg-gray-100 text-gray-800 border-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700'
     }
   }
 
@@ -145,7 +145,7 @@ export function ModernTasksPage({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-4 sm:p-6 md:p-8">
       <div className="mx-auto max-w-7xl space-y-8">
         
         {/* Header avec design amélioré */}
@@ -153,10 +153,10 @@ export function ModernTasksPage({
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4 shadow-lg">
             <Target className="h-10 w-10 text-white" />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
             {t('title')}
           </h1>
-          <p className="text-xl text-gray-600 mb-6">
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
             {userRole === "member" ? t('yourTasks') : t('subtitle')}
           </p>
           
@@ -181,7 +181,7 @@ export function ModernTasksPage({
           <Card className="border-0 shadow-lg bg-gradient-to-br from-gray-50 to-slate-50 hover:shadow-xl transition-all duration-300">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-sm font-medium text-gray-700">
+                <CardTitle className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   {t('status.todo')}
                 </CardTitle>
                 <div className="p-2 bg-gray-500 rounded-full">
@@ -191,10 +191,10 @@ export function ModernTasksPage({
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-gray-600">
+                <span className="text-2xl font-bold text-gray-600 dark:text-gray-400">
                   {todoCount}
                 </span>
-                <span className="text-gray-600 font-medium">{t('tasks')}</span>
+                <span className="text-gray-600 dark:text-gray-400 font-medium">{t('tasks')}</span>
               </div>
             </CardContent>
           </Card>
@@ -285,7 +285,7 @@ export function ModernTasksPage({
         </div>
 
         {/* Filtres avec design amélioré */}
-        <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+        <Card className="border-0 shadow-lg bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center gap-2 text-xl">
@@ -361,7 +361,7 @@ export function ModernTasksPage({
                     <SelectItem value="all">{t('filters.allStatuses')}</SelectItem>
                     <SelectItem value="todo">
                       <div className="flex items-center gap-2">
-                        <ListTodo className="h-4 w-4 text-gray-600" />
+                        <ListTodo className="h-4 w-4 text-gray-600 dark:text-gray-400" />
                         {t('status.todo')}
                       </div>
                     </SelectItem>
@@ -406,11 +406,11 @@ export function ModernTasksPage({
         </Card>
 
         {/* Liste des tâches avec design amélioré */}
-        <Card className="border-0 shadow-lg bg-white/90 backdrop-blur-sm">
+        <Card className="border-0 shadow-lg bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-xl">
               <Sparkles className="h-6 w-6 text-blue-500" />
-              Liste des tâches ({filteredTasks.length})
+              {t('tasksList')} ({filteredTasks.length})
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -419,17 +419,17 @@ export function ModernTasksPage({
                 <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Target className="h-8 w-8 text-gray-400" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
                   {t('noTasks')}
                 </h3>
-                <p className="text-gray-600 mb-4">
-                  Aucune tâche ne correspond aux critères de recherche.
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  {t('noTasksDescription')}
                 </p>
                 {(userRole === "admin" || userRole === "manager") && (
                   <Button asChild>
                     <Link href="/tasks/new">
                       <Plus className="mr-2 h-4 w-4" />
-                      Créer une nouvelle tâche
+                      {t('createNewTask')}
                     </Link>
                   </Button>
                 )}
@@ -441,7 +441,7 @@ export function ModernTasksPage({
                   const isOverdue = task.due_date && new Date(task.due_date) < new Date() && task.status !== 'completed'
                   
                   return (
-                    <Card key={task.id} className={`border-0 shadow-md bg-white/90 backdrop-blur-sm hover:shadow-lg transition-all duration-300 group ${getPriorityColor(task)}`}>
+                    <Card key={task.id} className={`border-0 shadow-md bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm hover:shadow-lg transition-all duration-300 group ${getPriorityColor(task)}`}>
                       <CardHeader className="pb-3">
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
@@ -449,16 +449,16 @@ export function ModernTasksPage({
                               <div className={`p-1.5 rounded-full ${task.status === 'completed' ? 'bg-green-100' : task.status === 'in_progress' ? 'bg-blue-100' : 'bg-gray-100'}`}>
                                 {getStatusIcon(task.status)}
                               </div>
-                              <CardTitle className="text-lg font-semibold text-gray-900 truncate">
+                              <CardTitle className="text-lg font-semibold text-gray-900 dark:text-gray-100 truncate">
                                 {task.title}
                               </CardTitle>
                             </div>
                             {task.due_date && (
                               <div className="flex items-center gap-2 text-sm">
-                                <Calendar className="h-3 w-3 text-gray-400" />
-                                <span className={`${isOverdue ? 'text-red-600 font-medium' : 'text-gray-600'}`}>
+                                <Calendar className="h-3 w-3 text-gray-400 dark:text-gray-500" />
+                                <span className={`${isOverdue ? 'text-red-600 font-medium' : 'text-gray-600 dark:text-gray-400'}`}>
                                   {new Date(task.due_date).toLocaleDateString('fr-FR')}
-                                  {isOverdue && ' (En retard)'}
+                                  {isOverdue && ` (${t('overdue')})`}
                                 </span>
                               </div>
                             )}
@@ -474,16 +474,16 @@ export function ModernTasksPage({
                       
                       <CardContent className="space-y-4">
                         {/* Description */}
-                        <p className="text-sm text-gray-600 line-clamp-2">
-                          {task.description || 'Aucune description'}
+                        <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+                          {task.description || t('noDescription')}
                         </p>
 
                         {/* Assigné à */}
                         {assignedUser && (
                           <div className="flex items-center gap-2 text-sm">
-                            <User className="h-3 w-3 text-gray-400" />
-                            <span className="font-medium text-gray-700">{t('assignedTo')}:</span>
-                            <span className="text-gray-600">{assignedUser.full_name}</span>
+                            <User className="h-3 w-3 text-gray-400 dark:text-gray-500" />
+                            <span className="font-medium text-gray-700 dark:text-gray-300">{t('assignedTo')}:</span>
+                            <span className="text-gray-600 dark:text-gray-400">{assignedUser.full_name}</span>
                           </div>
                         )}
 

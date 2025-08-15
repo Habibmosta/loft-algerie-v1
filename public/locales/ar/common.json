@@ -772,5 +772,7 @@
     "zoneAreaName": "اسم المنطقة",
     "zoneDetails": "تفاصيل المنطقة"
   },
-  "perMonth": "/شهريا"
+  "perMonth": "/شهريا",
+  "addTransaction": "إضافة معاملة",
+  "viewReports": "عرض التقارير"
 }

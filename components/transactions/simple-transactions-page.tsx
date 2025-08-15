@@ -131,7 +131,7 @@ export function SimpleTransactionsPage({
       case 'completed': return <CheckCircle className="h-4 w-4 text-green-600" />
       case 'pending': return <Clock className="h-4 w-4 text-yellow-600" />
       case 'failed': return <XCircle className="h-4 w-4 text-red-600" />
-      default: return <Clock className="h-4 w-4 text-gray-600" />
+      default: return <Clock className="h-4 w-4 text-gray-600 dark:text-gray-400" />
     }
   }
 
@@ -140,12 +140,12 @@ export function SimpleTransactionsPage({
       case 'completed': return 'bg-green-100 text-green-800'
       case 'pending': return 'bg-yellow-100 text-yellow-800'
       case 'failed': return 'bg-red-100 text-red-800'
-      default: return 'bg-gray-100 text-gray-800'
+      default: return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200'
     }
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-4 sm:p-6 md:p-8">
       <div className="mx-auto max-w-7xl space-y-8">
         
         {/* Header avec design amélioré */}
@@ -153,10 +153,10 @@ export function SimpleTransactionsPage({
           <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4 shadow-lg">
             <BarChart3 className="h-10 w-10 text-white" />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
             {t('title')}
           </h1>
-          <p className="text-xl text-gray-600 mb-6">
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
             {t('subtitle')}
           </p>
           
@@ -285,7 +285,7 @@ export function SimpleTransactionsPage({
         </div>
 
         {/* Filtres avec design amélioré */}
-        <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
+        <Card className="border-0 shadow-lg bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center gap-2 text-xl">
@@ -516,7 +516,7 @@ export function SimpleTransactionsPage({
         </Card>
 
         {/* Liste des transactions avec design amélioré */}
-        <Card className="border-0 shadow-lg bg-white/90 backdrop-blur-sm">
+        <Card className="border-0 shadow-lg bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-xl">
               <Sparkles className="h-6 w-6 text-blue-500" />
@@ -529,10 +529,10 @@ export function SimpleTransactionsPage({
                 <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <BarChart3 className="h-8 w-8 text-gray-400" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
                   {t('noTransactions')}
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
                   {t('noTransactionsDescription')}
                 </p>
                 {session.user.role === "admin" && (
@@ -551,7 +551,7 @@ export function SimpleTransactionsPage({
                   const paymentMethod = paymentMethods.find(pm => pm.id === transaction.payment_method_id)
                   
                   return (
-                    <Card key={transaction.id} className="border-0 shadow-md bg-white/90 backdrop-blur-sm hover:shadow-lg transition-all duration-300 group">
+                    <Card key={transaction.id} className="border-0 shadow-md bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm hover:shadow-lg transition-all duration-300 group">
                       <CardContent className="p-4">
                         <div className="flex items-center justify-between">
                           <div className="flex-1">
@@ -562,7 +562,7 @@ export function SimpleTransactionsPage({
                                   <TrendingDown className="h-4 w-4 text-red-600" />
                                 }
                               </div>
-                              <h3 className="font-semibold text-gray-900 text-lg">
+                              <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-lg">
                                 {transaction.description || t('noDescription')}
                               </h3>
                               <Badge className={`${getStatusColor(transaction.status)} border`}>
@@ -575,27 +575,27 @@ export function SimpleTransactionsPage({
                             
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                               <div className="flex items-center gap-2">
-                                <Calendar className="h-3 w-3 text-gray-400" />
-                                <span className="font-medium text-gray-700">{t('date')}:</span> 
-                                <span className="text-gray-600">{new Date(transaction.date).toLocaleDateString('fr-FR')}</span>
+                                <Calendar className="h-3 w-3 text-gray-400 dark:text-gray-500" />
+                                <span className="font-medium text-gray-700 dark:text-gray-300">{t('date')}:</span> 
+                                <span className="text-gray-600 dark:text-gray-400">{new Date(transaction.date).toLocaleDateString('fr-FR')}</span>
                               </div>
                               <div className="flex items-center gap-2">
-                                <Tag className="h-3 w-3 text-gray-400" />
-                                <span className="font-medium text-gray-700">{t('category')}:</span> 
-                                <span className="text-gray-600">{transaction.category}</span>
+                                <Tag className="h-3 w-3 text-gray-400 dark:text-gray-500" />
+                                <span className="font-medium text-gray-700 dark:text-gray-300">{t('category')}:</span> 
+                                <span className="text-gray-600 dark:text-gray-400">{transaction.category}</span>
                               </div>
                               {loft && (
                                 <div className="flex items-center gap-2">
-                                  <Building className="h-3 w-3 text-gray-400" />
-                                  <span className="font-medium text-gray-700">{t('loft')}:</span> 
-                                  <span className="text-gray-600">{loft.name}</span>
+                                  <Building className="h-3 w-3 text-gray-400 dark:text-gray-500" />
+                                  <span className="font-medium text-gray-700 dark:text-gray-300">{t('loft')}:</span> 
+                                  <span className="text-gray-600 dark:text-gray-400">{loft.name}</span>
                                 </div>
                               )}
                               {paymentMethod && (
                                 <div className="flex items-center gap-2">
-                                  <CreditCard className="h-3 w-3 text-gray-400" />
-                                  <span className="font-medium text-gray-700">{t('paymentMethod')}:</span> 
-                                  <span className="text-gray-600">{paymentMethod.name}</span>
+                                  <CreditCard className="h-3 w-3 text-gray-400 dark:text-gray-500" />
+                                  <span className="font-medium text-gray-700 dark:text-gray-300">{t('paymentMethod')}:</span> 
+                                  <span className="text-gray-600 dark:text-gray-400">{paymentMethod.name}</span>
                                 </div>
                               )}
                             </div>

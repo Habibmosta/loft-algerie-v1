@@ -92,5 +92,8 @@
   "urgent": "Urgent",
   "tasks": "tasks",
   "inProgress": "in progress",
-  "assigned": "assigned"
+  "assigned": "assigned",
+  "filters": "Filters",
+  "to": "to",
+  "noDescription": "No description"
 }

@@ -9,15 +9,20 @@ import {
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu"
 import { Globe, Check } from "lucide-react"
+import { FlagIcon } from "@/components/ui/flag-icon"
 import { useState } from "react"
 
 const languages = [
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'ar', name: 'العربية', flag: '🇩🇿' }
+  { code: 'fr', name: 'Français', flagCode: 'FR' as const },
+  { code: 'en', name: 'English', flagCode: 'GB' as const },
+  { code: 'ar', name: 'العربية', flagCode: 'DZ' as const }
 ]
 
-export function LanguageSelector() {
+interface LanguageSelectorProps {
+  showText?: boolean
+}
+
+export function LanguageSelector({ showText = false }: LanguageSelectorProps) {
   const { language, changeLanguage } = useTranslation()
   const [isChanging, setIsChanging] = useState(false)
 
@@ -44,13 +49,16 @@ export function LanguageSelector() {
         <Button 
           variant="ghost" 
           size="sm" 
-          className="flex items-center gap-1 h-8 w-8 p-0 text-white hover:text-white hover:bg-gray-600"
+          className={`flex items-center gap-2 ${showText ? 'h-8 px-3' : 'h-8 w-8 p-0'} text-white hover:text-white hover:bg-gray-600`}
           disabled={isChanging}
         >
           {isChanging ? (
             <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-current"></div>
           ) : (
-            <span className="text-sm">{currentLanguage.flag}</span>
+            <>
+              <FlagIcon country={currentLanguage.flagCode} className="w-5 h-4" />
+              {showText && <span className="text-sm font-medium">{currentLanguage.name}</span>}
+            </>
           )}
         </Button>
       </DropdownMenuTrigger>
@@ -62,7 +70,7 @@ export function LanguageSelector() {
             className="flex items-center justify-between cursor-pointer"
           >
             <div className="flex items-center gap-3">
-              <span className="text-lg">{lang.flag}</span>
+              <FlagIcon country={lang.flagCode} className="w-5 h-4" />
               <span>{lang.name}</span>
             </div>
             {language === lang.code && (

@@ -770,5 +770,7 @@
     "zoneAreaName": "Zone Area Name",
     "zoneDetails": "Zone Area Details"
   },
-  "perMonth": "/month"
+  "perMonth": "/month",
+  "addTransaction": "Add Transaction",
+  "viewReports": "View Reports"
 }

@@ -10,7 +10,7 @@ interface BillPaymentModalProps {
   onClose: () => void
   loftId: string
   loftName: string
-  utilityType: 'eau' | 'energie' | 'telephone' | 'internet'
+  utilityType: 'eau' | 'energie' | 'telephone' | 'internet' | 'tv' | 'gas'
   dueDate: string
   onSuccess: () => void
 }

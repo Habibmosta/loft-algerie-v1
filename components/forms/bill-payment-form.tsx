@@ -18,18 +18,24 @@ import { toast } from 'sonner'
 import { markBillAsPaid } from '@/app/actions/bill-notifications'
 import { useTranslation } from 'react-i18next'
 
+type UtilityType = 'eau' | 'energie' | 'telephone' | 'internet' | 'tv' | 'gas'
+
 const UTILITY_LABELS = {
   eau: 'bills.utilities.eau',
   energie: 'bills.utilities.energie', 
   telephone: 'bills.utilities.telephone',
-  internet: 'bills.utilities.internet'
+  internet: 'bills.utilities.internet',
+  tv: 'bills.utilities.tv',
+  gas: 'bills.utilities.gas'
 }
 
 const UTILITY_CATEGORIES = {
   eau: 'Water Bill',
   energie: 'Energy Bill',
   telephone: 'Phone Bill',
-  internet: 'Internet Bill'
+  internet: 'Internet Bill',
+  tv: 'TV Bill',
+  gas: 'Gas Bill'
 }
 
 const billPaymentSchema = z.object({
@@ -46,7 +52,7 @@ type BillPaymentFormData = z.infer<typeof billPaymentSchema>
 interface BillPaymentFormProps {
   loftId: string
   loftName: string
-  utilityType: 'eau' | 'energie' | 'telephone' | 'internet'
+  utilityType: 'eau' | 'energie' | 'telephone' | 'internet' | 'tv' | 'gas'
   dueDate: string
   onSuccess: () => void
   onCancel: () => void

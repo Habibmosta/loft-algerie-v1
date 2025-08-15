@@ -88,5 +88,8 @@
   "createNewTask": "Créer une nouvelle tâche",
   "overdue": "En retard",
   "myTasks": "Mes tâches",
-  "urgent": "Urgentes"
+  "urgent": "Urgentes",
+  "filters": "Filtres",
+  "to": "à",
+  "noDescription": "Aucune description"
 }

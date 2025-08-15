@@ -8,7 +8,6 @@ import { AlertTriangle, Calendar, Clock, CheckCircle } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner";
 import { BillPaymentModal } from "@/components/modals/bill-payment-modal";
-import { useTranslation } from "react-i18next";
 
 type UtilityType = "eau" | "energie" | "telephone" | "internet" | "tv" | "gas";
 
@@ -22,19 +21,23 @@ interface BillAlert {
   days_overdue?: number;
 }
 
-const getUtilityLabel = (utilityType: UtilityType, t: any) => {
-  const icons = {
-    eau: "💧",
-    energie: "⚡",
-    telephone: "📞",
-    internet: "🌐",
-    tv: "📺",
-    gas: "🔥",
-  };
-
-  const icon = icons[utilityType] || "";
-  const label = t(`utilities.${utilityType}`, utilityType);
-  return `${icon} ${label}`;
+const getUtilityLabel = (utilityType: UtilityType) => {
+  switch (utilityType) {
+    case "eau":
+      return "💧 Water";
+    case "energie":
+      return "⚡ Energy";
+    case "telephone":
+      return "📞 Phone";
+    case "internet":
+      return "🌐 Internet";
+    case "tv":
+      return "📺 TV";
+    case "gas":
+      return "🔥 Gas";
+    default:
+      return utilityType;
+  }
 };
 
 const UTILITY_COLORS: Record<UtilityType, string> = {
@@ -46,14 +49,13 @@ const UTILITY_COLORS: Record<UtilityType, string> = {
   gas: "bg-orange-100 text-orange-800",
 };
 
-export function BillAlerts() {
+export function BillAlertsNew() {
   const [upcomingBills, setUpcomingBills] = useState<BillAlert[]>([]);
   const [overdueBills, setOverdueBills] = useState<BillAlert[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedBill, setSelectedBill] = useState<BillAlert | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const supabase = createClient();
-  const { t } = useTranslation();
 
   useEffect(() => {
     fetchBillAlerts();
@@ -64,7 +66,9 @@ export function BillAlerts() {
       setLoading(true);
 
       // Fetch all lofts with their billing information
-      const { data: lofts, error } = await supabase.from("lofts").select(`
+      const { data: lofts, error } = await supabase
+        .from('lofts')
+        .select(`
           id,
           nom,
           frequence_paiement_eau,
@@ -83,7 +87,7 @@ export function BillAlerts() {
 
       if (error) {
         console.error("Error fetching lofts:", error);
-        toast.error(t("bills.loadingError"));
+        toast.error("Failed to load bill alerts");
         return;
       }
 
@@ -93,24 +97,17 @@ export function BillAlerts() {
 
       // Process each loft's billing data
       lofts?.forEach((loft) => {
-        const utilities: UtilityType[] = [
-          "eau",
-          "energie",
-          "telephone",
-          "internet",
-          "tv",
-          "gas",
-        ];
-
+        const utilities: UtilityType[] = ["eau", "energie", "telephone", "internet", "tv", "gas"];
+        
         utilities.forEach((utility) => {
           const frequency = loft[`frequence_paiement_${utility}`];
           const dueDate = loft[`prochaine_echeance_${utility}`];
-
+          
           if (dueDate && frequency) {
             const dueDateObj = new Date(dueDate);
             const timeDiff = dueDateObj.getTime() - today.getTime();
             const daysUntilDue = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
+            
             const billAlert: BillAlert = {
               loft_id: loft.id,
               loft_name: loft.nom,
@@ -118,8 +115,7 @@ export function BillAlerts() {
               due_date: dueDate,
               frequency: frequency,
               days_until_due: daysUntilDue >= 0 ? daysUntilDue : undefined,
-              days_overdue:
-                daysUntilDue < 0 ? Math.abs(daysUntilDue) : undefined,
+              days_overdue: daysUntilDue < 0 ? Math.abs(daysUntilDue) : undefined,
             };
 
             // Categorize bills
@@ -133,16 +129,14 @@ export function BillAlerts() {
       });
 
       // Sort by urgency
-      upcoming.sort(
-        (a, b) => (a.days_until_due || 0) - (b.days_until_due || 0)
-      );
+      upcoming.sort((a, b) => (a.days_until_due || 0) - (b.days_until_due || 0));
       overdue.sort((a, b) => (b.days_overdue || 0) - (a.days_overdue || 0));
 
       setUpcomingBills(upcoming);
       setOverdueBills(overdue);
     } catch (error) {
       console.error("Error fetching bill alerts:", error);
-      toast.error(t("bills.loadingError"));
+      toast.error("Failed to load bill alerts");
     } finally {
       setLoading(false);
     }
@@ -179,14 +173,13 @@ export function BillAlerts() {
   };
 
   const getDaysText = (days: number, isOverdue: boolean = false) => {
-    if (days === 0)
-      return isOverdue ? t("bills.dueToday") : t("bills.dueToday");
+    if (days === 0) return isOverdue ? "Due today" : "Due today";
     if (days === 1) {
-      if (isOverdue) return t("bills.dayOverdue");
-      return t("bills.dueTomorrow");
+      if (isOverdue) return "1 day overdue";
+      return "Due tomorrow";
     }
-    if (isOverdue) return t("bills.daysOverdue", { count: days });
-    return `${days} ${t("bills.days")}`;
+    if (isOverdue) return `${days} days overdue`;
+    return `${days} days`;
   };
 
   if (loading) {
@@ -196,7 +189,7 @@ export function BillAlerts() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-xl font-bold">
               <Clock className="h-5 w-5" />
-              {t("bills.upcomingBillsTitle")}
+              Upcoming Bills
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -211,7 +204,7 @@ export function BillAlerts() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-xl font-bold">
               <AlertTriangle className="h-5 w-5" />
-              {t("bills.overdueBillsTitle")}
+              Overdue Bills
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -233,14 +226,14 @@ export function BillAlerts() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-xl font-bold">
             <Clock className="h-5 w-5" />
-            {t("bills.upcomingBillsTitle")} ({upcomingBills.length})
+            Upcoming Bills ({upcomingBills.length})
           </CardTitle>
         </CardHeader>
         <CardContent>
           {upcomingBills.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
               <CheckCircle className="h-12 w-12 mx-auto mb-3 text-green-500" />
-              <p>{t("bills.noUpcomingBillsMessage")}</p>
+              <p>No upcoming bills in the next 30 days</p>
             </div>
           ) : (
             <div className="space-y-3">
@@ -254,8 +247,7 @@ export function BillAlerts() {
                     <div>
                       <div className="font-medium">{bill.loft_name}</div>
                       <div className="text-sm text-gray-600">
-                        {getUtilityLabel(bill.utility_type, t)} -{" "}
-                        {t("bills.due")}:{" "}
+                        {getUtilityLabel(bill.utility_type)} - Due:{" "}
                         {new Date(bill.due_date).toLocaleDateString()}
                       </div>
                     </div>
@@ -272,7 +264,7 @@ export function BillAlerts() {
                       variant="outline"
                       onClick={() => markBillAsPaid(bill)}
                     >
-                      {t("bills.markPaid")}
+                      Mark Paid
                     </Button>
                   </div>
                 </div>
@@ -287,14 +279,14 @@ export function BillAlerts() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-xl font-bold">
             <AlertTriangle className="h-5 w-5 text-red-500" />
-            {t("bills.overdueBillsTitle")} ({overdueBills.length})
+            Overdue Bills ({overdueBills.length})
           </CardTitle>
         </CardHeader>
         <CardContent>
           {overdueBills.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
               <CheckCircle className="h-12 w-12 mx-auto mb-3 text-green-500" />
-              <p>{t("bills.noOverdueBillsMessage")}</p>
+              <p>No overdue bills - great job!</p>
             </div>
           ) : (
             <div className="space-y-3">
@@ -308,8 +300,7 @@ export function BillAlerts() {
                     <div>
                       <div className="font-medium">{bill.loft_name}</div>
                       <div className="text-sm text-gray-600">
-                        {getUtilityLabel(bill.utility_type, t)} -{" "}
-                        {t("bills.due")}:{" "}
+                        {getUtilityLabel(bill.utility_type)} - Due:{" "}
                         {new Date(bill.due_date).toLocaleDateString()}
                       </div>
                     </div>
@@ -323,7 +314,7 @@ export function BillAlerts() {
                       variant="outline"
                       onClick={() => markBillAsPaid(bill)}
                     >
-                      {t("bills.markPaid")}
+                      Mark Paid
                     </Button>
                   </div>
                 </div>

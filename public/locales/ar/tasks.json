@@ -92,5 +92,8 @@
   "urgent": "عاجلة",
   "tasks": "مهام",
   "inProgress": "قيد التقدم",
-  "assigned": "مخصصة"
+  "assigned": "مخصصة",
+  "filters": "المرشحات",
+  "to": "إلى",
+  "noDescription": "لا يوجد وصف"
 }
