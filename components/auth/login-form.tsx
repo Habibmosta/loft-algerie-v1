@@ -15,7 +15,7 @@ import { Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
 import { login } from "@/lib/auth"
 import { loginSchema, type LoginFormData } from "@/lib/validations"
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "@/lib/i18n/context"
 
 export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false)
@@ -30,7 +30,13 @@ export function LoginForm() {
     formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    }
   })
+
+
 
   const onSubmit = async (data: LoginFormData) => {
     setIsLoading(true)
@@ -46,6 +52,7 @@ export function LoginForm() {
       }
     } catch (err) {
       setError("An unexpected error occurred")
+      console.error("Login error:", err)
     } finally {
       setIsLoading(false)
     }
@@ -72,11 +79,11 @@ export function LoginForm() {
 
           <div className="space-y-2">
             <Label htmlFor="email">{t('auth.email')}</Label>
-            <Input 
-              id="email" 
-              type="email" 
-              placeholder={t('auth.enterEmail')} 
-              {...register("email")} 
+            <Input
+              id="email"
+              type="email"
+              placeholder={t('auth.enterEmail')}
+              {...register("email")}
               disabled={isLoading}
               className="bg-white"
             />

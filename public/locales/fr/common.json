@@ -1,6 +1,6 @@
 {
   "actions": {
-    "save": ""
+    "save": "EnregistrerAction"
   },
   "analytics": {
     "subtitle": "Aperçu détaillé de vos opérations.",
@@ -69,7 +69,7 @@
     "copyId": "Copier l'ID",
     "create": "Créer",
     "currencies": {
-      "da": ""
+      "da": "DeviseDA"
     },
     "delete": "Supprimer",
     "deleting": "Suppression...",
@@ -83,7 +83,7 @@
     "no": "Non",
     "none": "Aucun",
     "owners": {
-      "ownershipType": ""
+      "ownershipType": "TypePropriété"
     },
     "pickDate": "Choisir une date",
     "pickDateRange": "Choisir une plage de dates",
@@ -564,11 +564,19 @@
       "addFirstZoneArea": "",
       "addNew": "",
       "createNewZoneArea": "",
+      "createSuccess": "",
+      "createZoneArea": "",
+      "editZoneArea": "",
+      "enterZoneInfo": "",
       "existingZoneAreas": "",
       "noZoneAreasFound": "",
       "refreshError": "",
       "totalZoneAreas": "",
-      "updateZoneAreaInfo": ""
+      "updateSuccess": "",
+      "updateZoneArea": "",
+      "updateZoneAreaInfo": "",
+      "zoneAreaName": "",
+      "zoneDetails": ""
     }
   },
   "tasks": {

@@ -1,6 +1,7 @@
 "use client"
 
 import { useTranslation } from "@/lib/i18n/context"
+import { setLanguageCookie } from "@/app/actions/i18n"
 import { Button } from "@/components/ui/button"
 import { 
   DropdownMenu, 
@@ -31,9 +32,7 @@ export function LanguageSelector({ showText = false }: LanguageSelectorProps) {
     
     setIsChanging(true)
     try {
-      await changeLanguage(langCode)
-      // Sauvegarder dans localStorage
-      localStorage.setItem('language', langCode)
+      await setLanguageCookie(langCode)
     } catch (error) {
       console.error('Erreur lors du changement de langue:', error)
     } finally {

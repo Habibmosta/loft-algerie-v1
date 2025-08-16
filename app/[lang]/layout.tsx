@@ -1,12 +1,13 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
-import "./globals.css"
-import "../styles/settings-animations.css"
+import "../globals.css"
+import "../../styles/settings-animations.css"
 import { getSession } from "@/lib/auth"
 import { getUnreadNotificationsCount } from "@/app/actions/notifications"
 import ClientProviders from "@/components/providers/client-providers"
-import { cookies } from "next/headers"
+import TranslationsProvider from "@/components/providers/translations-provider"
+import { getTranslations } from "@/lib/i18n/server"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -41,18 +42,14 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({
   children,
+  params: { lang },
 }: {
   children: React.ReactNode
+  params: { lang: string }
 }) {
   const session = await getSession(); // Fetch session in the root layout
   const { count: unreadCount } = session ? await getUnreadNotificationsCount(session.user.id) : { count: null };
-  
-  // Get language from cookies or default to 'fr'
-  const cookieStore = await cookies();
-  const languageCookie = cookieStore.get('language');
-  const lang = languageCookie?.value && ['en', 'fr', 'ar'].includes(languageCookie.value) 
-    ? languageCookie.value 
-    : 'fr';
+  const { t, resources } = await getTranslations(lang, ['common', 'auth', 'landing'])
 
   return (
     <html lang={lang} suppressHydrationWarning>
@@ -66,9 +63,11 @@ export default async function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className={inter.className}>
-        <ClientProviders session={session} unreadCount={unreadCount} lang={lang}>
-          {children}
-        </ClientProviders>
+        <TranslationsProvider namespaces={['common', 'auth', 'landing']} locale={lang} resources={resources}>
+          <ClientProviders session={session} unreadCount={unreadCount} lang={lang}>
+            {children}
+          </ClientProviders>
+        </TranslationsProvider>
       </body>
     </html>
   )

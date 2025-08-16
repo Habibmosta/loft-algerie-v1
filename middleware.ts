@@ -8,10 +8,10 @@ export async function middleware(request: NextRequest) {
   })
 
   // Log incoming cookies (development only)
-  // Set default language to 'ar' if not explicitly set
+  // Set default language to 'fr' if not explicitly set
   let language = request.cookies.get('language')?.value;
   if (!language || !['en', 'fr', 'ar'].includes(language)) {
-    supabaseResponse.cookies.set('language', 'ar', { path: '/' });
+    supabaseResponse.cookies.set('language', 'fr', { path: '/' });
   }
 
   if (process.env.NODE_ENV === 'development') {

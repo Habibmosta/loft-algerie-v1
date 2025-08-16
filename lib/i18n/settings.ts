@@ -1,6 +1,6 @@
-export function getOptions(lng = 'fr', ns = ['common', 'bills', 'lofts', 'owners', 'teams', 'reservations', 'transactions']) {
+export function getOptions(lng = 'fr', ns = ['common', 'auth', 'landing', 'bills', 'lofts', 'owners', 'teams', 'reservations', 'transactions', 'analytics', 'conversations', 'dashboard', 'executive', 'internetConnections', 'nav', 'notifications', 'paymentMethods', 'reports', 'settings', 'tasks', 'test', 'testSound', 'testTranslations', 'theme', 'unauthorized', 'zoneAreas']) {
   return {
-    debug: true, // Activer le debug pour voir les problèmes
+    debug: true,
     supportedLngs: ['en', 'fr', 'ar'],
     fallbackLng: 'fr',
     lng,
@@ -8,15 +8,16 @@ export function getOptions(lng = 'fr', ns = ['common', 'bills', 'lofts', 'owners
     defaultNS: 'common',
     ns,
     backend: {
-      loadPath: './public/locales/{{lng}}/{{ns}}.json',
-      // Désactiver le cache pour forcer le rechargement
-      allowMultiLoading: false,
-      crossDomain: false,
-      withCredentials: false,
+      loadPath: '/locales/{{lng}}/{{ns}}.json',
       requestOptions: {
-        cache: 'no-cache',
-        mode: 'cors',
+        cache: process.env.NODE_ENV === 'production' ? 'default' : 'no-cache',
       },
     },
+    react: {
+      useSuspense: false,
+    },
+    interpolation: {
+      escapeValue: false, // React already escapes values
+    }
   }
 }

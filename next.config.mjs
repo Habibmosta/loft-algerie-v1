@@ -53,10 +53,15 @@ const nextConfig = {
   // Configuration de développement
   ...(process.env.NODE_ENV === 'development' && {
     reactStrictMode: true,
-  }),
-}
-
-// Log de configuration par environnement
-console.log(`🚀 Next.js configuré pour l'environnement: ${process.env.NODE_ENV}`)
-
-export default nextConfig
+    }),
+    async rewrites() {
+      return [
+        {
+          source: '/locales/:lng/:ns.json',
+          destination: '/public/locales/:lng/:ns.json',
+        },
+      ]
+    },
+ }
+  
+ export default nextConfig

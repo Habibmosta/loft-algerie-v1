@@ -18,11 +18,12 @@ interface ClientProvidersProps {
   children: React.ReactNode;
   session: any; // Type this more specifically if possible
   unreadCount: number | null;
+  lang?: string;
 }
 
-export default function ClientProviders({ children, session, unreadCount }: ClientProvidersProps) {
+export default function ClientProviders({ children, session, unreadCount, lang }: ClientProvidersProps) {
   return (
-    <I18nProvider>
+    <I18nProvider lang={lang}>
       <SupabaseProvider>
         <ThemeProvider
           attribute="class"

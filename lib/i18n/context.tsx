@@ -1,8 +1,10 @@
 "use client"
 
 import React, { createContext, useContext, useEffect, useState } from "react"
+import { useRouter } from "next/navigation" 
 import { I18nextProvider } from "react-i18next"
 import i18next from "i18next"
+import { initializeI18n } from "./index"
 
 interface I18nContextType {
   t: typeof i18next.t;
@@ -16,72 +18,76 @@ const I18nContext = createContext<I18nContextType | undefined>(undefined)
 
 interface I18nProviderProps {
   children: React.ReactNode;
+  lang?: string;
 }
 
-export function I18nProvider({ children }: I18nProviderProps) {
+export function I18nProvider({ children, lang }: I18nProviderProps) {
   const [ready, setReady] = useState(false)
-  const [i18nInstance, setI18nInstance] = useState<typeof i18next | null>(null)
-  const [currentLanguage, setCurrentLanguage] = useState('en')
+  const [currentLanguage, setCurrentLanguage] = useState('fr')
+  const router = useRouter(); // Moved useRouter to the top level of the component
 
   useEffect(() => {
-    const initializeI18n = async () => {
+    const initializeI18nContext = async () => {
       try {
-        // Import and initialize the i18n configuration
-        const { default: i18nInstance } = await import("./index")
-        if (!i18nInstance.isInitialized) {
-          await i18nInstance.init()
-        }
+        // Initialize i18n with the provided language or default
+        const initialLang = lang || 'fr';
+        await initializeI18n({ 
+          lng: initialLang
+        });
         
-        // Vérifier la langue sauvegardée dans localStorage
-        const savedLanguage = typeof window !== 'undefined' ? localStorage.getItem('language') : null
-        if (savedLanguage && ['en', 'fr', 'ar'].includes(savedLanguage)) {
-          await i18nInstance.changeLanguage(savedLanguage)
-        }
+        await i18next.changeLanguage(initialLang);
         
-        setI18nInstance(i18nInstance)
-        setCurrentLanguage(i18nInstance.language || 'fr')
+        setCurrentLanguage(i18next.language)
         
-        // Listen for language changes
-        i18nInstance.on('languageChanged', (lng: string) => {
+        i18next.on('languageChanged', (lng: string) => {
           setCurrentLanguage(lng)
+          if (typeof window !== 'undefined') {
+            document.cookie = `language=${lng}; path=/; max-age=31536000; SameSite=Lax`;
+          }
         })
         
         setReady(true)
       } catch (error) {
         console.error('Failed to initialize i18n:', error)
-        setReady(true) // Set ready even on error to prevent infinite loading
+        setReady(true)
       }
     }
 
-    initializeI18n()
-  }, [])
+    initializeI18nContext()
+    
+    // Clean up listener on unmount
+    return () => {
+      if (i18next) {
+        i18next.off('languageChanged')
+      }
+    }
+  }, [lang])
 
   const contextValue: I18nContextType = {
-    t: i18nInstance?.t.bind(i18nInstance) || (() => ''),
-    i18n: i18nInstance || i18next,
-    ready: ready && !!i18nInstance,
+    t: i18next.t.bind(i18next),
+    i18n: i18next,
+    ready,
     language: currentLanguage,
     changeLanguage: async (lng: string) => {
       try {
-        if (i18nInstance) {
-          await i18nInstance.changeLanguage(lng);
-          setCurrentLanguage(lng);
-          // Force reload of resources for the new language
-          await i18nInstance.reloadResources(lng, ['reservations', 'common', 'teams', 'bills', 'lofts', 'owners', 'transactions']);
-          // Force clear cache and reload transactions specifically
-          i18nInstance.removeResourceBundle(lng, 'transactions');
-          await i18nInstance.loadNamespaces(['transactions']);
-        }
+        await i18next.changeLanguage(lng);
+        setCurrentLanguage(lng);
+        router.refresh(); // Trigger a soft navigation to re-render server components
+        router.replace(window.location.pathname); // Force a full client-side navigation
       } catch (error) {
         console.error('Failed to change language:', error)
       }
     },
   }
 
+  if (!ready) {
+    return <div>Loading translations...</div>;
+  }
+
   return (
-    <I18nextProvider i18n={i18nInstance || i18next}>
+    <I18nextProvider i18n={i18next}>
       <I18nContext.Provider value={contextValue}>
-        {ready && i18nInstance ? children : <div>Loading translations...</div>}
+        {children}
       </I18nContext.Provider>
     </I18nextProvider>
   )
@@ -93,12 +99,16 @@ export function useTranslation(namespaces?: string | string[]) {
     throw new Error("useTranslation must be used within an I18nProvider")
   }
   
-  // If namespaces are specified, load them
+  // If specific namespaces are requested, ensure they are loaded
   if (namespaces && context.i18n) {
     const nsArray = Array.isArray(namespaces) ? namespaces : [namespaces]
     nsArray.forEach(ns => {
+      // Check if the namespace is already loaded
       if (!context.i18n.hasResourceBundle(context.i18n.language, ns)) {
-        context.i18n.loadNamespaces(ns)
+        // Try to load the namespace
+        context.i18n.loadNamespaces(ns).catch(err => {
+          console.error('Failed to load namespace:', ns, err)
+        })
       }
     })
   }
