@@ -38,7 +38,7 @@ export default function InternetConnectionsClientPage({
   };
 
   return (
-    <div className="bg-gray-50 p-4 sm:p-6 md:p-8 min-h-screen">
+    <div className="bg-blue-50 p-4 sm:p-6 md:p-8 min-h-screen">
       <div className="max-w-4xl mx-auto space-y-8">
       <Heading title={t('internetConnections.title')} description={t('internetConnections.subtitle')} />
 

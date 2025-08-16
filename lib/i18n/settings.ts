@@ -8,7 +8,7 @@ export function getOptions(lng = 'fr', ns = ['common', 'auth', 'landing', 'bills
     defaultNS: 'common',
     ns,
     backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json',
+      loadPath: process.cwd() + '/public/locales/{{lng}}/{{ns}}.json',
       requestOptions: {
         cache: process.env.NODE_ENV === 'production' ? 'default' : 'no-cache',
       },

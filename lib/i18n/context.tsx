@@ -1,7 +1,7 @@
 "use client"
 
 import React, { createContext, useContext, useEffect, useState } from "react"
-import { useRouter } from "next/navigation" 
+import { useRouter, usePathname } from "next/navigation"
 import { I18nextProvider } from "react-i18next"
 import i18next from "i18next"
 import { initializeI18n } from "./index"
@@ -73,7 +73,13 @@ export function I18nProvider({ children, lang }: I18nProviderProps) {
         await i18next.changeLanguage(lng);
         setCurrentLanguage(lng);
         router.refresh(); // Trigger a soft navigation to re-render server components
-        router.replace(window.location.pathname); // Force a full client-side navigation
+        const currentPathname = window.location.pathname; // Get the current pathname
+        // Construct the new path with the selected language
+        // Assuming the current path is /lang/rest-of-path, we replace the /lang part
+        const pathSegments = currentPathname.split('/');
+        pathSegments[1] = lng; // Replace the language segment
+        const newPath = pathSegments.join('/');
+        router.push(newPath); // Navigate to the new path
       } catch (error) {
         console.error('Failed to change language:', error)
       }
